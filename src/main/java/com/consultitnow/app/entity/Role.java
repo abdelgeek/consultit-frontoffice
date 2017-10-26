@@ -24,14 +24,19 @@ public class Role implements Serializable{
 	@Column(name="roleWording")
 	private String roleWording;
 	
-	@Column(name="actived",columnDefinition="boolean default true")
-	private Boolean actived;
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="activated",columnDefinition="boolean default true")
+	private Boolean activated;
+	
 	
 	@OneToMany(mappedBy="primaryKey.role")
-	private Collection<UserRole> userRole;
+	private Collection<UsersRole> usersRole;
 	
-	public Collection<UserRole> getUserRole() {
-		return userRole;
+	
+	public Collection<UsersRole> getUserRole() {
+		return usersRole;
 	}
 
 	
@@ -54,19 +59,31 @@ public class Role implements Serializable{
 		this.roleWording = roleWording;
 	}
 
+	
+	
 
-	public Boolean getActived() {
-		return actived;
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setActived(Boolean actived) {
-		this.actived = actived;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
-	public void setUserRole(Collection<UserRole> userRole) {
-		this.userRole = userRole;
+	public Boolean getactivated() {
+		return activated;
+	}
+
+
+	public void setactivated(Boolean activated) {
+		this.activated = activated;
+	}
+
+
+	public void setUserRole(Collection<UsersRole> usersRole) {
+		this.usersRole = usersRole;
 	}
 
 

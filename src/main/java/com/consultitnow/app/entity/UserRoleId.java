@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 public class UserRoleId implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	private User user;
+	private Users users;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Role role;
@@ -19,13 +19,19 @@ public class UserRoleId implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User getUser() {
-		return user;
+	
+
+	public Users getUsers() {
+		return users;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+
+
+	public void setUsers(Users users) {
+		this.users = users;
 	}
+
+
 
 	public Role getRole() {
 		return role;
@@ -35,10 +41,12 @@ public class UserRoleId implements Serializable {
 		this.role = role;
 	}
 
-	public UserRoleId(User user, Role role) {
+	public UserRoleId(Users users, Role role) {
 		super();
-		this.user = user;
+		this.users = users;
 		this.role = role;
 	}
+	
+	
 
 }

@@ -7,6 +7,6 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Internal Agent")
-public class InternalAgent extends User {
+public class InternalAgent extends Users {
 
 }

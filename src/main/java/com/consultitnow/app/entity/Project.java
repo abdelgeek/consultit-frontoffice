@@ -18,12 +18,13 @@ public class Project implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private Date orderDate;
-	private String ProjectStatus;
-	private String Description;
-	private String EquipementName;
-	private String EquipementModel;
-	private String EquipementMark;
-	private String EquipementManufacturer;
+	private String projectStatus;
+	private String description;
+	private String productName;
+	private String productModel;
+	private String productBrand;
+	private String brandManufacturer;
+	private Double price;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Category category;
@@ -50,40 +51,40 @@ public class Project implements Serializable {
 		this.orderDate = orderDate;
 	}
 	public String getProjectStatus() {
-		return ProjectStatus;
+		return projectStatus;
 	}
 	public void setProjectStatus(String projectStatus) {
-		ProjectStatus = projectStatus;
+		this.projectStatus = projectStatus;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 	public String getEquipementName() {
-		return EquipementName;
+		return productName;
 	}
-	public void setEquipementName(String equipementName) {
-		EquipementName = equipementName;
+	public void setEquipementName(String productName) {
+		this.productName = productName;
 	}
 	public String getEquipementModel() {
-		return EquipementModel;
+		return productModel;
 	}
-	public void setEquipementModel(String equipementModel) {
-		EquipementModel = equipementModel;
+	public void setEquipementModel(String productModel) {
+		this.productModel = productModel;
 	}
 	public String getEquipementMark() {
-		return EquipementMark;
+		return productBrand;
 	}
-	public void setEquipementMark(String equipementMark) {
-		EquipementMark = equipementMark;
+	public void setEquipementMark(String productBrand) {
+		this.productBrand = productBrand;
 	}
 	public String getEquipementManufacturer() {
-		return EquipementManufacturer;
+		return brandManufacturer;
 	}
 	public void setEquipementManufacturer(String equipementManufacturer) {
-		EquipementManufacturer = equipementManufacturer;
+		this.brandManufacturer = equipementManufacturer;
 	}
 	public Category getCategory() {
 		return category;
@@ -104,8 +105,12 @@ public class Project implements Serializable {
 		this.agency = agency;
 	}
 	
-	
-	
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 	public Project() {
 		super();
 		// TODO Auto-generated constructor stub

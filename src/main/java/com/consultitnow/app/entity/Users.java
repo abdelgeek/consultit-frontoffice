@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "UserType")
-public class User implements Serializable {
+public class Users implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,12 +39,17 @@ public class User implements Serializable {
 	@Column(name = "email", nullable = false)
 	private String email;
 
-	@OneToMany(mappedBy = "primaryKey.user", cascade = CascadeType.ALL)
-	private Collection<UserRole> userRoles;
+	@OneToMany(mappedBy = "primaryKey.users", cascade = CascadeType.ALL)
+	private Collection<UsersRole> usersRoles;
 
+	@Column(name = "firstName", nullable = false)
 	private String firstName;
+	
+	@Column(name = "lastName", nullable = false)
 	private String lastName;
 
+	
+	@Column(name = "mobile", nullable = false)
 	private String mobile;
 
 	public String getFirstName() {
@@ -71,7 +76,7 @@ public class User implements Serializable {
 		this.mobile = mobile;
 	}
 
-	public User() {
+	public Users() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -123,12 +128,12 @@ public class User implements Serializable {
 		this.actived = actived;
 	}
 
-	public Collection<UserRole> getUserRole() {
-		return userRoles;
+	public Collection<UsersRole> getUserRole() {
+		return usersRoles;
 	}
 
-	public void setUserRole(Collection<UserRole> userRoles) {
-		this.userRoles = userRoles;
+	public void setUserRole(Collection<UsersRole> usersRoles) {
+		this.usersRoles = usersRoles;
 	}
 
 }

@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("client")
-public class Client extends User {
+public class Client extends Users {
 
 	private String company;
 	

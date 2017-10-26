@@ -5,12 +5,14 @@ import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 
 @Entity
 public class Quotation implements Serializable{
 
+	@Id
 	private Long id;
 	private Date Quotationdate;
 	private Boolean isValidate;

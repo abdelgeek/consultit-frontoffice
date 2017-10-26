@@ -1,5 +1,7 @@
 package com.consultitnow.app.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -8,13 +10,13 @@ import javax.persistence.Transient;
 
 
 @Entity
-public class UserRole {
+public class UsersRole implements Serializable {
 
 	
 	@EmbeddedId
 	private UserRoleId primaryKey;
 	
-	@Column
+	@Column(nullable=false)
 	private Boolean  authorized;
 	
 	
@@ -29,12 +31,12 @@ public class UserRole {
 
 
 	@Transient
-	public User getUser(){
-		return getPrimaryKey().getUser();
+	public Users getUsers(){
+		return getPrimaryKey().getUsers();
 	}
 	
-	public void setUser(User user){
-		 getPrimaryKey().setUser(user);
+	public void setUsers(Users users){
+		 getPrimaryKey().setUsers(users);
 	}
 	
 	
@@ -60,10 +62,14 @@ public class UserRole {
 
 
 
-	public UserRole() {
+	public UsersRole() {
 		// TODO Auto-generated constructor stub
 		
 	
 	}
 
+
+	
+
+	
 }

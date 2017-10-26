@@ -1,10 +1,14 @@
 package com.consultitnow.app.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class Sample {
 
+	@Id
 	private int id;
 	private Boolean isNewApproval;
 	private Boolean isRenewal;

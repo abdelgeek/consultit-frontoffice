@@ -6,4 +6,5 @@ import com.consultitnow.app.entity.Country;
 
 public interface ICountryDao extends JpaRepository<Country, Long>{
 
+	public Country findByCountryName(String CountryName);
 }

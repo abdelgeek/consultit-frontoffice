@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Technical")
-public class TechnicalRequirement {
+public class TechnicalRequirement extends Requirements {
 	
 	private String loA;
 	private String doC;
