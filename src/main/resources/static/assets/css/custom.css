@@ -63,3 +63,7 @@ ul.categorie-items li::after{content: " - "}
 .form-edit{background-color: white !important ;border: 1px solid #bdbdbd !important;padding: 5px !important;}
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td { border-top: 1px solid #cfd8dc;}
 .table.table th, table.table td { padding-top: 0.45rem;padding-bottom: 0.45rem;}
+input[type=text].form-edit:disabled{background-color: #eee !important;cursor: not-allowed !important;}
+.modal-danger .modal-body ,.modal-danger .modal-footer{ background-color: #fff !important;
+}
+ 
