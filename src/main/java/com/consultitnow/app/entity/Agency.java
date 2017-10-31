@@ -3,11 +3,11 @@ package com.consultitnow.app.entity;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -17,12 +17,37 @@ public class Agency implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(nullable=false)
 	private String agencyName;
+	
 	private String link;
-	private String name;
+	
+	@Column(nullable=false)
+	private String agencyInitials;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Country country;
+	private Boolean isActive;
+	
+	
+	public String getAgencyInitials() {
+		return agencyInitials;
+	}
+
+	public void setAgencyInitials(String agencyInitials) {
+		this.agencyInitials = agencyInitials;
+	}
+
+	
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
 	public Long getId() {
 		return id;
@@ -48,13 +73,7 @@ public class Agency implements Serializable {
 		this.link = link;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 	public Country getCountry() {
 		return country;
@@ -67,6 +86,16 @@ public class Agency implements Serializable {
 	public Agency() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Agency(Long id, String agencyName, String link, String agencyInitials, Country country, Boolean isActive) {
+		super();
+		this.id = id;
+		this.agencyName = agencyName;
+		this.link = link;
+		this.agencyInitials = agencyInitials;
+		this.country = country;
+		this.isActive = isActive;
 	}
 	
 	

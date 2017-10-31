@@ -8,6 +8,12 @@ import javax.persistence.Entity;
 public class AdministrativeRequirements extends Requirements {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	private Integer leadtime;
 	private Integer certificateValidity;
 	private String localRepresentative;
