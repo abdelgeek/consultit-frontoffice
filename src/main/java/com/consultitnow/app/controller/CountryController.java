@@ -75,7 +75,7 @@ public class CountryController {
 	
 	
 	
-	//delete all country
+	//delete a country
 	/*
 	 * this method not delete the country but it disable it
 	 */

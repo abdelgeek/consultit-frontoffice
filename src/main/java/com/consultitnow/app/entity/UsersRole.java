@@ -40,7 +40,6 @@ public class UsersRole implements Serializable {
 	}
 	
 	
-	
 	@Transient
 	public Role getRole(){
 		return getPrimaryKey().getRole();

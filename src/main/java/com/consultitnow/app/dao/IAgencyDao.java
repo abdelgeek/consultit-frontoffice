@@ -16,7 +16,9 @@ public interface IAgencyDao extends JpaRepository<Agency, Long> {
 		//get one agency by his  name
 		public Agency findByAgencyName(String AgencyName);
 		
-		//get one agency by his  name
+	
+		
+		//get one agency by his  id
 		public Agency findById(Long AgencyId);
 		
 }

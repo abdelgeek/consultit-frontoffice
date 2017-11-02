@@ -2,6 +2,8 @@ package com.consultitnow.app.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -9,15 +11,19 @@ import javax.persistence.ManyToOne;
 public class Category {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	private String categoryWording;
+	private String categoryName;
 	
 	private Double categoryPrice;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Country country;
 
+	
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -26,12 +32,12 @@ public class Category {
 		this.id = id;
 	}
 
-	public String getCategoryWording() {
-		return categoryWording;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setCategoryWording(String categoryWording) {
-		this.categoryWording = categoryWording;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public Double getCategoryPrice() {
@@ -53,6 +59,14 @@ public class Category {
 	public Category() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Category(long id, String categoryName, Double categoryPrice, Country country) {
+		super();
+		this.id = id;
+		this.categoryName = categoryName;
+		this.categoryPrice = categoryPrice;
+		this.country = country;
 	}
 	
 	

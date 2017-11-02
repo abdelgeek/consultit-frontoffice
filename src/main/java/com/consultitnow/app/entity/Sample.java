@@ -2,6 +2,8 @@ package com.consultitnow.app.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -9,6 +11,7 @@ import javax.persistence.ManyToOne;
 public class Sample {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private Boolean isNewApproval;
 	private Boolean isRenewal;

@@ -13,6 +13,7 @@ import com.consultitnow.app.entity.Agency;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.model.AgencyModel;
 import com.consultitnow.model.AgencyResult;
+import com.consultitnow.model.Result;
 
 @RestController
 public class AgencyController {
@@ -46,7 +47,7 @@ public class AgencyController {
 
 		if (agencyName.isEmpty() || agencyInitials.isEmpty()) {
 			result.setMessage("Erreur: Renseignez tous les champs");
-			System.out.println("Erreur:  renseigner tous les chmaps");
+			System.out.println("Erreur:  renseigner tous les champs");
 		} else {
 
 			// 4- sinon verifie si le pays existe
@@ -101,4 +102,35 @@ public class AgencyController {
 	public List<Agency> findAll() {
 		return agencyDao.findByIsActiveAndCountryIsActive(true, true);
 	}
+	
+	
+	
+	//delete an agency
+		/*
+		 * this method not delete the country but it disable it
+		 */
+		@RequestMapping(value="/deleteAngency", method=RequestMethod.POST)
+		public Result delete(AgencyModel am){
+			
+			Result result = new Result("Erreur", false);
+			
+			
+			System.out.println(am.toString());
+			//1. verifie si le pays existe
+			if (agencyDao.findById(am.getId()) == null){
+				System.out.println("Erreur: Cette agence n'existe pas");
+				result.setMessage("Erreur: Cette agence  n'existe pas");
+			}else{
+				
+				Country c = countryDao.findByCountryName(am.getCountryName());
+				Agency agency =new Agency(am.getId(), am.getAgencyName(), am.getLink(), am.getAgencyInitials(), c, false);
+				
+				agencyDao.save(agency);
+				result.setMessage("Succes: Agence supprimée avec succes");
+				result.setIsValid(true);
+				System.out.println("Cette agence a été supprimée");
+			}
+			
+			return result;
+		}
 }

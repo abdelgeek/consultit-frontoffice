@@ -1,10 +1,10 @@
-var oldAgency = {};
-var countryToDelete
-var totalCountry = 0
+var oldCountry = {};
+var categoryToDelete
+
 
 
 //enregistrer la liste des pays
-
+/*
 
 var saveAgency = function(no) {
 	$.ajax({
@@ -43,9 +43,9 @@ var saveAgency = function(no) {
 	})
 }
 
+*/
 
-
-
+/*
 //supprimer un pays
 function deleteCountry(no) {
 	
@@ -66,25 +66,23 @@ function deleteCountry(no) {
 	})
 }
 
-
+*/
 
 
 // get all agency
 $.get({
-	url : "/findAgencies",
-	success : function(countries) {
+	url : "/findCategories",
+	success : function(categories) {
 
-		$.each(countries, function(i, agency) {
+		$.each(categories, function(i, category) {
 
 			i++;
 			$("#data-table tr:last").after('<tr>'
 
-				+ '<td id="id-row' + i + '">' + agency.id + '</td>'
-				+ '<td id="agencyName-row' + i + '">' + agency.agencyName + '</td>'
-				+ '<td id="agencyInitials-row' + i + '">' + agency.agencyInitials + '</td>'
-				+ '<td id="link-row' + i + '">' + agency.link + '</td>'
-				+ '<td id="countryName-row' + i + '">' + agency.country.countryName + '</td>'
-
+				+ '<td id="id-row' + i + '">' + category.id + '</td>'
+				+ '<td id="countryName-row' + i + '">' + category.country.countryName + '</td>'
+				+ '<td id="categoryName-row' + i + '">' + category.categoryName + '</td>'
+				+ '<td id="categoryPrice-row' + i + '">' + category.categoryPrice + '</td>'
 				+ '<td scope="row" class="text-center">'
 
 				+ '<button title="Update"  type="button" id="edit_button' + i + '" value="edit" onclick="edit_row(' + i + ')" class=" edit btn btn-outline-primary  waves-effect px-3">'
@@ -115,7 +113,7 @@ $.get({
 	error : function() {}
 })
 
-
+// afficher la liste
 function findCountries(no) {
 	$.get({
 		url : "/findCountries",
@@ -148,7 +146,6 @@ function findCountries(no) {
 
 
 
-
 //--------------------------------------  Action on button ---------------------------------------------------------
 
 
@@ -162,41 +159,44 @@ function edit_row(no) {
 	document.getElementById("cancel_button" + no).style.display = "inline-block";
 
 	var id = document.getElementById("id-row" + no);
-	var agencyInitials = document.getElementById("agencyInitials-row" + no);
-	var agencyName = document.getElementById("agencyName-row" + no);
-	var link = document.getElementById("link-row" + no);
 	var countryName = document.getElementById("countryName-row" + no);
+	var categoryName = document.getElementById("categoryName-row" + no);
+	var categoryPrice = document.getElementById("categoryPrice-row" + no);
+	
 
 
-
-	oldAgency.id = id.innerHTML;
-	oldAgency.agencyInitials = agencyInitials.innerHTML;
-	oldAgency.agencyName = agencyName.innerHTML;
-	oldAgency.link = link.innerHTML;
-	oldAgency.countryName = countryName.innerHTML;
+	oldCountry.id = id.innerHTML;
+	oldCountry.countryName = countryName.innerHTML;
+	oldCountry.categoryName = categoryName.innerHTML;
+	oldCountry.categoryPrice = categoryPrice.innerHTML;
+	
 
 	var id_data = id.innerHTML;
-	var agencyInitials_data = agencyInitials.innerHTML;
-	var agencyName_data = agencyName.innerHTML;
-	var link_data = link.innerHTML;
 	var countryName_data = countryName.innerHTML;
-
+	var categoryName_data = categoryName.innerHTML;
+	var categoryPrice_data = categoryPrice.innerHTML;
+	
 
 	id.innerHTML = "<input disabled class='form-control  form-edit' type='text' id='id-text" + no + "' value='" + id_data + "'>";
-	agencyInitials.innerHTML = "<input class='form-control form-edit' type='text' id='agencyInitials-text" + no + "' value='" + agencyInitials_data + "'>";
-	agencyName.innerHTML = "<input  class='form-control  form-edit' type='text' id='agencyName-text" + no + "' value='" + agencyName_data + "'>";
-	link.innerHTML = "<input class='form-control form-edit' type='text' id='link-text" + no + "' value='" + link_data + "'>";
+	countryName.innerHTML = "<select id='countryName-text"+no+"' class='form-control'> <option value=''selected>Choose your option</option" +"</select>";
+	
+	categoryName.innerHTML ="<select onchange='activeName(" +no+")' id='hasName" + no + "' class='form-control'> "+
+	"<option value='0' selected>Has one category</option>"+
+	"<option value='1'>Has many categories </option></select>" +
+	"<input type='text' placeholder='categorie name'   id='categoryName-text" + no + "' style='display:none;'   class='form-control  form-edit'/>";
+	
+	categoryPrice.innerHTML = "<input  class='form-control form-edit' type='text' id='link-text" + no + "' value='" + categoryPrice_data + "'>";
 
 
-	countryName.innerHTML = "<select id='countryName-text1' class='mdb-select'> <option value='' selected>Choose your option</option" +"</select>";
-
+	
 
 	findCountries(no);
 
-	/**/
+	
 
 
 }
+
 
 //cancel a row
 function cancel_row(no) {
@@ -213,36 +213,34 @@ function cancel_row(no) {
 		document.getElementById("save_button" + no).style.display = "none";
 		document.getElementById("cancel_button" + no).style.display = "none";
 
-
-		var id_val = oldAgency.id;
-		var agencyInitials_val = oldAgency.agencyInitials;
-		var agencyName_val = oldAgency.agencyName;
-		var link_val = oldAgency.link;
-		var countryName_val = oldAgency.countryName;
+		
+		
+		var id_val = oldCountry.id;
+		var countryName_val = oldCountry.countryName;
+		var categoryName_val = oldCountry.categoryName;
+		var categoryPrice_val = oldCountry.categoryPrice;
 
 
 		var id = document.getElementById("id-row" + no);
-		var agencyInitials = document.getElementById("agencyInitials-row" + no);
-		var agencyName = document.getElementById("agencyName-row" + no);
-		var link = document.getElementById("link-row" + no);
 		var countryName = document.getElementById("countryName-row" + no);
+		var categoryName = document.getElementById("categoryName-row" + no);
+		var categoryPrice = document.getElementById("categoryPrice-row" + no);
 
 
 		id.innerHTML = id_val;
-		agencyInitials.innerHTML = agencyInitials_val;
-		agencyName.innerHTML = agencyName_val;
-		link.innerHTML = link_val;
-		countryName.innerHTML = link_val;
-
+		countryName.innerHTML = countryName_val;
+		categoryName.innerHTML = categoryName_val;
+		categoryPrice.innerHTML = categoryPrice_val;
+		
 	}
 
 }
 
 
 
-
 //bind data
 
+/*
 function bind_row(no) {
 	if (no == 0) {
 
@@ -285,12 +283,12 @@ function bind_row(no) {
 }
 
 
-
+*/
 
 
 
 //get row to delete
-
+/*
 function delete_row(no) {
 	countryToDelete = no
 
@@ -309,14 +307,12 @@ $("#button_confirm").on("click", function() {
 	$("#id-row" + countryToDelete).parent().remove();
 	$('#confirmModal').modal('hide')
 })
+*/
 
 
 //add a row to the data table
 function add_row() {
-	/*var new_name=document.getElementById("new_name").value;
-	var new_country=document.getElementById("new_country").value;
-	var new_age=document.getElementById("new_age").value;
-	*/
+
 	var table = document.getElementById("data-table");
 	var table_len = (table.rows.length);
 	var row = table.insertRow(1).outerHTML = "<tr>" +
@@ -326,27 +322,20 @@ function add_row() {
 		"<input disabled class='form-control form-edit' type='text' id='id-text0' >" +
 		"</td>" +
 
-		"<td id='agencyName-row0'>" +
-		"<input class='form-control form-edit' type='text' id='agencyName-text0" +
-		"'></td>" +
+		"<td id='countryName-row0'>" +
+		 "<select id='countryName-text0' class='form-control'> <option value=''selected>Choose your option</option>" +"</select>"+
+		"</td>" +
 
-		"<td  id='agencyInitials-row0'>" +
-		"<input class='form-control form-edit' type='text' id='agencyInitials-text0" +
-		"'></td>" +
+		"<td  id='categoryName-row0'>" +
+		"<select onchange='activeName(0)' id='hasName0'  class='form-control'> "+
+		"<option value='0' selected='selected'>Has one category</option>"+
+		"<option value='1'>Has many categories </option></select>" +
+		"<input type='text' placeholder='categorie name' id='categoryName-text0' style='display:none;'   class='form-control  form-edit'/>"+
+		"</td>" +
 
-		"<td  id='link-row0'>" +
-		"<input class='form-control form-edit' type='text' id='link-text0" +
-		"'></td>" +
-
-		"<td>"
-
-
-		+ "<select id='countryName-text0' class='mdb-select'>"
-		+ "<option value=''  selected>Choose your option</option>"
-		+ "</select>" +
-
-
-
+		"<td  id='categoryPrice-row0'>" +
+		"<input class='form-control form-edit' type='text' id='categoryPrice-text0" +
+		"'></td>"+
 
 		"<td scope='row' class='text-center'>" +
 
@@ -368,6 +357,8 @@ function add_row() {
 }
 
 
+
+/*
 // save data to database
 function save_row(no) {
 	if (!$("#agencyName-text" + no).val()) {
@@ -392,8 +383,10 @@ function save_row(no) {
 
 
 }
+*/
 
 
+/*
 //add new country to table
 var addToTable = function(a) {
 
@@ -427,7 +420,23 @@ var addToTable = function(a) {
 		+ '</tr>')
 
 }
+*/
 
+
+// show the category name input
+function activeName(no){
+	
+	 var rep = $("#hasName"+no).val()
+	 if(rep == 1){
+		 $("#categoryName-text"+no).css("display","block");
+		 
+	 }else{
+		 $("#categoryName-text"+no).css("display","none");
+		 $("#categoryName-text"+no).val("");
+	 }
+	
+	
+}
 function showAlert(result) {
 	$(".alert").show()
 
