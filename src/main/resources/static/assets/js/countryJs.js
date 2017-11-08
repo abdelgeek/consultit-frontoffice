@@ -1,4 +1,4 @@
-var oldCountry;
+var toldCountry = [];
 var countryToDelete
 var totalCountry = 0
 
@@ -17,10 +17,17 @@ var saveCountry = function(no) {
 		success : function(result) {
 
 			if (result.isValid == true) {
-				addToTable(result.country);
-				cancel_row(no);
-			}
+				
+				
+				if (no == 0) {
 
+					addToTable(result.agency);
+					cancel_row(no)
+				} else {
+
+					bind_row(no);
+				}
+			}
 
 			showAlert(result)
 
@@ -58,7 +65,7 @@ $.get({
 			$("#data-table tr:last").after('<tr>'
 
 				+ '<td id="id-row' + i + '">' + country.id + '</td>'
-				+ '<td id="country-row' + i + '">' + country.countryName + '</td>'
+				+ "<td id='country-row" + i + "'>" + country.countryName + "</td>"
 				+ '<td scope="row" class="text-center">'
 
 				+ '<button title="Update"  type="button" id="edit_button' + i + '" value="edit" onclick="edit_row(' + i + ')" class=" edit btn btn-outline-primary  waves-effect px-3">'
@@ -127,14 +134,17 @@ function edit_row(no) {
 	var country = document.getElementById("country-row" + no);
 
 
-	oldCountry = country.innerHTML;
+	toldCountry[no] = country.innerHTML;
 
 	var id_data = id.innerHTML;
 	var country_data = country.innerHTML;
 
+
 	id.innerHTML = "<input disabled class='form-control  form-edit' type='text' id='id-text" + no + "' value='" + id_data + "'>";
 
-	country.innerHTML = "<input class='form-control form-edit' type='text' id='country-text" + no + "' value='" + country_data + "'>";
+	country.innerHTML = '<input class="form-control form-edit" type="text" id="country-text' + no + '" value="' + country_data + '">'; //
+
+
 
 }
 
@@ -155,7 +165,7 @@ function cancel_row(no) {
 		var id_val = document.getElementById("id-text" + no).value;
 		//	var country_val = document.getElementById("country-text" + no).value;
 
-		var country_val = oldCountry;
+		var country_val = toldCountry[no];
 		var id = document.getElementById("id-row" + no);
 		var country = document.getElementById("country-row" + no);
 
@@ -233,10 +243,49 @@ function save_row(no) {
 		saveCountry(no);
 
 		$("#add_button").prop('disabled', false);
+
 	}
 
 
 }
+
+
+//bind data
+
+function bind_row(no) {
+	if (no == 0) {
+
+		$("#id-row0").parent().remove();
+		$("#add_button").prop('disabled', false);
+	} else {
+
+
+
+		document.getElementById("edit_button" + no).style.display = "inline-block";
+		document.getElementById("delete_button" + no).style.display = "inline-block";
+
+		document.getElementById("save_button" + no).style.display = "none";
+		document.getElementById("cancel_button" + no).style.display = "none";
+
+
+		var id_val = $("#id-text" + no).val();
+		var countryName_val = $("#country-text" + no).val();
+
+
+		var id = document.getElementById("id-row" + no);
+		var countryName = document.getElementById("country-row" + no);
+
+
+		id.innerHTML = id_val;
+		countryName.innerHTML = countryName_val;
+
+	}
+
+}
+
+
+
+
 
 
 //add new country to table
@@ -245,8 +294,8 @@ var addToTable = function(c) {
 	var lgh = $("#data-table tr").length - 2;
 
 	$("#data-table tr:last").after('<tr>'
-			+ '<td id="id-row' + lgh + '">' + c.id + '</td>'
-			+ '<td id="country-row' + lgh + '">' + c.countryName + '</td>' 
+		+ '<td id="id-row' + lgh + '">' + c.id + '</td>'
+		+ '<td id="country-row' + lgh + '">' + c.countryName + '</td>'
 		+ '<td scope="row" class="text-center">'
 
 		+ '<button title="UPDATE" type="button" id="edit_button' + lgh + '" value="edit" onclick="edit_row(' + lgh + ')" class=" edit btn btn-outline-primary  waves-effect px-3">'
@@ -265,8 +314,8 @@ var addToTable = function(c) {
 		+ '	<i class="fa fa-times" aria-hidden="true"></i>'
 		+ '</button>'
 		+ '</td>'
-		
-		+'</tr>')
+
+		+ '</tr>')
 
 }
 

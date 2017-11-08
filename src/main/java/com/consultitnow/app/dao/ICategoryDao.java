@@ -6,4 +6,6 @@ import com.consultitnow.app.entity.Category;
 
 public interface ICategoryDao extends JpaRepository<Category, Long> {
 
+	public Category findById(Long id);
+	public Category findByCategoryName(String categoryName);
 }

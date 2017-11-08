@@ -40,78 +40,18 @@
     <body class="layout-boxed skin sidebar-mini">
         <div class="wrapper">
 
-            <header class="main-header">
-                <!-- Logo -->
-                <div >
-                    <a  class="logo">
-                        <!-- mini logo for sidebar mini 50x50 pixels -->
-                        <span class="logo-mini"><b>A</b>LT</span>
-                        <!-- logo for regular state and mobile devices -->
-                        <span class="logo-lg">
-                            <img alt="LOGO" src="assets/img/logo.png" class="logo-img"/>
-                        </span>
-                    </a></div>
-                <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top">
-                    <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+         
+            
+          <!-- header -->
+		<header></header>
 
-                    </a>
-                </nav>
-            </header>
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="assets/img/avatar04.png" class="img-circle" alt="User Image">
-                        </div>
-                        <div class="pull-left info">
-                            <p>Alexander Pierce</p>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
-
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu" data-widget="tree">
-                        <li class="header">MAIN NAVIGATION</li>
-
-                        <li class="active treeview">
-                            <a  data-toggle="collapse" href="#collapseQuotation" aria-expanded="true" aria-controls="collapseOne" href="#">
-                                <i class="fa fa-calculator" aria-hidden="true"></i><span>Quotation</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul id="collapseQuotation" class="collapse treeview-item" role="tabpanel" aria-labelledby="headingOne" >
-                                <li ><a href="getQuote-Step1.html"><i class="fa fa-circle-o"></i>Get quote</a></li>
-                                <li><a href="inprocess.html"><i class="fa fa-circle-o"></i>Quote in process</a></li>
-                                <li><a href="waitingValidation.html"><i class="fa fa-circle-o"></i>Waiting your validation</a></li>
-                            </ul>
-                        </li>
-
-                        <li class=" treeview">
-                            <a  data-toggle="collapse" href="#collapseProject" aria-expanded="true" aria-controls="collapseOne" href="#">
-                                <i class="fa fa-calculator" aria-hidden="true"></i><span>Projets</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul id="collapseProject" class="collapse treeview-item" role="tabpanel" aria-labelledby="headingOne" >
-
-                                <li><a href="#"><i class="fa fa-circle-o"></i>Projects in process</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i>Projects completed</a></li>
-                            </ul>
-                        </li>
+		<!-- / header -->
 
 
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+		<!-- Left side column. contains the logo and sidebar -->
 
+		<aside></aside>
+		<!-- /Left side column -->
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -187,7 +127,7 @@
                                     </form>
                                 </div>
                                 <div class="box-footer clearfix">
-                                    <button  class="pull-left btn btn-default" id="sendQuote">Send
+                                    <button  class="pull-left btn btn-default" id="sendQuote">Confirm
                                         <i class="fa fa-arrow-circle-right"></i></button>
                                     <span class="label-price pull-right">Total : 30.000 USD</span>
                                 </div>
@@ -249,7 +189,11 @@
         </script>
 
 
-
+<script type="text/javascript">
+	
+		$("header").load("header.html")
+		$("aside").load("aside.html")
+	</script>
 
     </body>
 </html>

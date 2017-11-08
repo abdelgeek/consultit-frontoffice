@@ -35,7 +35,9 @@ input[type=text]:focus:not([readonly]),input[type=password]:focus:not([readonly]
 .breadcrumb li{display: inline}
 .btn-default {background-color: #827717;}
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {background-color: #bfb218 !important;}
-.md-form label,.form-group label,.form-group legend {font-size: 1rem;color: #83791a;}
+label.title,.md-form label{font-size: 1rem;color: #83791a;font-weight: 500;}
+.custom-form{margin-bottom: 1.5rem;}
+.form-group label,.form-group legend {font-size: 1rem;}
 .box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title {font-weight: 600;}
 .posr{position: relative}
 .posr .close{position: absolute;top: 4px;right: 6px;}
@@ -63,6 +65,8 @@ ul.categorie-items li::after{content: " - "}
 .form-edit{background-color: white !important ;border: 1px solid #bdbdbd !important;padding: 5px !important;height: 1.7rem !important}
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td { border-top: 1px solid #cfd8dc;}
 .table.table th, table.table td { padding-top: 0.45rem;padding-bottom: 0.45rem;}
+
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {border: 1px solid #cfd8dc;}
 input[type=text].form-edit:disabled{background-color: #eee !important;cursor: not-allowed !important;}
 .modal-danger .modal-body ,.modal-danger .modal-footer{ background-color: #fff !important;
 }

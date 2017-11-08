@@ -4,19 +4,21 @@ var categoryToDelete
 
 
 //enregistrer la liste des pays
-/*
 
-var saveAgency = function(no) {
+var saveCategory = function(no) {
+	
+	var categoryModel = {}
+	
+	categoryModel.id = $("#id-text" + no).val();
+	categoryModel.categoryName=$("#categoryName-text" + no).val();
+	categoryModel.categoryPrice=$("#categoryPrice-text" + no).val();
+	categoryModel.country =  $("#countryName-text" + no).val();
+	
+	console.log("categoryModel :"+JSON.stringify(categoryModel));
+	
 	$.ajax({
-		url : '/saveAgency',
-		data : {
-			id : $("#id-text" + no).val(),
-			agencyName : $("#agencyName-text" + no).val(),
-			agencyInitials : $("#agencyInitials-text" + no).val(),
-			link : $("#link-text" + no).val(),
-			countryName : $("#countryName-text" + no).val(),
-			isActive : true
-		},
+		url : '/saveCategory',
+		data : categoryModel,
 		type : 'POST',
 		success : function(result) {
 
@@ -43,7 +45,7 @@ var saveAgency = function(no) {
 	})
 }
 
-*/
+
 
 /*
 //supprimer un pays
@@ -91,7 +93,7 @@ $.get({
 
 				+ '<button title="Delete" type="button" data-toggle="modal" data-target="#confirmModal" onclick="delete_row(' + i + ')" id="delete_button' + i + '" value="delete" class="btn btn-outline-danger waves-effect px-3">'
 				+ '	<i class="fa fa-trash" aria-hidden="true"></i>'
-				+ '</button>' 
+				+ '</button>'
 
 				+ '<button title="Save" style="display: none" type="button" id="save_button' + i + '" onclick="save_row(' + i + ')" class="btn btn-outline-success   waves-effect px-3">'
 				+ '	<i class="fa fa-save" aria-hidden="true"></i>'
@@ -162,37 +164,34 @@ function edit_row(no) {
 	var countryName = document.getElementById("countryName-row" + no);
 	var categoryName = document.getElementById("categoryName-row" + no);
 	var categoryPrice = document.getElementById("categoryPrice-row" + no);
-	
+
 
 
 	oldCountry.id = id.innerHTML;
 	oldCountry.countryName = countryName.innerHTML;
 	oldCountry.categoryName = categoryName.innerHTML;
 	oldCountry.categoryPrice = categoryPrice.innerHTML;
-	
+
 
 	var id_data = id.innerHTML;
 	var countryName_data = countryName.innerHTML;
 	var categoryName_data = categoryName.innerHTML;
 	var categoryPrice_data = categoryPrice.innerHTML;
-	
+
 
 	id.innerHTML = "<input disabled class='form-control  form-edit' type='text' id='id-text" + no + "' value='" + id_data + "'>";
-	countryName.innerHTML = "<select id='countryName-text"+no+"' class='form-control'> <option value=''selected>Choose your option</option" +"</select>";
-	
-	categoryName.innerHTML ="<select onchange='activeName(" +no+")' id='hasName" + no + "' class='form-control'> "+
-	"<option value='0' selected>Has one category</option>"+
-	"<option value='1'>Has many categories </option></select>" +
-	"<input type='text' placeholder='categorie name'   id='categoryName-text" + no + "' style='display:none;'   class='form-control  form-edit'/>";
-	
-	categoryPrice.innerHTML = "<input  class='form-control form-edit' type='text' id='link-text" + no + "' value='" + categoryPrice_data + "'>";
+	countryName.innerHTML = "<select id='countryName-text" + no + "' class='form-control'> <option value=''selected>Choose your option</option" + "</select>";
+
+	categoryName.innerHTML = "<input type='text' placeholder='categorie name'   id='categoryName-text" + no + "'  class='form-control  form-edit'/>";
+
+	categoryPrice.innerHTML = "<input  placeholder='categorie price'  class='form-control form-edit' type='text' id='link-text" + no + "' value='" + categoryPrice_data + "'>";
 
 
-	
+
 
 	findCountries(no);
 
-	
+
 
 
 }
@@ -213,8 +212,8 @@ function cancel_row(no) {
 		document.getElementById("save_button" + no).style.display = "none";
 		document.getElementById("cancel_button" + no).style.display = "none";
 
-		
-		
+
+
 		var id_val = oldCountry.id;
 		var countryName_val = oldCountry.countryName;
 		var categoryName_val = oldCountry.categoryName;
@@ -231,7 +230,7 @@ function cancel_row(no) {
 		countryName.innerHTML = countryName_val;
 		categoryName.innerHTML = categoryName_val;
 		categoryPrice.innerHTML = categoryPrice_val;
-		
+
 	}
 
 }
@@ -312,7 +311,6 @@ $("#button_confirm").on("click", function() {
 
 //add a row to the data table
 function add_row() {
-
 	var table = document.getElementById("data-table");
 	var table_len = (table.rows.length);
 	var row = table.insertRow(1).outerHTML = "<tr>" +
@@ -323,19 +321,16 @@ function add_row() {
 		"</td>" +
 
 		"<td id='countryName-row0'>" +
-		 "<select id='countryName-text0' class='form-control'> <option value=''selected>Choose your option</option>" +"</select>"+
+		"<select id='countryName-text0' class='form-control'> <option value=''selected>Choose the country</option>" + "</select>" +
 		"</td>" +
 
 		"<td  id='categoryName-row0'>" +
-		"<select onchange='activeName(0)' id='hasName0'  class='form-control'> "+
-		"<option value='0' selected='selected'>Has one category</option>"+
-		"<option value='1'>Has many categories </option></select>" +
-		"<input type='text' placeholder='categorie name' id='categoryName-text0' style='display:none;'   class='form-control  form-edit'/>"+
+		"<input type='text' placeholder='categorie name' id='categoryName-text0' class='form-control  form-edit'/>" +
 		"</td>" +
 
 		"<td  id='categoryPrice-row0'>" +
 		"<input class='form-control form-edit' type='text' id='categoryPrice-text0" +
-		"'></td>"+
+		"'></td>" +
 
 		"<td scope='row' class='text-center'>" +
 
@@ -358,32 +353,37 @@ function add_row() {
 
 
 
-/*
+
 // save data to database
 function save_row(no) {
-	if (!$("#agencyName-text" + no).val()) {
+	if (!$("#categoryName-text" + no).val()) {
 
-		$("#agencyName-row" + no).append("" +
+		$("#categoryName-row" + no).append("" +
 			"<p class='red-text'>This value could not be null.</p>");
 
 	} else {
 
 
-		if (!$("#agencyInitials-text" + no).val()) {
+		if (!$("#categoryPrice-text" + no).val()) {
 
-			$("#agencyInitials-row" + no).append("" +
+			$("#categoryPrice-row" + no).append("" +
 				"<p class='red-text'>This value could not be null.</p>");
 		} else {
-			saveAgency(no);
-			$("#add_button").prop('disabled', false);
-		}
 
+			if (!$("#countryName-text" + no).val()) {
+
+				$("#countryName-row" + no).append("" +
+					"<p class='red-text'>This value could not be null.</p>");
+			} else {
+				saveCategory(no);
+				$("#add_button").prop('disabled', false);
+			}
+
+		}
 
 	}
 
-
 }
-*/
 
 
 /*
@@ -423,20 +423,6 @@ var addToTable = function(a) {
 */
 
 
-// show the category name input
-function activeName(no){
-	
-	 var rep = $("#hasName"+no).val()
-	 if(rep == 1){
-		 $("#categoryName-text"+no).css("display","block");
-		 
-	 }else{
-		 $("#categoryName-text"+no).css("display","none");
-		 $("#categoryName-text"+no).val("");
-	 }
-	
-	
-}
 function showAlert(result) {
 	$(".alert").show()
 

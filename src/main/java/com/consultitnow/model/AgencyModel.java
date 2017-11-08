@@ -9,6 +9,7 @@ public class AgencyModel {
 	private String agencyInitials;
 	private String countryName;
 	private Boolean isActive;
+	
 	public Long getId() {
 		return id;
 	}

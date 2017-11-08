@@ -57,7 +57,7 @@ public class AgencyController {
 
 					Country c = countryDao.findByCountryName(countryName);
 
-					Agency agency = new Agency(id, agencyName, agencyLink, agencyInitials, c, isActive);
+					Agency agency = new Agency(id, agencyName.toUpperCase(), agencyLink, agencyInitials, c, isActive);
 					agencyDao.save(agency);
 					result.setIsValid(true);
 					result.setAgency(agency);
@@ -77,7 +77,7 @@ public class AgencyController {
 
 					Country c = countryDao.findByCountryName(countryName);
 
-					Agency agency = new Agency(id, agencyName, agencyLink, agencyInitials, c, isActive);
+					Agency agency = new Agency(id, agencyName.toUpperCase(), agencyLink, agencyInitials, c, isActive);
 					agencyDao.save(agency);
 					result.setIsValid(true);
 

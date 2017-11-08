@@ -1,4 +1,4 @@
-var oldAgency = {};
+var toldAgency = [];
 var countryToDelete
 var totalCountry = 0
 
@@ -7,6 +7,8 @@ var totalCountry = 0
 
 
 var saveAgency = function(no) {
+	
+	alert( $("#id-text" + no).val())
 	$.ajax({
 		url : '/saveAgency',
 		data : {
@@ -48,8 +50,6 @@ var saveAgency = function(no) {
 
 //supprimer un pays
 function deleteCountry(no) {
-	
-	
 	$.post({
 		url : "/deleteAngency",
 		data : {
@@ -93,7 +93,7 @@ $.get({
 
 				+ '<button title="Delete" type="button" data-toggle="modal" data-target="#confirmModal" onclick="delete_row(' + i + ')" id="delete_button' + i + '" value="delete" class="btn btn-outline-danger waves-effect px-3">'
 				+ '	<i class="fa fa-trash" aria-hidden="true"></i>'
-				+ '</button>' 
+				+ '</button>'
 
 				+ '<button title="Save" style="display: none" type="button" id="save_button' + i + '" onclick="save_row(' + i + ')" class="btn btn-outline-success   waves-effect px-3">'
 				+ '	<i class="fa fa-save" aria-hidden="true"></i>'
@@ -116,7 +116,7 @@ $.get({
 })
 
 
-function findCountries(no) {
+function findCountries(no, countryName_data) {
 	$.get({
 		url : "/findCountries",
 		success : function(countries) {
@@ -124,6 +124,11 @@ function findCountries(no) {
 			$.each(countries, function(i, country) {
 				$("#countryName-text" + no).append("" +
 					'<option value="' + country.countryName + '" >' + country.countryName + '</option>');
+
+
+				if (country.countryName == countryName_data) {
+					$('#countryName-text' + no + ' option[value="' + country.countryName + '"]').prop('selected', true);
+				}
 			});
 
 		},
@@ -152,7 +157,7 @@ function findCountries(no) {
 //--------------------------------------  Action on button ---------------------------------------------------------
 
 
-
+mo = 1
 //edit a row
 function edit_row(no) {
 	document.getElementById("edit_button" + no).style.display = "none";
@@ -167,6 +172,7 @@ function edit_row(no) {
 	var link = document.getElementById("link-row" + no);
 	var countryName = document.getElementById("countryName-row" + no);
 
+	var oldAgency = {};
 
 
 	oldAgency.id = id.innerHTML;
@@ -175,6 +181,10 @@ function edit_row(no) {
 	oldAgency.link = link.innerHTML;
 	oldAgency.countryName = countryName.innerHTML;
 
+	toldAgency[no] = oldAgency;
+
+
+	console.log(JSON.stringify(toldAgency))
 	var id_data = id.innerHTML;
 	var agencyInitials_data = agencyInitials.innerHTML;
 	var agencyName_data = agencyName.innerHTML;
@@ -188,12 +198,10 @@ function edit_row(no) {
 	link.innerHTML = "<input class='form-control form-edit' type='text' id='link-text" + no + "' value='" + link_data + "'>";
 
 
-	countryName.innerHTML = "<select id='countryName-text1' class='mdb-select'> <option value='' selected>Choose your option</option" +"</select>";
+	countryName.innerHTML = "<select id='countryName-text" + no + "' class='form-control'> " +
+		"<option value='' >Choose the country</option></select>"
 
-
-	findCountries(no);
-
-	/**/
+	findCountries(no, countryName_data);
 
 
 }
@@ -214,11 +222,15 @@ function cancel_row(no) {
 		document.getElementById("cancel_button" + no).style.display = "none";
 
 
-		var id_val = oldAgency.id;
-		var agencyInitials_val = oldAgency.agencyInitials;
-		var agencyName_val = oldAgency.agencyName;
-		var link_val = oldAgency.link;
-		var countryName_val = oldAgency.countryName;
+
+
+
+		var id_val = toldAgency[no].id;
+		var agencyInitials_val = toldAgency[no].agencyInitials;
+		var agencyName_val = toldAgency[no].agencyName;
+		var link_val = toldAgency[no].link;
+		var countryName_val = toldAgency[no].countryName;
+
 
 
 		var id = document.getElementById("id-row" + no);
@@ -232,11 +244,12 @@ function cancel_row(no) {
 		agencyInitials.innerHTML = agencyInitials_val;
 		agencyName.innerHTML = agencyName_val;
 		link.innerHTML = link_val;
-		countryName.innerHTML = link_val;
+		countryName.innerHTML = countryName_val;
 
 	}
 
 }
+
 
 
 
@@ -303,7 +316,7 @@ function deleteRow(no) {
 
 //confirm button
 $("#button_confirm").on("click", function() {
-	
+
 
 	deleteRow(countryToDelete);
 	$("#id-row" + countryToDelete).parent().remove();
@@ -338,11 +351,11 @@ function add_row() {
 		"<input class='form-control form-edit' type='text' id='link-text0" +
 		"'></td>" +
 
-		"<td>"
+		"<td id='countryName-row0'>"
 
 
-		+ "<select id='countryName-text0' class='mdb-select'>"
-		+ "<option value=''  selected>Choose your option</option>"
+		+ "<select id='countryName-text0' class='form-control'>"
+		+ "<option value=''  selected>Choose the country</option>"
 		+ "</select>" +
 
 
@@ -383,8 +396,16 @@ function save_row(no) {
 			$("#agencyInitials-row" + no).append("" +
 				"<p class='red-text'>This value could not be null.</p>");
 		} else {
-			saveAgency(no);
-			$("#add_button").prop('disabled', false);
+
+
+
+			if (!$("#countryName-text" + no).val()) {
+				$("#countryName-row" + no).append("" +
+					"<p class='red-text'>This value could not be null.</p>");
+			} else {
+				saveAgency(no);
+				$("#add_button").prop('disabled', false);
+			}
 		}
 
 
