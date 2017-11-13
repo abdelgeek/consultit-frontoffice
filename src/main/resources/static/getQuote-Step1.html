@@ -128,7 +128,7 @@
 										<label for="form107">Product Description</label>
 									</div>
 
-									<div class="custom-form">
+									<div class="">
 										<label class="title">Approval</label>
 										<div class="form-inline">
 
@@ -141,151 +141,157 @@
 											<div class="form-group">
 												<input name="group20" type="radio" value="Safety"
 													id="Safety" onclick="fneqmtType()"> <label
-													for="Safety">Safety</label>
+													for="Safety">SAFETY</label>
 											</div>
 
 											<div class="form-group">
 												<input name="group20" type="radio" id="Telecommunication"
 													value="Telecommunication" onclick="fneqmtType()"> <label
-													for="Telecommunication">Telecommunication</label>
+													for="Telecommunication">TELECOMMUNICATIONS</label>
 											</div>
+											<!-- <div class="form-group">
+												<input name="group20" type="radio" id="Telecommunication"
+													value="Telecommunication"> <label>OTHER</label>
+											</div> -->
 
 										</div>
-									</div>
-									<!-- equipement category -->
 
-									<div id="eqmtType" style="display: none">
-										<label class="title">Equipement type </label>
-										<div class="form-group">
+										<!-- equipement category -->
 
-
-
-											<label class="title">NON Radio frequency</label>
-											<div class="row">
-												<div class=" col-md-3 col-sm-4">
-													<input type="radio" name="eqmtype" id="transmission">
-													<label for="transmission">Transmission Systems</label>
-												</div>
-
-												<div class="col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="DECT"> <label
-														for="DECT">DECT</label>
-												</div>
-
-												<div class="col-md-3  col-sm-4 ">
-													<input type="radio" name="eqmtype" id="E1"> <label
-														for="E1">E1</label>
-												</div>
-												<div class="col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="SOFTSWITCH">
-													<label for="SOFTSWITCH" class=" btn-botswana">SOFT
-														SWITCH </label>
-												</div>
+										<div id="eqmtType" class=" jumbotron  z-depth-0"
+											style="display: none">
+											<label class="title">Equipement type </label>
 
 
+											<div class="form-group">
+												<input type="radio" name="eqmtype" id="nrf"> <label
+													class="title" for="nrf">NON Radio frequency</label>
+											</div>
 
-												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype"
-														id="SWITCHINGANDSIGNALINGSYSTEMS"> <label
-														for="SWITCHINGANDSIGNALINGSYSTEMS">SWITCHING AND
-														SIGNALING SYSTEMS</label>
-												</div>
+											<div class="form-group">
+												<div class="row">
+													<div class=" col-md-3 col-sm-4">
+														<input type="checkbox" id="transmission"> <label
+															for="transmission">Transmission Systems</label>
+													</div>
 
-												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="ISDNBRI"> <label
-														for="ISDNBRI">ISDN BRI</label>
-												</div>
+													<div class="col-md-3  col-sm-4">
+														<input type="checkbox" id="DECT"> <label
+															for="DECT">DECT</label>
+													</div>
 
-												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="VOIPSYSTEMS">
-													<label for="VOIPSYSTEMS">VOIP SYSTEMS</label>
-												</div>
-												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype"
-														id="INTERNATIONALGATEWAY"> <label
-														for="INTERNATIONALGATEWAY">INTERNATIONAL GATEWAY</label>
+													<div class="col-md-3  col-sm-4 ">
+														<input type="checkbox" id="E1"> <label for="E1">E1</label>
+													</div>
+													<div class="col-md-3  col-sm-4">
+														<input type="checkbox" id="SOFTSWITCH"> <label
+															for="SOFTSWITCH" class=" btn-botswana">SOFT
+															SWITCH </label>
+													</div>
+
+
+
+													<div class=" col-md-3  col-sm-4">
+														<input type="checkbox" id="SWITCHINGANDSIGNALINGSYSTEMS">
+														<label for="SWITCHINGANDSIGNALINGSYSTEMS">SWITCHING
+															AND SIGNALING SYSTEMS</label>
+													</div>
+
+													<div class=" col-md-3  col-sm-4">
+														<input type="checkbox" id="ISDNBRI"> <label
+															for="ISDNBRI">ISDN BRI</label>
+													</div>
+
+													<div class=" col-md-3  col-sm-4">
+														<input type="checkbox" id="VOIPSYSTEMS"> <label
+															for="VOIPSYSTEMS">VOIP SYSTEMS</label>
+													</div>
+													<div class=" col-md-3  col-sm-4">
+														<input type="checkbox" id="INTERNATIONALGATEWAY">
+														<label for="INTERNATIONALGATEWAY">INTERNATIONAL
+															GATEWAY</label>
+													</div>
+
 												</div>
 
 											</div>
-
-										</div>
-										<div class="form-group">
-
-
-
-											<label class="title">Radio frequency</label>
+											<div class="form-group">
+												<input type="radio" name="eqmtype" id="rf"> <label
+													class="title" for="rf">Radio frequency</label>
+											</div>
 											<div class="row">
 												<div class=" col-md-3 col-sm-4">
-													<input type="radio" name="eqmtype" id="GSM"> <label
-														for="GSM">GSM / IMT - 2000</label>
+													<input type="checkbox" id="GSM"> <label for="GSM">GSM
+														/ IMT - 2000</label>
 												</div>
 
 												<div class="col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="WiMax"> <label
+													<input type="checkbox" id="WiMax"> <label
 														for="WiMax">WiMax</label>
 												</div>
 
 												<div class="col-md-3  col-sm-4 ">
-													<input type="radio" name="eqmtype" id="E1"> <label
-														for="E1">E1</label>
+													<input type="checkbox" id="E1"> <label for="E1">E1</label>
 												</div>
 												<div class="col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id=satelite> <label
+													<input type="checkbox" id=satelite> <label
 														for="satelite" class=" ">SATELLITE </label>
 												</div>
 
 
 
 												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="TWO-WAY"> <label
+													<input type="checkbox" id="TWO-WAY"> <label
 														for="TWO-WAY">TWO-WAY RADIO TRANSCEIVER</label>
 												</div>
 
 												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="POINTTO"> <label
+													<input type="checkbox" id="POINTTO"> <label
 														for="POINTTO">POINT TO MULTIPOINT LINK</label>
 												</div>
 
 												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="pointlink">
-													<label for="pointlink">POINT TO POINT LINK</label>
+													<input type="checkbox" id="pointlink"> <label
+														for="pointlink">POINT TO POINT LINK</label>
 												</div>
 												<div class=" col-md-3  col-sm-4">
-													<input type="radio" name="eqmtype" id="Receiver"> <label
+													<input type="checkbox" id="Receiver"> <label
 														for="Receiver">RECEIVER ONLY</label>
 												</div>
 
 											</div>
 
-										</div>
-										<div class="form-group">
+
+											<div class="form-group">
 
 
 
-											<label class="title">Frequency band</label>
-											<div class="row">
-												<div class=" col-md-3 col-sm-4">
-													<input type="checkbox" name="frequency" id="930"> <label
-														for="930">9 KHz - 30 MHZ</label>
-												</div>
+												<label class="title">Frequency band</label>
+												<div class="row">
+													<div class=" col-md-3 col-sm-4">
+														<input type="checkbox" name="frequency" id="930">
+														<label for="930">9 KHz - 30 MHZ</label>
+													</div>
 
-												<div class="col-md-3  col-sm-4">
-													<input type="checkbox" name="frequency" id="30390"> <label
-														for="30390">30 - 390 MHZ</label>
-												</div>
+													<div class="col-md-3  col-sm-4">
+														<input type="checkbox" name="frequency" id="30390">
+														<label for="30390">30 - 390 MHZ</label>
+													</div>
 
-												<div class="col-md-3  col-sm-4 ">
-													<input type="checkbox" name="frequency" id="0893"> <label
-														for="0893">0.89 - 3GHZ</label>
-												</div>
-												<div class="col-md-3  col-sm-4">
-													<input type="checkbox" name="frequency" id="310"> <label
-														for="310" class=" ">3 -10 GHZ </label>
+													<div class="col-md-3  col-sm-4 ">
+														<input type="checkbox" name="frequency" id="0893">
+														<label for="0893">0.89 - 3GHZ</label>
+													</div>
+													<div class="col-md-3  col-sm-4">
+														<input type="checkbox" name="frequency" id="310">
+														<label for="310" class=" ">3 -10 GHZ </label>
+													</div>
+
 												</div>
 
 											</div>
-
 										</div>
+
 									</div>
 									<hr>
 
@@ -298,7 +304,7 @@
 
 									<div class="form-group">
 
-										<label>Countries</label>
+										<label class="title">Countries</label>
 										<div class="row">
 											<div class=" col-md-3 col-sm-4">
 												<input type="checkbox" id="Algeria"> <label
@@ -316,7 +322,7 @@
 											</div>
 											<div class="col-md-3  col-sm-4">
 												<input type="checkbox" id="Botswana"> <label
-													for="Botswana" class=" btn-botswana ">Botswana </label>
+													for="Botswana" class="">Botswana </label>
 											</div>
 
 
@@ -481,7 +487,7 @@
 									<!-- /countries -->
 
 									<div class="form-group ">
-										<legend> Datasheets *(2 max)</legend>
+										<legend> Datasheets</legend>
 										<div class="form-file">
 											<input type="file" name="file-5[]" id="file-5"
 												class="inputfile inputfile-4"
@@ -506,7 +512,7 @@
 							</div>
 							<div class="box-footer clearfix">
 								<a href="getQuote-Step2.html" type="button"
-									class="pull-right btn btn-default">Submit <i
+									class="pull-right btn btn-default">Next step <i
 									class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -580,12 +586,19 @@
 	
 	
 		function fneqmtType() {
-			var val = $('input[name=group20]:checked').val();
-	
-			if (val == "Telecommunication") {
+			
+			var check = $('input[name=group20]:checked');
+			
+			
+			check.parent().addClass("active-radio");
+		//	
+			if (check.val() == "Telecommunication") {
 				$("#eqmtType").css("display", "block")
+					$("#eqmtType").addClass("active-radio-item")
+				
 			} else {
 				$("#eqmtType").css("display", "none")
+				$("#eqmtType").removeClass("active-radio-item")
 			}
 		}
 	</script>
