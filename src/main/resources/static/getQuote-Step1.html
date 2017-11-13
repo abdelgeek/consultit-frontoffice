@@ -133,9 +133,10 @@
 										<div class="form-inline">
 
 											<div class="form-group">
-												<input name="group20" type="radio" value="EMC" id="EMC"
-													checked="checked" onclick="fneqmtType()"> <label
-													for="EMC">EMC </label>
+												<input class="checked-title" name="group20" type="radio"
+													value="EMC" id="EMC" checked="checked"
+													onclick="fneqmtType()"> <label for="EMC">EMC
+												</label>
 											</div>
 
 											<div class="form-group">
@@ -322,7 +323,8 @@
 											</div>
 											<div class="col-md-3  col-sm-4">
 												<input type="checkbox" id="Botswana"> <label
-													for="Botswana" class="">Botswana </label>
+													for="Botswana" onClick="showCategorie()" class="">Botswana
+												</label> <br> <label id="lblCat" class="primary-text"></label>
 											</div>
 
 
@@ -538,6 +540,164 @@
 		</footer>
 
 	</div>
+
+
+	<!-- categorie equipement modal -->
+
+
+	<!-- Modal -->
+	<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+		<div class="modal-dialog  modal-fluid" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Choose the categorie of the equipement</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="card-body">
+
+
+
+						<div class="container-fluid">
+							<div class="row">
+
+								<div class="col-md-3">
+									<div class="form-group">
+										<input onclick="getCategorie()" name="groupCat" value="Categorie 1" type="radio" id="radio102"> <label
+											for="radio102">Categorie 1</label>
+									</div>
+									<ul class="categorie-items">
+										<li>Equipement a</li>
+										<li>Equipement b</li>
+										<li>Equipement c</li>
+										<li>Equipement d</li>
+										<li>Equipement e</li>
+										<li>Equipement f</li>
+										<li>Equipement g</li>
+										<li>Equipement h</li>
+										<li>Equipement i</li>
+										<li>Equipement j</li>
+										<li>Equipement k</li>
+										<li>Equipement l</li>
+										<li>Equipement m</li>
+										<li>Equipement n</li>
+										<li>Equipement o</li>
+										<li>Equipement p</li>
+										<li>Equipement q</li>
+										<li>Equipement r</li>
+										<li>Equipement s</li>
+										<li>Equipement t</li>
+										<li>Equipement u</li>
+										<li>Equipement v</li>
+									</ul>
+								</div>
+
+
+								<div class="col-md-3">
+
+									<div class="form-group">
+										<input onclick="getCategorie()" name="groupCat" value="Categorie 2"  type="radio" id="radio101"> <label
+											for="radio101">Categorie 2</label>
+									</div>
+									<ul class=" categorie-items">
+										<li>Equipement a</li>
+										<li>Equipement b</li>
+										<li>Equipement c</li>
+										<li>Equipement d</li>
+										<li>Equipement e</li>
+										<li>Equipement f</li>
+										<li>Equipement g</li>
+										<li>Equipement h</li>
+										<li>Equipement i</li>
+										<li>Equipement j</li>
+										<li>Equipement k</li>
+										<li>Equipement l</li>
+										<li>Equipement m</li>
+										<li>Equipement n</li>
+										<li>Equipement o</li>
+										<li>Equipement p</li>
+										<li>Equipement q</li>
+										<li>Equipement r</li>
+										<li>Equipement s</li>
+										<li>Equipement t</li>
+										<li>Equipement u</li>
+										<li>Equipement v</li>
+
+									</ul>
+								</div>
+
+
+								<div class="col-md-3">
+									<div class="form-group ">
+										<input onclick="getCategorie()"  value="Categorie 3" name="groupCat" type="radio" id="radio100"> <label
+											for="radio100">Categorie 3</label>
+									</div>
+
+
+									<ul class=" categorie-items">
+										<li>Equipement a</li>
+										<li>Equipement b</li>
+										<li>Equipement c</li>
+										<li>Equipement d</li>
+										<li>Equipement e</li>
+										<li>Equipement f</li>
+										<li>Equipement g</li>
+										<li>Equipement h</li>
+										<li>Equipement i</li>
+										<li>Equipement j</li>
+										<li>Equipement k</li>
+										<li>Equipement l</li>
+										<li>Equipement m</li>
+										<li>Equipement n</li>
+										<li>Equipement o</li>
+										<li>Equipement p</li>
+										<li>Equipement q</li>
+										<li>Equipement r</li>
+										<li>Equipement s</li>
+										<li>Equipement t</li>
+										<li>Equipement u</li>
+										<li>Equipement v</li>
+
+									</ul>
+
+								</div>
+
+
+
+
+							</div>
+
+						</div>
+
+
+
+
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" data-dismiss="modal" class="btn btn-primary">Save</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- / categorie equipement modal  -->
+
+
+
+
+
+
 	<!-- ./wrapper -->
 
 	<!-- jQuery 3 -->
@@ -562,45 +722,42 @@
 			$(".downError").hide()
 		}, 10000);
 	
-		$(".btn-botswana").click(function() {
-			colap = document.getElementById("collap");
 	
+		function showCategorie() {
 			if (!$("#Botswana").is(':checked')) {
 	
-				if (colap.style.display == "block") {
-					colap.style.display = "none";
+				$('#exampleModal').modal('show');
 	
-				} else {
-	
-					colap.style.display = "block";
-				}
-			} else {
-				if (colap.style.display == "block") {
-					colap.style.display = "none";
-	
-				}
-	
+			}else{
+				
+				$('#lblCat').html("");
 			}
-		})
-	
-	
+		}
 	
 		function fneqmtType() {
-			
 			var check = $('input[name=group20]:checked');
-			
-			
-			check.parent().addClass("active-radio");
-		//	
+	
+	
+			check.addClass("checked-title")
+			//check.parent().addClass("active-radio");
+	
 			if (check.val() == "Telecommunication") {
 				$("#eqmtType").css("display", "block")
-					$("#eqmtType").addClass("active-radio-item")
-				
+				$("#eqmtType").addClass("active-radio-item")
+	
 			} else {
 				$("#eqmtType").css("display", "none")
 				$("#eqmtType").removeClass("active-radio-item")
 			}
 		}
+	
+		function getCategorie() {
+			var cat = $('input[name=groupCat]:checked');
+			
+			$('#lblCat').html(cat.val())
+		}
+		
+	
 	</script>
 
 	<script type="text/javascript">
