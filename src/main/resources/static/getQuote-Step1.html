@@ -70,14 +70,14 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					Quotation <small>Get Quote - Step 1</small>
+					Quotation <small>Get Quote - Project features</small>
 
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html"><i class="fa fa-dashboard"></i>
 							Home</a></li>
 					<li><a href="#">Quotation</a></li>
-					<li class="active"><a href="#">Get Quote - Step 1</a></li>
+					<li class="active"><a href="#">Get Quote - Project features</a></li>
 				</ol>
 			</section>
 
@@ -100,7 +100,7 @@
 							<div class="box-header">
 								<i class="fa fa-calculator"></i>
 
-								<h3 class="box-title">Get quote - step 1</h3>
+								<h3 class="box-title">Get quote - Project features</h3>
 
 							</div>
 							<div class="box-body">
@@ -146,9 +146,15 @@
 											</div>
 
 											<div class="form-group">
-												<input name="group20" type="radio" id="Telecommunication"
-													value="Telecommunication" onclick="fneqmtType()"> <label
-													for="Telecommunication">TELECOMMUNICATIONS</label>
+												<input name="group20" type="radio" id="rf"
+													value="rf" onclick="fneqmtType()"> <label
+													for="rf">Radio Telecommunication</label>
+											</div>
+											
+											<div class="form-group">
+												<input name="group20" type="radio" id="nrf"
+													value="nrf" onclick="fneqmtType()"> <label
+													for="nrf">NON Radio Telecommunication</label>
 											</div>
 											<!-- <div class="form-group">
 												<input name="group20" type="radio" id="Telecommunication"
@@ -164,10 +170,7 @@
 											<label class="title">Equipement type </label>
 
 
-											<div class="form-group">
-												<input type="radio" name="eqmtype" id="nrf"> <label
-													class="title" for="nrf">NON Radio frequency</label>
-											</div>
+										
 
 											<div class="form-group">
 												<div class="row">
@@ -216,10 +219,14 @@
 												</div>
 
 											</div>
-											<div class="form-group">
-												<input type="radio" name="eqmtype" id="rf"> <label
-													class="title" for="rf">Radio frequency</label>
-											</div>
+											
+										</div>
+
+										<div id="eqmtTyperf" class=" jumbotron  z-depth-0"
+											style="display: none">
+											<label class="title">Equipement type </label>
+
+											
 											<div class="row">
 												<div class=" col-md-3 col-sm-4">
 													<input type="checkbox" id="GSM"> <label for="GSM">GSM
@@ -292,7 +299,6 @@
 
 											</div>
 										</div>
-
 									</div>
 									<hr>
 
@@ -302,7 +308,7 @@
 
 									<!-- countries -->
 
-
+<!-- 
 									<div class="form-group">
 
 										<label class="title">Countries</label>
@@ -485,9 +491,9 @@
 
 
 									<hr>
-
+ -->
 									<!-- /countries -->
-
+<!--
 									<div class="form-group ">
 										<legend> Datasheets</legend>
 										<div class="form-file">
@@ -507,7 +513,7 @@
 											</div>
 										</div>
 									</div>
-
+-->
 
 
 								</form>
@@ -733,7 +739,7 @@
 				$('#lblCat').html("");
 			}
 		}
-	
+		
 		function fneqmtType() {
 			var check = $('input[name=group20]:checked');
 	
@@ -741,15 +747,34 @@
 			check.addClass("checked-title")
 			//check.parent().addClass("active-radio");
 	
-			if (check.val() == "Telecommunication") {
-				$("#eqmtType").css("display", "block")
-				$("#eqmtType").addClass("active-radio-item")
-	
-			} else {
+			if (check.val() == "rf") {
+				$("#eqmtTyperf").css("display", "block")
+				$("#eqmtTyperf").addClass("active-radio-item")
+				
+				
 				$("#eqmtType").css("display", "none")
 				$("#eqmtType").removeClass("active-radio-item")
+	
+			} else if(check.val() == "nrf"){
+				
+				console.log(check.val() )
+				$("#eqmtType").css("display", "block")
+				$("#eqmtType").addClass("active-radio-item")
+				
+				$("#eqmtTyperf").css("display", "none")
+				$("#eqmtTyperf").removeClass("active-radio-item")
+			}
+			else {
+				console.log(check.val() )
+				$("#eqmtType").css("display", "none")
+				$("#eqmtType").removeClass("active-radio-item")
+				
+				$("#eqmtTyperf").css("display", "none")
+				$("#eqmtTyperf").removeClass("active-radio-item")
 			}
 		}
+		
+	
 	
 		function getCategorie() {
 			var cat = $('input[name=groupCat]:checked');

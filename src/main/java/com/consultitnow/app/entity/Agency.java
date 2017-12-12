@@ -1,6 +1,8 @@
 package com.consultitnow.app.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,45 +10,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Agency implements Serializable {
 
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable=false)
-	private String agencyName;
-	
+
+	@Column(nullable = false)
+	private String name;
+
 	private String link;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String agencyInitials;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Country country;
-	private Boolean isActive;
 	
 	
+	@OneToMany(mappedBy = "primaryKey.agency", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<AgencyApprovalType> agencyApprovalTypes;
+		
+	public List<AgencyApprovalType> getAgencyApprovalTypes() {
+		return agencyApprovalTypes;
+	}
+
+	public void setAgencyApprovalTypes(List<AgencyApprovalType> agencyApprovalTypes) {
+		this.agencyApprovalTypes = agencyApprovalTypes;
+	}
+
 	public String getAgencyInitials() {
 		return agencyInitials;
 	}
 
 	public void setAgencyInitials(String agencyInitials) {
 		this.agencyInitials = agencyInitials;
-	}
-
-	
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
 	}
 
 	public Long getId() {
@@ -57,12 +60,12 @@ public class Agency implements Serializable {
 		this.id = id;
 	}
 
-	public String getAgencyName() {
-		return agencyName;
+	public String getName() {
+		return name;
 	}
 
-	public void setAgencyName(String agencyName) {
-		this.agencyName = agencyName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getLink() {
@@ -72,8 +75,6 @@ public class Agency implements Serializable {
 	public void setLink(String link) {
 		this.link = link;
 	}
-
-	
 
 	public Country getCountry() {
 		return country;
@@ -88,17 +89,14 @@ public class Agency implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Agency(Long id, String agencyName, String link, String agencyInitials, Country country, Boolean isActive) {
+	public Agency(Long id, String name, String link, String agencyInitials, Country country) {
 		super();
 		this.id = id;
-		this.agencyName = agencyName;
+		this.name = name;
 		this.link = link;
 		this.agencyInitials = agencyInitials;
 		this.country = country;
-		this.isActive = isActive;
+
 	}
-	
-	
-	
-	
+
 }

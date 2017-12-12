@@ -39,44 +39,102 @@
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-<style>
-.scrollbar-cyan::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-	background-color: #00bcd4;
-}
-</style>
 </head>
 
 <body class="layout-boxed skin sidebar-mini">
 	<div class="wrapper">
 
-
-
-		<!-- header -->
-		<header></header>
-
-		<!-- / header -->
-
-
+		<header class="main-header">
+			<!-- Logo -->
+			<div>
+				<a class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+					<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
+					<span class="logo-lg"> <img alt="LOGO"
+						src="assets/img/logo.png" class="logo-img" />
+				</span>
+				</a>
+			</div>
+			<!-- Header Navbar: style can be found in header.less -->
+			<nav class="navbar navbar-static-top">
+				<!-- Sidebar toggle button-->
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu"
+					role="button"> </a>
+			</nav>
+		</header>
 		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+				<!-- Sidebar user panel -->
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img src="assets/img/avatar04.png" class="img-circle"
+							alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<p>Alexander Pierce</p>
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					</div>
+				</div>
 
-		<aside></aside>
-		<!-- /Left side column -->
+				<!-- sidebar menu: : style can be found in sidebar.less -->
+				<ul class="sidebar-menu" data-widget="tree">
+					<li class="header">MAIN NAVIGATION</li>
+
+					<li class="active treeview"><a data-toggle="collapse"
+						href="#collapseQuotation" aria-expanded="true"
+						aria-controls="collapseOne" href="#"> <i
+							class="fa fa-calculator" aria-hidden="true"></i><span>Quotation</span>
+							<span class="pull-right-container"> <i
+								class="fa fa-angle-left pull-right"></i>
+						</span>
+					</a>
+						<ul id="collapseQuotation" class="collapse treeview-item"
+							role="tabpanel" aria-labelledby="headingOne">
+							<li><a href="getQuote-Step1.html"><i
+									class="fa fa-circle-o"></i>Get quote</a></li>
+							<li><a href="inprocess.html"><i class="fa fa-circle-o"></i>Quote
+									in process</a></li>
+							<li><a href="waitingValidation.html"><i
+									class="fa fa-circle-o"></i>Waiting your validation</a></li>
+						</ul></li>
+
+					<li class=" treeview"><a data-toggle="collapse"
+						href="#collapseProject" aria-expanded="true"
+						aria-controls="collapseOne" href="#"> <i
+							class="fa fa-calculator" aria-hidden="true"></i><span>Projets</span>
+							<span class="pull-right-container"> <i
+								class="fa fa-angle-left pull-right"></i>
+						</span>
+					</a>
+						<ul id="collapseProject" class="collapse treeview-item"
+							role="tabpanel" aria-labelledby="headingOne">
+
+							<li><a href="#"><i class="fa fa-circle-o"></i>Projects
+									in process</a></li>
+							<li><a href="#"><i class="fa fa-circle-o"></i>Projects
+									completed</a></li>
+						</ul></li>
+
+
+				</ul>
+			</section>
+			<!-- /.sidebar -->
+		</aside>
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					Quotation <small>Get Quote - Step 3</small>
+					Quotation <small>Get Quote - Quote Details</small>
 
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html"><i class="fa fa-dashboard"></i>
 							Home</a></li>
 					<li><a href="#">Quotation</a></li>
-					<li class="active"><a href="#">Get Quote - Step 3</a></li>
+					<li class="active"><a href="#">Get Quote - Quote Details</a></li>
 				</ol>
 			</section>
 
@@ -92,154 +150,142 @@
 					<section class="col-12">
 
 
-
+						<!-- quick email widget -->
 						<div class="box box-info">
 
 							<div class="progress quote-progress">
 								<div class="progress-bar bg-primary" id="progression"
-									role="progressbar" style="width: 50%" aria-valuenow="75"
+									role="progressbar" style="width: 25%" aria-valuenow="25"
 									aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 
 							<div class="box-header">
 								<i class="fa fa-calculator"></i>
 
-								<h3 class="box-title">Order resume</h3>
+								<h3 class="box-title">Quote Details</h3>
 
 							</div>
-							
-						
-							<div class="box-body ">
-								<div>
-								<img style="max-width:100%"src="/assets/img/Invoice.jpg">
-								</div>
-									<label class="title">Terms and conditions</label>
-								<div style="position: relative; overflow-y: scroll; height: 225px;">
-								
-								<ol class="term-text">
+							<div class="box-body">
 
-									<li><h6>TERM AND CONDITIONS</h6>
-
-
-										<p>
-											<b>Consult IT SARL</b>, will provide approval services as
-											applicable for all identified countries. Only those tasks as
-											outlined in this proposal are included. As part of this
-											service, we will coordinate all necessary efforts to obtain
-											approval. This quotation is based upon information received
-											to date from the client and may be revised upon the receipt
-											of any additional information or alterations that may
-											influence the timescale and/or cost aspects. Outside testing
-											and certification fees will be billed at actual cost, using
-											the currency exchange rate valid at the time of billing as
-											applicable. Any required re-testing costs are NOT included
-											and will be billed at a cost. Unless specified in this
-											quotation, all shipping costs, import taxes, etc... are
-											excluded and are the responsibilities of the client. <b>Consult
-												It</b>, SARL is offering “Approval Management Services” for your
-											company. We cannot guarantee that products will gain
-											approval. We will identify any obstacles to approval to you,
-											but it remains your responsibility to ensure the product
-											meets technical requirements and that your company has all
-											the legal requirements in place. Additional technologies,
-											product types or derivable beyond the scope of this project
-											will be considered separately and will be renegotiated as
-											necessary.
-										</p></li>
-
-									<li>
-										<h6>Disclaimer</h6>
-										<p>
-											<b>Consult IT SARL</b>, guarantees that it will provide
-											regulatory agencies with the same information regarding
-											product naming and technical specifications (model number,
-											manufacturer name, address, product name and brand, etc…) as
-											provided by the client. It is possible that regulatory
-											agencies will not transfer this information correctly onto
-											the certificates that are issued. If that occurs, after
-											consultation with the client, <b>Consult It</b>, has the
-											option of requesting an email confirming the validity of the
-											certificate for the particular product or to ask for a
-											corrected certificate. In either case, payment will not be
-											delayed due to such errors.
-										</p>
-									</li>
-
-									<li>
-										<h6>Payment</h6>
-										<p>
-											<b> Consult IT SARL, projects require payment of services
-												as outline below: Our payment terms are 50% when the project
-												is ordered and 50% once completed.</b>
-										</p>
-									</li>
-
-
-									<li><h6>Expenses</h6>
-
-										<p>
-											Unless specifically detailed within proposal, travel
-											expenses, all shipping costs (including express shipment of
-											derivable) and local taxes and miscellaneous expenses
-											required to complete your project are not included and will
-											be invoiced in addition to the fees quoted. <b>Consult It</b>,
-											SARL will seek authorization prior to incurring any costs not
-											included in the current scope of work.
-										</p></li>
-
-									<li>
-										<h6>Project cancellation</h6>
-
-										<p>
-											Postponements or cancellations will be accepted if sufficient
-											written notice is given to <b>Consult It</b>, SARL. If a
-											cancellation is given client is responsible for paying any
-											testing, certification and corresponding management fees
-											incurred by <b>Consult It</b>, SARL at the time of
-											cancellation.
-									</li>
-								</ol>
-
-
-								<!-- 
-                                    <p>
-                                        We appreciate your business and look forward to serving you on this and future proposals.</p>
-                                    <p>Should you have any question, do not hesitate to contact me!</p>
-
-                                    <p>   Fidèle Koffi K. OPERATION MANAGER </p>
-                                    <p>f.koffi@jbatgroup.com  fkouakou@consultit-now.com</p>
-
-                                    <p>    Tel : +225 22 01 49 79 / +225 22 50 83 67 Fax : (+225) 22 41 34 68 </p>
-                                    <p>www.consultit-now.com</p> -->
-
-
-								<div class="box-footer clearfix">
-									
-
-								</div>
-
-							</div>
-
-							<div class="box clearfix">
-								<div class="">
-									<div class="form-group">
-										<input type="checkbox" id="checkboxConfirm"> <label
-											for="checkboxConfirm">Check here to indicate that you
-											have read and agree to the terms of service</label>
+								<form action="#" method="post" class="form-inline">
+									<div class="md-form col-md-4">
+										<input type="text" class="form-control" value="Sunmi "
+											name="equipementName" id="equipementName"> <label
+											for="equipementName">Product name</label>
 									</div>
+									<div class="md-form col-md-4">
+										<input type="text" class="form-control" value="W5920"
+											name="equipementModel" id="equipementModel"> <label
+											for="equipementModel">Product model</label>
+									</div>
+									<div class="md-form col-md-4">
+										<input type="text" class="form-control" value="samsung"
+											name="equipementMark" id="equipementMark"> <label
+											for="equipementMark">Product Brand</label>
+									</div>
+									<div class="md-form col">
+										<textarea type="text" id="form107" class="md-textarea"
+											style="height: 70px"></textarea>
+										<label for="form107">Product Description</label>
+									</div>
+
+								</form>
+
+								<div class="table-wrapper-2">
+									<table
+										class="table text-center table-responsive table-striped w-auto">
+										<!--Table head-->
+										<thead class="blue-grey lighten-4">
+											<tr>
+
+												<th>Country</th>
+												<th>Agency</th>
+												<th>Price (USD)</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<!--Table head-->
+
+										<!--Table body-->
+										<tbody>
+											<tr>
+
+												<td>Nigeria</td>
+												<td>ICASA</td>
+												<td>3000</td>
+												<th><a href="#"><i class="fa fa-trash red-text"></i></th>
+												</a>
+											</tr>
+											<tr>
+
+												<td>Nigeria</td>
+												<td>ICASA</td>
+												<td>3000</td>
+												<th><a href="#"><i class="fa fa-trash red-text"></i></th>
+												</a>
+											</tr>
+											<tr>
+
+												<td>Nigeria</td>
+												<td>ICASA</td>
+												<td>3000</td>
+												<th><a href="#"><i class="fa fa-trash red-text"></i></a></th>
+
+											</tr>
+											<tr>
+
+												<td>Nigeria</td>
+												<td>ICASA</td>
+												<td>3000</td>
+												<th><a href="#"><i class="fa fa-trash red-text"></i></a></th>
+
+											</tr>
+											<tr>
+
+												<td>Nigeria</td>
+												<td>ICASA</td>
+
+
+												<td>3000</td>
+												<th><a href="#"><i class="fa fa-trash red-text"></i></a></th>
+
+											</tr>
+											<tr>
+
+												<td>Nigeria</td>
+												<td>ICASA</td>
+
+												<td>3000</td>
+												<th><a href="#"><i class="fa fa-trash red-text"></i></a></th>
+
+											</tr>
+										</tbody>
+										<!--Table body-->
+									</table>
+									<!--Table-->
+									<div class="box box-footer">
+										<span class="label-price pull-right">Total : 35.000 USD</span>
+									</div>
+									<div class="box-footer clearfix">
+
+										<a href="getQuote-Step1.html"
+											class="pull-left btn btn-default" id="validateQuote">EDIT
+											<i class="fa fa-edit"></i>
+										</a> <a href="" class="pull-left btn btn-default" id="">SAVE <i
+											class="fa fa-floppy-o"></i></a> 
+											
+											<!-- <a href="" class="pull-left btn btn-default" id="">PRINT <i
+											class="fa fa-print"></i></a> -->
+											<a href="" data-toggle="modal"
+											data-target="#modalRegisterForm"
+											class="pull-right btn btn-default" id="validateQuote">PLACE
+											ORDER <i class="fa fa-arrow-circle-right"></i>
+										</a>
+									</div>
+
 								</div>
-								<a disabled href="congrat.html" class="disabled pull-left btn btn-default"
-									id="validateQuote">Submit <i
-									class="fa fa-arrow-circle-right"></i></a>
-
-							</div></div>
-						</div>
-
 					</section>
-					<!-- /.Left col -->
-					<!-- right col (We are only adding the ID to make the widgets sortable)-->
 
-					<!-- right col -->
 				</div>
 				<!-- /.row (main row) -->
 
@@ -270,23 +316,83 @@
 	<script src="assets/js/mdb.min.js"></script>
 
 
+
+
+
+	<!-- Confirm modal form -->
+
+
+	<div class="modal fade" id="modalRegisterForm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<p class="modal-title">By entering your informations you agree
+						that ...</p>
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body mx-3">
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="orangeForm-name" class="form-control validate"> <label
+							data-error="wrong" data-success="right" for="orangeForm-name">Your
+							username</label>
+					</div>
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="password"
+							id="orangeForm-email" class="form-control validate"> <label
+							data-error="wrong" data-success="right" for="orangeForm-email">Your
+							password</label>
+					</div>
+
+					<div class="form-group">
+						<div class="row">
+							<!-- <div class="col-8">
+								<label class="title"> Enter the captcha code : </label> <label
+									class="captcha"> 3975</label>
+							</div>
+							<div class="col-4">
+
+								<input type="text" class="form-control form-edit" value="3ABF3" />
+
+							</div> -->
+							<img class="mx-auto d-block" src="/assets/img/capatcha.png">
+						</div>
+
+
+					</div>
+
+				</div>
+
+				<div class="modal-footer d-flex justify-content-center">
+					<button class="btn btn-default" data-dismiss="modal"
+						aria-label="Close">Your are not yet ready save for later</button>
+					<button class="btn btn-default" id="confirm"
+						onclick="window.location.href = 'getQuote-Step4.html';"
+						data-dismiss="modal" aria-label="Close">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<script>
 	
 		setTimeout(function() {
-			document.getElementById("progression").style.width = "75%"
+			document.getElementById("progression").style.width = "50%"
 		}, 500);
-	
-		$("#checkboxConfirm").on("click", function() {
-			$("#validateQuote").removeClass("disabled");
-		})
 	</script>
+
 
 	<script type="text/javascript">
 	
 		$("header").load("header.html")
 		$("aside").load("aside.html")
 	</script>
-
 
 </body>
 </html>

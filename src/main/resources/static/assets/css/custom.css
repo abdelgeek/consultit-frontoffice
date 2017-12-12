@@ -50,7 +50,7 @@ table.table a:hover {margin: 0;color: #827717;}
 .inputfile:focus + label {outline: 1px dotted #000;outline: -webkit-focus-ring-color auto 5px;}
 .form-file{text-align: center}
 [type=checkbox]:checked+label:before {border-color: transparent #827717 #827717 transparent;}
-[type=radio]:checked+label:after {border-color: #827717;background-color: #827717;}
+[type=radio]:checked+label:after {border-color: #827717;background-color: white;border-width: 3px;}
 [type=radio].with-gap:checked+label:before {border-color: #827717;}
 ul.categorie-items{list-style: none}
 ul.categorie-items li{ display: inline-block;font-size: 0.8em;color: #6d7672;}
@@ -79,7 +79,7 @@ input[type=text].form-edit:disabled{background-color: #eee !important;cursor: no
  .content-header>.breadcrumb {top: 10px;}
  .active-radio-item{   display:block; border: 1px solid #bbb581;}
 .checked-title:checked +label {
-    border: solid 1px #bbb581;border-bottom: transparent;background: #bbb581; border-radius: 5px 5px 0 0;}
+    border: solid 1px #bbb581;border-bottom: transparent;background: #bbb581; border-radius: 5px 5px 0 0;padding-right: 10px;}
  .captcha{font-weight: 700;background: black;color: white; margin: 5px; padding: 5px;}
  ol{padding-right:40px}
  .primary-text{color:#827717}

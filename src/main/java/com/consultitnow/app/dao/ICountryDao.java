@@ -5,14 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.consultitnow.app.entity.Country;
+import com.consultitnow.app.entity.EquipementType;
 
 public interface ICountryDao extends JpaRepository<Country, Long>{
-
 	
-	//get one country by name
-	public Country findByCountryName(String CountryName);
+	//get a country that approve an equipement type
+	//public List<Country> findByAgenciesEquipementTypes(EquipementType equipementType);
 	
 	
-	//get all active country
-	public List<Country> findByIsActive(Boolean isActive);
 }

@@ -20,9 +20,6 @@ public class Category {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Country country;
-
-	
-	
 	
 	public Long getId() {
 		return id;
