@@ -20,12 +20,9 @@ public class AgencyApprovalType implements Serializable{
 	@EmbeddedId
 	private AgencyApprovalId primaryKey;
 	
-	private Integer minFrequency;
-	private Integer maxFrequency;
-	private  String unit;
-	
-	
-	
+	private Float minFrequency;
+	private Float maxFrequency;
+		
 	public AgencyApprovalId getPrimaryKey() {
 		return primaryKey;
 	}
@@ -38,39 +35,30 @@ public class AgencyApprovalType implements Serializable{
 
 
 
-	public Integer getMinFrequency() {
+	public Float getMinFrequency() {
 		return minFrequency;
 	}
 
 
 
-	public void setMinFrequency(Integer minFrequency) {
+	public void setMinFrequency(Float minFrequency) {
 		this.minFrequency = minFrequency;
 	}
 
 
 
-	public Integer getMaxFrequency() {
+	public Float getMaxFrequency() {
 		return maxFrequency;
 	}
 
 
 
-	public void setMaxFrequency(Integer maxFrequency) {
+	public void setMaxFrequency(Float maxFrequency) {
 		this.maxFrequency = maxFrequency;
 	}
 
 
 
-	public String getUnit() {
-		return unit;
-	}
-
-
-
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
 	
 	@Transient
 	public Agency getAgency() {
