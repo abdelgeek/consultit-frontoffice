@@ -1,5 +1,7 @@
 package com.consultitnow.app.controller;
 
+
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,14 @@ public class EquipementTypeController {
 	@Autowired
 	private IApprovalType approvalTypeDao;
 	
-	@RequestMapping(value="findEqmtypeByApprovalType", method=RequestMethod.GET)
-	public List<EquipementType> findByApprovalType(Long approvalId){
+	@RequestMapping(value="/findEqmtypeByApprovalType", method=RequestMethod.GET)
+	public LinkedList<EquipementType> findByApprovalType(Long approvalId){
 		ApprovalType approvalType = new ApprovalType();
-		
-		approvalType = approvalTypeDao.findOne(approvalId);
-		return equipementTypeDao.findByApprovalType(approvalType);
+		LinkedList<EquipementType> equipementTypes = new LinkedList<>();	
+ 		if(approvalId != null){
+			approvalType = approvalTypeDao.findOne(approvalId);
+			equipementTypes = equipementTypeDao.findByApprovalType(approvalType);
+		}
+		return equipementTypes;
 	}
 }

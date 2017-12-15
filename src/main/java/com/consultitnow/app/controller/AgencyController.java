@@ -33,14 +33,9 @@ public class AgencyController {
 	}
 	
 	
-	//Find Agency by Approval Type
-	@RequestMapping(value="/findAgencyByApprovalType", method = RequestMethod.GET)
-	public List<Agency> findByAgencyApprovalTypesPrimaryKeyApprovalType(Long approvalTypeId) {
-		return agencyDao.findByAgencyApprovalTypesPrimaryKeyApprovalType(approvalDao.findOne(approvalTypeId));
+	// find all agency
+	@RequestMapping(value = "/findAgencyByCountry", method = RequestMethod.GET)
+	public Country FindByCountry(Country country){
+		return agencyDao.FindByCountry(country);
 	}
-
-	@RequestMapping(value="/findByAgencyfrequenct", method = RequestMethod.GET)
-	 public List<Agency> findByAgencyfrequenct() {
-		 return agencyDao.findByAgencyfrequenct();
-	 }
 }

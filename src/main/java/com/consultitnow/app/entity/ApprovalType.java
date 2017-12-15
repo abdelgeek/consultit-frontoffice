@@ -23,10 +23,6 @@ public class ApprovalType implements Serializable {
 	
 	private String name;
 
-	
-	 @OneToMany(mappedBy = "primaryKey.approvalType", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<AgencyApprovalType> agencyApprovalTypes;
-	 
 	 
 	public Long getId() {
 		return id;
@@ -51,13 +47,7 @@ public class ApprovalType implements Serializable {
 
 	
 	
-	public List<AgencyApprovalType> getAgencyApprovalTypes() {
-		return agencyApprovalTypes;
-	}
-
-	public void setAgencyApprovalTypes(List<AgencyApprovalType> agencyApprovalTypes) {
-		this.agencyApprovalTypes = agencyApprovalTypes;
-	}
+	
 
 	public ApprovalType(Long id, String name) {
 		super();

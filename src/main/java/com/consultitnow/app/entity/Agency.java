@@ -31,18 +31,6 @@ public class Agency implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Country country;
-	
-	
-	@OneToMany(mappedBy = "primaryKey.agency", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<AgencyApprovalType> agencyApprovalTypes;
-		
-	public List<AgencyApprovalType> getAgencyApprovalTypes() {
-		return agencyApprovalTypes;
-	}
-
-	public void setAgencyApprovalTypes(List<AgencyApprovalType> agencyApprovalTypes) {
-		this.agencyApprovalTypes = agencyApprovalTypes;
-	}
 
 	public String getAgencyInitials() {
 		return agencyInitials;

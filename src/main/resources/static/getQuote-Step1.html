@@ -77,7 +77,8 @@
 					<li><a href="index.html"><i class="fa fa-dashboard"></i>
 							Home</a></li>
 					<li><a href="#">Quotation</a></li>
-					<li class="active"><a href="#">Get Quote - Project features</a></li>
+					<li class="active"><a href="#">Get Quote - Project
+							features</a></li>
 				</ol>
 			</section>
 
@@ -130,391 +131,63 @@
 
 									<div class="">
 										<label class="title">Approval</label>
-										<div class="form-inline">
-
-											<div class="form-group">
-												<input class="checked-title" name="group20" type="radio"
-													value="EMC" id="EMC" checked="checked"
-													onclick="fneqmtType()"> <label for="EMC">EMC
-												</label>
-											</div>
-
-											<div class="form-group">
-												<input name="group20" type="radio" value="Safety"
-													id="Safety" onclick="fneqmtType()"> <label
-													for="Safety">SAFETY</label>
-											</div>
-
-											<div class="form-group">
-												<input name="group20" type="radio" id="rf"
-													value="rf" onclick="fneqmtType()"> <label
-													for="rf">Radio Telecommunication</label>
-											</div>
-											
-											<div class="form-group">
-												<input name="group20" type="radio" id="nrf"
-													value="nrf" onclick="fneqmtType()"> <label
-													for="nrf">NON Radio Telecommunication</label>
-											</div>
-											<!-- <div class="form-group">
-												<input name="group20" type="radio" id="Telecommunication"
-													value="Telecommunication"> <label>OTHER</label>
-											</div> -->
-
+										<div class="form-inline" id="approvalTypeDiv">
+											<!-- Approval type categorie -->
 										</div>
 
 										<!-- equipement category -->
 
-										<div id="eqmtType" class=" jumbotron  z-depth-0"
+										<div id="eqmtType"
+											class=" active-radio-item jumbotron  z-depth-0"
 											style="display: none">
 											<label class="title">Equipement type </label>
-
-
+											<div class="row" id="eqmtType-item">
+												<div class=" col-md-3  col-sm-4">
+													<input type="checkbox" id="ISDNBRI"> <label
+														for="ISDNBRI">ISDN BRI</label>
+												</div>
+											</div>
+											
 										
-
-											<div class="form-group">
-												<div class="row">
-													<div class=" col-md-3 col-sm-4">
-														<input type="checkbox" id="transmission"> <label
-															for="transmission">Transmission Systems</label>
-													</div>
-
-													<div class="col-md-3  col-sm-4">
-														<input type="checkbox" id="DECT"> <label
-															for="DECT">DECT</label>
-													</div>
-
-													<div class="col-md-3  col-sm-4 ">
-														<input type="checkbox" id="E1"> <label for="E1">E1</label>
-													</div>
-													<div class="col-md-3  col-sm-4">
-														<input type="checkbox" id="SOFTSWITCH"> <label
-															for="SOFTSWITCH" class=" btn-botswana">SOFT
-															SWITCH </label>
-													</div>
-
-
-
-													<div class=" col-md-3  col-sm-4">
-														<input type="checkbox" id="SWITCHINGANDSIGNALINGSYSTEMS">
-														<label for="SWITCHINGANDSIGNALINGSYSTEMS">SWITCHING
-															AND SIGNALING SYSTEMS</label>
-													</div>
-
-													<div class=" col-md-3  col-sm-4">
-														<input type="checkbox" id="ISDNBRI"> <label
-															for="ISDNBRI">ISDN BRI</label>
-													</div>
-
-													<div class=" col-md-3  col-sm-4">
-														<input type="checkbox" id="VOIPSYSTEMS"> <label
-															for="VOIPSYSTEMS">VOIP SYSTEMS</label>
-													</div>
-													<div class=" col-md-3  col-sm-4">
-														<input type="checkbox" id="INTERNATIONALGATEWAY">
-														<label for="INTERNATIONALGATEWAY">INTERNATIONAL
-															GATEWAY</label>
-													</div>
-
+											<div class="row" id="frqCy-band">
+											<label class=" col-md-12 title">Frequency Band </label>
+										
+												<div class=" col-md-3  col-sm-4">
+													<input type="checkbox" id="1"> <label
+														for="1">9 KhZ - 30 MHz</label>
+												</div>	
+												<div class=" col-md-3  col-sm-4">	
+														<input type="checkbox" id="1"> <label
+														for="1">30 KhZ - 390 MHz</label>
 												</div>
-
+												<div class=" col-md-3  col-sm-4">	
+														<input type="checkbox" id="1"> <label
+														for="1">390 KhZ - 890 MHz</label>
+												</div>
+												<div class=" col-md-3  col-sm-4">	
+														<input type="checkbox" id="1"> <label
+														for="1">0.89 GhZ - 3 GHz</label>
+												</div>
+												<div class=" col-md-3  col-sm-4">	
+														<input type="checkbox" id="1"> <label
+														for="1">0.89 GhZ - 3 GHz</label>
+												</div>
+												
+												<div class=" col-md-3  col-sm-4">	
+														<input type="checkbox" id="1"> <label
+														for="1">3 GhZ - 10 MHz</label>
+												</div>
+												
+												<div class=" col-md-3  col-sm-4">	
+														<input type="checkbox" id="1"> <label
+														for="1">20 KhZ - 40 MHz</label>
+												</div>
 											</div>
 											
-										</div>
-
-										<div id="eqmtTyperf" class=" jumbotron  z-depth-0"
-											style="display: none">
-											<label class="title">Equipement type </label>
-
-											
-											<div class="row">
-												<div class=" col-md-3 col-sm-4">
-													<input type="checkbox" id="GSM"> <label for="GSM">GSM
-														/ IMT - 2000</label>
-												</div>
-
-												<div class="col-md-3  col-sm-4">
-													<input type="checkbox" id="WiMax"> <label
-														for="WiMax">WiMax</label>
-												</div>
-
-												<div class="col-md-3  col-sm-4 ">
-													<input type="checkbox" id="E1"> <label for="E1">E1</label>
-												</div>
-												<div class="col-md-3  col-sm-4">
-													<input type="checkbox" id=satelite> <label
-														for="satelite" class=" ">SATELLITE </label>
-												</div>
-
-
-
-												<div class=" col-md-3  col-sm-4">
-													<input type="checkbox" id="TWO-WAY"> <label
-														for="TWO-WAY">TWO-WAY RADIO TRANSCEIVER</label>
-												</div>
-
-												<div class=" col-md-3  col-sm-4">
-													<input type="checkbox" id="POINTTO"> <label
-														for="POINTTO">POINT TO MULTIPOINT LINK</label>
-												</div>
-
-												<div class=" col-md-3  col-sm-4">
-													<input type="checkbox" id="pointlink"> <label
-														for="pointlink">POINT TO POINT LINK</label>
-												</div>
-												<div class=" col-md-3  col-sm-4">
-													<input type="checkbox" id="Receiver"> <label
-														for="Receiver">RECEIVER ONLY</label>
-												</div>
-
-											</div>
-
-
-											<div class="form-group">
-
-
-
-												<label class="title">Frequency band</label>
-												<div class="row">
-													<div class=" col-md-3 col-sm-4">
-														<input type="checkbox" name="frequency" id="930">
-														<label for="930">9 KHz - 30 MHZ</label>
-													</div>
-
-													<div class="col-md-3  col-sm-4">
-														<input type="checkbox" name="frequency" id="30390">
-														<label for="30390">30 - 390 MHZ</label>
-													</div>
-
-													<div class="col-md-3  col-sm-4 ">
-														<input type="checkbox" name="frequency" id="0893">
-														<label for="0893">0.89 - 3GHZ</label>
-													</div>
-													<div class="col-md-3  col-sm-4">
-														<input type="checkbox" name="frequency" id="310">
-														<label for="310" class=" ">3 -10 GHZ </label>
-													</div>
-
-												</div>
-
-											</div>
+										
 										</div>
 									</div>
 									<hr>
-
-
-									<!-- /equipement category -->
-
-
-									<!-- countries -->
-
-<!-- 
-									<div class="form-group">
-
-										<label class="title">Countries</label>
-										<div class="row">
-											<div class=" col-md-3 col-sm-4">
-												<input type="checkbox" id="Algeria"> <label
-													for="Algeria">Algeria</label>
-											</div>
-
-											<div class="col-md-3  col-sm-4">
-												<input type="checkbox" id="Angola"> <label
-													for="Angola">Angola</label>
-											</div>
-
-											<div class="col-md-3  col-sm-4 ">
-												<input type="checkbox" id="Benin"> <label
-													for="Benin">Benin</label>
-											</div>
-											<div class="col-md-3  col-sm-4">
-												<input type="checkbox" id="Botswana"> <label
-													for="Botswana" onClick="showCategorie()" class="">Botswana
-												</label> <br> <label id="lblCat" class="primary-text"></label>
-											</div>
-
-
-
-											<div id="collap" class="collap  col-sm-12"
-												style="display: none;" id="collapseExample">
-												<div class="card" style="margin-bottom: 10px;">
-													<div class="card-body">
-														<div class="form-group radio-pink-gap ">
-															<input name="group103" type="radio" class="with-gap"
-																id="radio109"> <label for="radio109"
-																class="btn-botswana">Categorie 1</label>
-
-															<ul class="categorie-items">
-																<li>Equipement a</li>
-																<li>Equipement b</li>
-																<li>Equipement c</li>
-																<li>Equipement d</li>
-																<li>Equipement e</li>
-																<li>Equipement f</li>
-																<li>Equipement g</li>
-																<li>Equipement h</li>
-																<li>Equipement i</li>
-																<li>Equipement j</li>
-																<li>Equipement k</li>
-																<li>Equipement l</li>
-																<li>Equipement m</li>
-																<li>Equipement n</li>
-																<li>Equipement o</li>
-																<li>Equipement p</li>
-																<li>Equipement q</li>
-																<li>Equipement r</li>
-																<li>Equipement s</li>
-																<li>Equipement t</li>
-																<li>Equipement u</li>
-																<li>Equipement v</li>
-
-															</ul>
-														</div>
-
-														<div class="form-group radio-pink-gap">
-															<input name="group103" type="radio" class="with-gap"
-																id="radio110"> <label class="btn-botswana"
-																for="radio110">Categorie 2</label>
-															<ul class=" categorie-items">
-																<li>Equipement a</li>
-																<li>Equipement b</li>
-																<li>Equipement c</li>
-																<li>Equipement d</li>
-																<li>Equipement e</li>
-																<li>Equipement f</li>
-																<li>Equipement g</li>
-																<li>Equipement h</li>
-																<li>Equipement i</li>
-																<li>Equipement j</li>
-																<li>Equipement k</li>
-																<li>Equipement l</li>
-																<li>Equipement m</li>
-																<li>Equipement n</li>
-																<li>Equipement o</li>
-																<li>Equipement p</li>
-																<li>Equipement q</li>
-																<li>Equipement r</li>
-																<li>Equipement s</li>
-																<li>Equipement t</li>
-																<li>Equipement u</li>
-																<li>Equipement v</li>
-
-															</ul>
-														</div>
-
-														<div class="form-group radio-pink-gap">
-															<input name="group103" type="radio" class="with-gap"
-																id="radio111"> <label class="btn-botswana"
-																for="radio111">Categorie 3</label>
-															<ul class=" categorie-items">
-																<li>Equipement a</li>
-																<li>Equipement b</li>
-																<li>Equipement c</li>
-																<li>Equipement d</li>
-																<li>Equipement e</li>
-																<li>Equipement f</li>
-																<li>Equipement g</li>
-																<li>Equipement h</li>
-																<li>Equipement i</li>
-																<li>Equipement j</li>
-																<li>Equipement k</li>
-																<li>Equipement l</li>
-																<li>Equipement m</li>
-																<li>Equipement n</li>
-																<li>Equipement o</li>
-																<li>Equipement p</li>
-																<li>Equipement q</li>
-																<li>Equipement r</li>
-																<li>Equipement s</li>
-																<li>Equipement t</li>
-																<li>Equipement u</li>
-																<li>Equipement v</li>
-
-															</ul>
-														</div>
-														<div class="form-group radio-pink-gap">
-															<input name="group103" type="radio" class="with-gap"
-																id="radioOthers"> <label for="radioOthers">Others</label>
-
-														</div>
-													</div>
-												</div>
-											</div>
-
-
-
-
-
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Burkina"> <label
-													for="Burkina">Burkina Faso</label>
-											</div>
-
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Burundi"> <label
-													for="Burundi">Burundi</label>
-											</div>
-
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Cameroon"> <label
-													for="Cameroon">Cameroon</label>
-											</div>
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Verde"> <label
-													for="Verde">Cap Verde</label>
-											</div>
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Republic"> <label
-													for="Republic">Central African Republic</label>
-											</div>
-
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Coast"> <label
-													for="Coast">Ivory Coast</label>
-											</div>
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Egypt"> <label
-													for="Egypt">Egypt</label>
-											</div>
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Gabon"> <label
-													for="Gabon">Gabon</label>
-											</div>
-											<div class=" col-md-3  col-sm-4">
-												<input type="checkbox" id="Conakry"> <label
-													for="Conakry">Guinea Conakry</label>
-											</div>
-
-
-										</div>
-									</div>
-
-
-									<hr>
- -->
-									<!-- /countries -->
-<!--
-									<div class="form-group ">
-										<legend> Datasheets</legend>
-										<div class="form-file">
-											<input type="file" name="file-5[]" id="file-5"
-												class="inputfile inputfile-4"
-												data-multiple-caption="{count} files selected" multiple />
-											<label class=" waves-effect waves-light" for="file-5"><figure>
-													<svg xmlns="http://www.w3.org/2000/svg" width="20"
-														height="17" viewBox="0 0 20 17">
-														<path
-															d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg>
-												</figure> <span>Upload datasheet&hellip;</span></label>
-											<div class="downError">
-
-												<span class="red-text "> Please upload maximum 2
-													files</span>
-											</div>
-										</div>
-									</div>
--->
-
 
 								</form>
 							</div>
@@ -537,170 +210,13 @@
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b>
-			</div>
-			<strong>Copyright &copy; <a href="#"></a>.
-			</strong> All rights reserved.
-		</footer>
+		<!-- footer -->
 
+		<footer> </footer>
 	</div>
 
 
 	<!-- categorie equipement modal -->
-
-
-	<!-- Modal -->
-	<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-		<div class="modal-dialog  modal-fluid" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Choose the categorie of the equipement</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-
-					<div class="card-body">
-
-
-
-						<div class="container-fluid">
-							<div class="row">
-
-								<div class="col-md-3">
-									<div class="form-group">
-										<input onclick="getCategorie()" name="groupCat" value="Categorie 1" type="radio" id="radio102"> <label
-											for="radio102">Categorie 1</label>
-									</div>
-									<ul class="categorie-items">
-										<li>Equipement a</li>
-										<li>Equipement b</li>
-										<li>Equipement c</li>
-										<li>Equipement d</li>
-										<li>Equipement e</li>
-										<li>Equipement f</li>
-										<li>Equipement g</li>
-										<li>Equipement h</li>
-										<li>Equipement i</li>
-										<li>Equipement j</li>
-										<li>Equipement k</li>
-										<li>Equipement l</li>
-										<li>Equipement m</li>
-										<li>Equipement n</li>
-										<li>Equipement o</li>
-										<li>Equipement p</li>
-										<li>Equipement q</li>
-										<li>Equipement r</li>
-										<li>Equipement s</li>
-										<li>Equipement t</li>
-										<li>Equipement u</li>
-										<li>Equipement v</li>
-									</ul>
-								</div>
-
-
-								<div class="col-md-3">
-
-									<div class="form-group">
-										<input onclick="getCategorie()" name="groupCat" value="Categorie 2"  type="radio" id="radio101"> <label
-											for="radio101">Categorie 2</label>
-									</div>
-									<ul class=" categorie-items">
-										<li>Equipement a</li>
-										<li>Equipement b</li>
-										<li>Equipement c</li>
-										<li>Equipement d</li>
-										<li>Equipement e</li>
-										<li>Equipement f</li>
-										<li>Equipement g</li>
-										<li>Equipement h</li>
-										<li>Equipement i</li>
-										<li>Equipement j</li>
-										<li>Equipement k</li>
-										<li>Equipement l</li>
-										<li>Equipement m</li>
-										<li>Equipement n</li>
-										<li>Equipement o</li>
-										<li>Equipement p</li>
-										<li>Equipement q</li>
-										<li>Equipement r</li>
-										<li>Equipement s</li>
-										<li>Equipement t</li>
-										<li>Equipement u</li>
-										<li>Equipement v</li>
-
-									</ul>
-								</div>
-
-
-								<div class="col-md-3">
-									<div class="form-group ">
-										<input onclick="getCategorie()"  value="Categorie 3" name="groupCat" type="radio" id="radio100"> <label
-											for="radio100">Categorie 3</label>
-									</div>
-
-
-									<ul class=" categorie-items">
-										<li>Equipement a</li>
-										<li>Equipement b</li>
-										<li>Equipement c</li>
-										<li>Equipement d</li>
-										<li>Equipement e</li>
-										<li>Equipement f</li>
-										<li>Equipement g</li>
-										<li>Equipement h</li>
-										<li>Equipement i</li>
-										<li>Equipement j</li>
-										<li>Equipement k</li>
-										<li>Equipement l</li>
-										<li>Equipement m</li>
-										<li>Equipement n</li>
-										<li>Equipement o</li>
-										<li>Equipement p</li>
-										<li>Equipement q</li>
-										<li>Equipement r</li>
-										<li>Equipement s</li>
-										<li>Equipement t</li>
-										<li>Equipement u</li>
-										<li>Equipement v</li>
-
-									</ul>
-
-								</div>
-
-
-
-
-							</div>
-
-						</div>
-
-
-
-
-					</div>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" data-dismiss="modal" class="btn btn-primary">Save</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- / categorie equipement modal  -->
-
-
-
 
 
 
@@ -708,18 +224,7 @@
 
 	<!-- jQuery 3 -->
 	<script src="assets/js/jquery-3.2.1.min.js"></script>
-
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-
-	<!-- Bootstrap 4 -->
-	<script src="assets/js/bootstrap.min.js"></script>
-	<!-- mdBootstrap 4 -->
-	<script src="assets/js/mdb.min.js"></script>
-	<script src="assets/js/custom-file-input.js"></script>
-
-
-
+	<script src="assets/js/quotationJs.js"></script>
 	<script>
 	
 	
@@ -734,12 +239,12 @@
 	
 				$('#exampleModal').modal('show');
 	
-			}else{
-				
+			} else {
+	
 				$('#lblCat').html("");
 			}
 		}
-		
+	
 		function fneqmtType() {
 			var check = $('input[name=group20]:checked');
 	
@@ -750,45 +255,43 @@
 			if (check.val() == "rf") {
 				$("#eqmtTyperf").css("display", "block")
 				$("#eqmtTyperf").addClass("active-radio-item")
-				
-				
+	
+	
 				$("#eqmtType").css("display", "none")
 				$("#eqmtType").removeClass("active-radio-item")
 	
-			} else if(check.val() == "nrf"){
-				
-				console.log(check.val() )
+			} else if (check.val() == "nrf") {
+	
+				console.log(check.val())
 				$("#eqmtType").css("display", "block")
 				$("#eqmtType").addClass("active-radio-item")
-				
+	
 				$("#eqmtTyperf").css("display", "none")
 				$("#eqmtTyperf").removeClass("active-radio-item")
-			}
-			else {
-				console.log(check.val() )
+			} else {
+				console.log(check.val())
 				$("#eqmtType").css("display", "none")
 				$("#eqmtType").removeClass("active-radio-item")
-				
+	
 				$("#eqmtTyperf").css("display", "none")
 				$("#eqmtTyperf").removeClass("active-radio-item")
 			}
 		}
-		
+	
 	
 	
 		function getCategorie() {
 			var cat = $('input[name=groupCat]:checked');
-			
+	
 			$('#lblCat').html(cat.val())
 		}
-		
-	
 	</script>
 
 	<script type="text/javascript">
 	
 		$("header").load("header.html")
 		$("aside").load("aside.html")
+		$("footer").load("footer.html")
 	</script>
 
 

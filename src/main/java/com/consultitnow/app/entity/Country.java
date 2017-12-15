@@ -20,12 +20,6 @@ public class Country implements Serializable {
 	@Column(unique = true, nullable = false)
 	private String name;
 	
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="country")
-	private List<Agency> agencies;
-	
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="country")
-	private List<Category> categories;
-
 	public Long getId() {
 		return id;
 	}
@@ -40,24 +34,6 @@ public class Country implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Agency> getAgencies() {
-		return agencies;
-	}
-
-	public void setAgencies(List<Agency> agencies) {
-		this.agencies = agencies;
-	}
-	
-	
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
 	}
 
 	public Country() {

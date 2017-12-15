@@ -14,6 +14,7 @@ import com.consultitnow.app.entity.EquipementType;
 import com.consultitnow.model.CountryResult;
 import com.consultitnow.model.Result;
 
+
 @RestController
 public class CountryController {
 
@@ -34,5 +35,14 @@ public class CountryController {
 		return  countryDao.findByAgenciesEquipementTypes(equipementType);
 	}*/
 		
-
+	
+	@RequestMapping(value="/findCountryByEquipementTypes", method=RequestMethod.GET)
+	 public LinkedList<Country> findByEquipement(Long equipementId) {
+		 return countryDao.findByEquipement(equipementId);
+	 }
+	
+	@RequestMapping(value="/findCountryByApprovalTypes", method=RequestMethod.GET)
+	 public LinkedList<Country> findByApproval(Long approvalId) {
+		 return countryDao.findByEquipement(approvalId);
+	 }
 }
