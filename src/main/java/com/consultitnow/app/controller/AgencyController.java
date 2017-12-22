@@ -1,6 +1,7 @@
 package com.consultitnow.app.controller;
 
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ import com.consultitnow.model.Result;
 @RestController
 public class AgencyController {
 
-	@Autowired
+	@Autowired 
 	private IAgencyDao agencyDao;
 	
 	@Autowired
@@ -35,7 +36,10 @@ public class AgencyController {
 	
 	// find all agency
 	@RequestMapping(value = "/findAgencyByCountry", method = RequestMethod.GET)
-	public Country FindByCountry(Country country){
-		return agencyDao.FindByCountry(country);
+	public Country findByCountry(Country country){
+		
+		return agencyDao.findByCountry(country);
 	}
+	
+	
 }

@@ -13,6 +13,6 @@ import com.consultitnow.app.entity.Country;
 public interface IAgencyDao extends JpaRepository<Agency, Long> {
 
 	
-	public Country FindByCountry(Country country);
+	public Country findByCountry(Country country);
 	 
 }

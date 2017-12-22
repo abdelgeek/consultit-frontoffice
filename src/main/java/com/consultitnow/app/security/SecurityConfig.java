@@ -6,27 +6,18 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
+/*
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Order(1)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+*/
+public class SecurityConfig  {//extends WebSecurityConfigurerAdapter
 
-	
+	/*
 	@Autowired
 	public void globalConfig(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
-		/*auth.inMemoryAuthentication().withUser("admin").password("123").roles("ADMIN", "PROF");
-		auth.inMemoryAuthentication().withUser("prof").password("123").roles("PROF");
-		auth.inMemoryAuthentication().withUser("etud").password("123").roles("etud");
-		auth.inMemoryAuthentication().withUser("scola").password("123").roles("scola");*/
-		
-		
+	
 		
 		// return username, password, and role using username
 		auth.jdbcAuthentication()
@@ -53,5 +44,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and().formLogin().loginPage("/login").permitAll()
 		.and().logout().invalidateHttpSession(true).logoutUrl("/logout").permitAll();
 	}
-
+*/
 }

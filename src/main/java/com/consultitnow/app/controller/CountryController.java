@@ -45,4 +45,10 @@ public class CountryController {
 	 public LinkedList<Country> findByApproval(Long approvalId) {
 		 return countryDao.findByEquipement(approvalId);
 	 }
+	
+	@RequestMapping(value="/findCountryfrequency",method=RequestMethod.GET)
+	public LinkedList<Country> findByFrenquency(Long equipementId,float minFrequency, float maxFrequency){
+		return countryDao.findByFrenquency(equipementId, minFrequency, maxFrequency);
+	};
+
 }
