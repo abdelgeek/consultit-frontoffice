@@ -13,8 +13,15 @@ import com.consultitnow.app.entity.EquipementType;
 
 public interface ICountryDao extends JpaRepository<Country, Long> {
 
-	
-	
+	@Query(value="select distinct country.id,country.name "
+			+ " from agency, country,agency_approval_type,approval_type,equipement_type "
+			+ " where country.id = agency.COUNTRY_id and "
+			+ "agency.id = agency_approval_type.agency_id and "
+			+ " approval_type.id = agency_approval_type.approval_type_id "
+			+ "and equipement_type.approval_type_id =  approval_type.id "
+			+ "and equipement_type.id = ?1", nativeQuery = true)
+	public LinkedList<Country> findByEquipement(Long equipementId);
+
 	
 	@Query(value="select distinct country.id,country.name "
 			+ " from agency, country,agency_approval_type,approval_type,equipement_type "
@@ -30,5 +37,10 @@ public interface ICountryDao extends JpaRepository<Country, Long> {
 			"WHERE af.agency_id = a.id and a.country_id = c.id "+
 			"and f.id = af.freqency_band_id and f.id in ?1", nativeQuery = true)
 	public LinkedList<Country> findByFrenquency(Long[] frequencyId);
+
+	
+	
+	
+
 
 }

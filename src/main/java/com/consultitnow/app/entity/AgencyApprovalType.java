@@ -20,14 +20,20 @@ public class AgencyApprovalType implements Serializable{
 	@EmbeddedId
 	private AgencyApprovalId primaryKey;
 	
+
 	/*
 	private Float minFrequency;
 	private Float maxFrequency;
 	*/
+
+	private Float minFrequency;
+	private Float maxFrequency;
+
 		
 	public AgencyApprovalId getPrimaryKey() {
 		return primaryKey;
 	}
+
 
 
 	public void setPrimaryKey(AgencyApprovalId primaryKey) {
@@ -35,6 +41,27 @@ public class AgencyApprovalType implements Serializable{
 	}
 
 
+	public Float getMinFrequency() {
+		return minFrequency;
+	}
+
+
+
+	public void setMinFrequency(Float minFrequency) {
+		this.minFrequency = minFrequency;
+	}
+
+
+
+	public Float getMaxFrequency() {
+		return maxFrequency;
+	}
+
+
+
+	public void setMaxFrequency(Float maxFrequency) {
+		this.maxFrequency = maxFrequency;
+	}
 
 	
 	@Transient

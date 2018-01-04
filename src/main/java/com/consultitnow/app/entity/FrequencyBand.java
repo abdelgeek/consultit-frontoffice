@@ -17,8 +17,10 @@ public class FrequencyBand implements Serializable{
 	
 	private Integer minFrequency;
 	private Integer maxFrequency;
+
 	
 	private String unit;
+
 
 	public Long getId() {
 		return id;

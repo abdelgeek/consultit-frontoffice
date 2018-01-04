@@ -4,18 +4,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consultitnow.app.dao.ICountryDao;
 import com.consultitnow.app.entity.Country;
-import com.consultitnow.app.entity.EquipementType;
-import com.consultitnow.model.CountryResult;
-import com.consultitnow.model.Result;
 
 @CrossOrigin
+
 @RestController
 public class CountryController {
 
@@ -37,6 +37,7 @@ public class CountryController {
 	}*/
 		
 	
+
 	
 	
 	@RequestMapping(value="/findCountryByApprovalTypes", method=RequestMethod.GET)
@@ -48,7 +49,15 @@ public class CountryController {
 	public LinkedList<Country> findByFrenquency(Long[] frequencyId){
 		
 		System.out.println("****** " + frequencyId.length + "******************");
-		return countryDao.findByFrenquency(frequencyId);
-	};
+		return countryDao.findByFrenquency(frequencyId);}
+
+	@RequestMapping(value="/findCountryByEquipementTypes", method=RequestMethod.GET)
+	 public LinkedList<Country> findByEquipement(Long equipementId) {
+		 return countryDao.findByEquipement(equipementId);
+	 }
+	
+	
+	
+
 
 }
