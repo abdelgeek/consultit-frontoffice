@@ -29,6 +29,14 @@ public class CountryController {
 		return countryDao.findAll();
 	}
 	
+	//find a counrty by id
+		@RequestMapping(value = "/findCountry", method = RequestMethod.GET)
+		public Country findOne(Long countryId) {
+			return countryDao.findOne(countryId);
+		}
+		
+		//find a country by categoryid
+	
 	
 	//get a country that approve an equipement type
 	/*@RequestMapping(value = "/findCountryByEquipementTypes", method = RequestMethod.GET)

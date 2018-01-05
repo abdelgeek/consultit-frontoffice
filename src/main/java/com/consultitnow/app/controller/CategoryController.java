@@ -33,5 +33,11 @@ public class CategoryController {
 		country = countryDao.findOne(idCountry);
 		return categorieDao.findByCountry(country);
 	};
+	
+	@RequestMapping(value = "/findOneCategory", method = RequestMethod.GET)
+	public Category findOne(Long categoryId) {
+
+		return categorieDao.findOne(categoryId);
+	};
 
 }

@@ -41,6 +41,15 @@ public class FrequencyBand implements Serializable{
 		this.maxFrequency = maxFrequency;
 	}
 	
+	
+	
+	
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 	public FrequencyBand(Long id, Integer minFrequency, Integer maxFrequency) {
 		super();
 		this.id = id;
