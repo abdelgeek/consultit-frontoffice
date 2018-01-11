@@ -11,17 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.dao.ICountryDao;
+import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.Country;
 
 @CrossOrigin
-
 @RestController
 public class CountryController {
 
 	@Autowired
 	private ICountryDao countryDao;
 
+
+	@Autowired
+	private IApprovalTypeDao approvalTypeDao;
 		
 	//find all counrty
 	@RequestMapping(value = "/findCountries", method = RequestMethod.GET)
@@ -35,37 +39,30 @@ public class CountryController {
 			return countryDao.findOne(countryId);
 		}
 		
-		//find a country by categoryid
-	
-	
-	//get a country that approve an equipement type
-	/*@RequestMapping(value = "/findCountryByEquipementTypes", method = RequestMethod.GET)
-	public List<Country> findByAgenciesEquipementTypes(EquipementType equipementType){
-		return  countryDao.findByAgenciesEquipementTypes(equipementType);
-	}*/
-		
-	
-
-	
-	
+		//find by approval
 	@RequestMapping(value="/findCountryByApprovalTypes", method=RequestMethod.GET)
 	 public LinkedList<Country> findByApproval(Long approvalId) {
-		 return countryDao.findByApproval(approvalId);
+		
+		ApprovalType approvalType = new ApprovalType();
+		LinkedList<Country> countries = new LinkedList<>();
+		if(approvalId != null)
+		{
+			approvalType = approvalTypeDao.findOne(approvalId);
+			if(approvalType != null){
+				countries = countryDao.findByAgenciesApprovalType(approvalType);
+			}
+		}
+		 return countries ;
 	 }
 	
+	
+	// find byFrequency
 	@RequestMapping(value="/findCountryfrequency",method=RequestMethod.GET)
 	public LinkedList<Country> findByFrenquency(Long[] frequencyId){
 		
 		System.out.println("****** " + frequencyId.length + "******************");
 		return countryDao.findByFrenquency(frequencyId);}
 
-	@RequestMapping(value="/findCountryByEquipementTypes", method=RequestMethod.GET)
-	 public LinkedList<Country> findByEquipement(Long equipementId) {
-		 return countryDao.findByEquipement(equipementId);
-	 }
-	
-	
-	
 
 
 }

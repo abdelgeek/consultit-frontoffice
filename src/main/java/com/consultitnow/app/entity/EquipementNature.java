@@ -1,31 +1,35 @@
 package com.consultitnow.app.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
-public class EquipementType implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class EquipementNature implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	
+	@ManyToOne()
 	private ApprovalType approvalType;
+	
+	
+	@JsonIgnoreProperties("equipementNature")
+	@OneToMany(mappedBy="equipementNature")
+	private List<EquipementTechnologie> equipementTechnologie;
 
 	public Long getId() {
 		return id;
@@ -43,11 +47,6 @@ public class EquipementType implements Serializable{
 		this.name = name;
 	}
 
-	public EquipementType() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public ApprovalType getApprovalType() {
 		return approvalType;
 	}
@@ -56,17 +55,16 @@ public class EquipementType implements Serializable{
 		this.approvalType = approvalType;
 	}
 
-	public EquipementType(Long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
+	public List<EquipementTechnologie> getEquipementTechnologie() {
+		return equipementTechnologie;
 	}
 
-	@Override
-	public String toString() {
-		return "EquipementType [id=" + id + ", name=" + name + "]";
+	public void setEquipementTechnologie(List<EquipementTechnologie> equipementTechnologie) {
+		this.equipementTechnologie = equipementTechnologie;
 	}
 	
 	
 	
+	
+
 }

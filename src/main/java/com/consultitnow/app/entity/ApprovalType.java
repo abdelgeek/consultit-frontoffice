@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class ApprovalType implements Serializable {
 
@@ -22,7 +24,12 @@ public class ApprovalType implements Serializable {
 	private Long id;
 	
 	private String name;
-
+	
+	
+	@JsonIgnoreProperties("approvalType")
+	@OneToMany(mappedBy="approvalType")
+	private List<Agency> agencies;
+	
 	 
 	public Long getId() {
 		return id;
@@ -46,8 +53,13 @@ public class ApprovalType implements Serializable {
 	}
 
 	
-	
-	
+	public List<Agency> getAgencies() {
+		return agencies;
+	}
+
+	public void setAgencies(List<Agency> agencies) {
+		this.agencies = agencies;
+	}
 
 	public ApprovalType(Long id, String name) {
 		super();

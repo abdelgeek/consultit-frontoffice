@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consultitnow.app.dao.IAgencyDao;
-import com.consultitnow.app.dao.IApprovalType;
+import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.dao.ICountryDao;
 import com.consultitnow.app.entity.Agency;
 import com.consultitnow.app.entity.ApprovalType;
@@ -25,7 +25,7 @@ public class AgencyController {
 	private IAgencyDao agencyDao;
 	
 	@Autowired
-	private IApprovalType approvalDao;
+	private IApprovalTypeDao approvalDao;
 
 	// find all agency
 	@RequestMapping(value = "/findAgencies", method = RequestMethod.GET)

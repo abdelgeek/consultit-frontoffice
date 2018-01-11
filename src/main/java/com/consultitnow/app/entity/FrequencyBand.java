@@ -1,11 +1,15 @@
 package com.consultitnow.app.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -18,6 +22,9 @@ public class FrequencyBand implements Serializable{
 	private Integer minFrequency;
 	private Integer maxFrequency;
 
+	@JsonIgnoreProperties("frequencyBand")
+	@OneToMany(mappedBy="frequencyBand")
+	public List<CountryFrequencyBand> countryFrequencyBands;
 	
 	private String unit;
 
@@ -44,6 +51,12 @@ public class FrequencyBand implements Serializable{
 	
 	
 	
+	public List<CountryFrequencyBand> getCountryFrequencyBands() {
+		return countryFrequencyBands;
+	}
+	public void setCountryFrequencyBands(List<CountryFrequencyBand> countryFrequencyBands) {
+		this.countryFrequencyBands = countryFrequencyBands;
+	}
 	public String getUnit() {
 		return unit;
 	}

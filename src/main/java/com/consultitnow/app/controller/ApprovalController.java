@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.consultitnow.app.dao.IApprovalType;
+import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.entity.ApprovalType;
 
 
@@ -16,7 +16,7 @@ import com.consultitnow.app.entity.ApprovalType;
 public class ApprovalController {
 
 	@Autowired
-	private IApprovalType approvalTypeDao;
+	private IApprovalTypeDao approvalTypeDao;
 
 	// find all approval type
 	
@@ -26,6 +26,8 @@ public class ApprovalController {
 		return approvalTypeDao.findAll();
 	}
 
+
+	@RequestMapping(value = "/findOneApprovalType", method = RequestMethod.GET)
 	public ApprovalType findOne(Long approvalId) {
 		return approvalTypeDao.findOne(approvalId);
 	}

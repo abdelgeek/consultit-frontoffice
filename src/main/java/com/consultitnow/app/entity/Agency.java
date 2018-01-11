@@ -25,6 +25,10 @@ public class Agency implements Serializable {
 	private String name;
 
 	private String link;
+	
+	
+	@ManyToOne
+	private ApprovalType approvalType;
 
 	@Column(nullable = false)
 	private String agencyInitials;
