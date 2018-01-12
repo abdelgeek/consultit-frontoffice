@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -24,7 +25,7 @@ public class Country implements Serializable {
 	@Column(unique = true, nullable = false)
 	private String name;
 	
-	@JsonIgnoreProperties("country")
+	@JsonIgnore
 	@OneToMany(mappedBy ="country")
 	private Collection<Agency> agencies;
 	
@@ -43,10 +44,8 @@ public class Country implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	
-	
-	@JsonIgnoreProperties("country")
+	@JsonIgnore
 	@OneToMany(mappedBy="country")
 	public List<CountryFrequencyBand> countryFrequencyBands;
 
@@ -62,8 +61,6 @@ public class Country implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	
 	public List<CountryFrequencyBand> getCountryFrequencyBands() {
 		return countryFrequencyBands;

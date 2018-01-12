@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -27,7 +28,7 @@ public class EquipementNature implements Serializable {
 	private ApprovalType approvalType;
 	
 	
-	@JsonIgnoreProperties("equipementNature")
+	@JsonIgnore
 	@OneToMany(mappedBy="equipementNature")
 	private List<EquipementTechnologie> equipementTechnologie;
 

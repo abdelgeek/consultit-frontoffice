@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -25,8 +26,7 @@ public class ApprovalType implements Serializable {
 	
 	private String name;
 	
-	
-	@JsonIgnoreProperties("approvalType")
+	@JsonIgnore
 	@OneToMany(mappedBy="approvalType")
 	private List<Agency> agencies;
 	
