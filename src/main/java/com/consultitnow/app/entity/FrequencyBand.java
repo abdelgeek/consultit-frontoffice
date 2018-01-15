@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -22,7 +23,7 @@ public class FrequencyBand implements Serializable{
 	private Integer minFrequency;
 	private Integer maxFrequency;
 
-	@JsonIgnoreProperties("frequencyBand")
+	@JsonIgnore
 	@OneToMany(mappedBy="frequencyBand")
 	public List<CountryFrequencyBand> countryFrequencyBands;
 	
