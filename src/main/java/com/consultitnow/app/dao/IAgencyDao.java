@@ -12,7 +12,8 @@ import com.consultitnow.app.entity.Country;
 
 public interface IAgencyDao extends JpaRepository<Agency, Long> {
 
-	
-	public Country findByCountry(Country country);
+
 	 
+	
+	public Agency findByCountryAndApprovalType(Country country, ApprovalType approvalType);
 }

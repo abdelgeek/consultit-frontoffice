@@ -27,4 +27,8 @@ public class FrequencyController {
 		return frequencyDao.findAll();
 	}
 	
+	@RequestMapping(value="/findone", method= RequestMethod.GET)
+	public FrequencyBand finfO(){
+		return frequencyDao.findOne(5L);
+	}
 }

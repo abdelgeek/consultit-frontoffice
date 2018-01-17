@@ -2,20 +2,21 @@ package com.consultitnow.app.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Table(uniqueConstraints = @UniqueConstraint(columnNames={"country","frequencyBand"}))
+
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"country","frequency"}))
 public class CountryFrequencyBand implements Serializable{
 
 	@Id
@@ -23,21 +24,20 @@ public class CountryFrequencyBand implements Serializable{
 	private Long id;
 	
 	
-	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "country", referencedColumnName="id")
 	private Country  country;
 	
 
-	@ManyToOne
-	@JoinColumn(name = "frequencyBand", referencedColumnName="id")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "frequency", referencedColumnName="id")
 	private FrequencyBand  frequencyBand;
-	
 	
 	private boolean authorized;
 
 
-	public boolean isAuthorized() {
+	public boolean getAuthorized() {
 		return authorized;
 	}
 
@@ -68,6 +68,9 @@ public class CountryFrequencyBand implements Serializable{
 	public void setFrequencyBand(FrequencyBand frequencyBand) {
 		this.frequencyBand = frequencyBand;
 	}
+
+
+
 	
 	
 }

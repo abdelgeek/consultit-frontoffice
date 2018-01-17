@@ -9,8 +9,6 @@ import com.consultitnow.app.entity.FrequencyBand;
 
 public interface ICountryFrequencyDao extends JpaRepository<CountryFrequencyBand, Long> {
 
-	
 	public List<CountryFrequencyBand> findByFrequencyBandAndAuthorized(FrequencyBand frequencyBand,Boolean isAuthorized) ;
 	
-	public List<CountryFrequencyBand> findByFrequencyBand(FrequencyBand frequencyBand) ;
-}
+	public List<CountryFrequencyBand> findByFrequencyBand(FrequencyBand frequencyBand);}

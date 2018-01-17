@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import com.consultitnow.model.AgencyModel;
 import com.consultitnow.model.AgencyResult;
 import com.consultitnow.model.Result;
 
+@CrossOrigin
 @RestController
 public class AgencyController {
 
@@ -26,6 +28,9 @@ public class AgencyController {
 	
 	@Autowired
 	private IApprovalTypeDao approvalDao;
+	
+	@Autowired
+	private ICountryDao countryDao;
 
 	// find all agency
 	@RequestMapping(value = "/findAgencies", method = RequestMethod.GET)
@@ -34,11 +39,20 @@ public class AgencyController {
 	}
 	
 	
-	// find all agency
-	@RequestMapping(value = "/findAgencyByCountry", method = RequestMethod.GET)
-	public Country findByCountry(Country country){
+	// find an agency by country and approvalType
+	@RequestMapping(value = "/findByCountryAndApprovalType", method = RequestMethod.GET)
+	public Agency findByCountryAndApprovalType(Long countryId, Long approvalTypeId){
 		
-		return agencyDao.findByCountry(country);
+		Agency agency = new Agency();
+		
+		if( countryId != null && approvalTypeId !=null){
+			
+			Country c = countryDao.findOne(countryId);
+			ApprovalType ap = approvalDao.findOne(approvalTypeId);
+			
+			agency = agencyDao.findByCountryAndApprovalType(c, ap);
+		}
+		return agency;
 	}
 	
 	

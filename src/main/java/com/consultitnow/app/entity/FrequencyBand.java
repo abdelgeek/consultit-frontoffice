@@ -25,7 +25,8 @@ public class FrequencyBand implements Serializable{
 
 	@JsonIgnore
 	@OneToMany(mappedBy="frequencyBand")
-	public List<CountryFrequencyBand> countryFrequencyBands;
+	private List<CountryFrequencyBand> countryFrequencyBands;
+
 	
 	private String unit;
 
@@ -49,7 +50,7 @@ public class FrequencyBand implements Serializable{
 		this.maxFrequency = maxFrequency;
 	}
 	
-	
+	/*
 	
 	
 	public List<CountryFrequencyBand> getCountryFrequencyBands() {
@@ -58,6 +59,7 @@ public class FrequencyBand implements Serializable{
 	public void setCountryFrequencyBands(List<CountryFrequencyBand> countryFrequencyBands) {
 		this.countryFrequencyBands = countryFrequencyBands;
 	}
+	*/
 	public String getUnit() {
 		return unit;
 	}

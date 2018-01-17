@@ -10,6 +10,7 @@ import com.consultitnow.app.entity.Agency;
 import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.app.entity.EquipementTechnologie;
+import com.consultitnow.app.entity.FrequencyBand;
 
 public interface ICountryDao extends JpaRepository<Country, Long> {
 
@@ -27,14 +28,9 @@ public interface ICountryDao extends JpaRepository<Country, Long> {
 	public LinkedList<Country> findByAgenciesApprovalType(ApprovalType approvalType);
 	
 	
-	@Query(value="SELECT DISTINCT c.id,c.name" +
-			" FROM country as c, agency_frenquency as af, agency as a,frequency_band as f "+
-			"WHERE af.agency_id = a.id and a.country_id = c.id "+
-			"and f.id = af.freqency_band_id and f.id in ?1", nativeQuery = true)
-	public LinkedList<Country> findByFrenquency(Long[] frequencyId);
-
 	
 	
+	public List<Country> findByCountryFrequencyBandsFrequencyBandAndCountryFrequencyBandsAuthorized(FrequencyBand frequencyBand,Boolean isAuthorized );
 	
 
 

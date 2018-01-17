@@ -1,0 +1,128 @@
+package com.consultitnow.app.entity;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+
+@Entity
+public class Equipement implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
+	private String brand;
+	private Boolean isEncrypt;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private ApprovalType approvalType;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private EquipementType equipementType;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private EquipementNature equipementNature;
+	
+	
+	@ManyToMany
+	private List<FrequencyBand> frequencies;
+	
+
+	@ManyToMany
+	private List<EquipementTechnologie> equipementTechnologie;
+	
+	@ManyToMany
+	private List<Category> categories;
+
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public Boolean getIsEncrypt() {
+		return isEncrypt;
+	}
+
+	public void setIsEncrypt(Boolean isEncrypt) {
+		this.isEncrypt = isEncrypt;
+	}
+
+	public ApprovalType getApprovalType() {
+		return approvalType;
+	}
+
+	public void setApprovalType(ApprovalType approvalType) {
+		this.approvalType = approvalType;
+	}
+
+	public EquipementType getEquipementType() {
+		return equipementType;
+	}
+
+	public void setEquipementType(EquipementType equipementType) {
+		this.equipementType = equipementType;
+	}
+
+	public EquipementNature getEquipementNature() {
+		return equipementNature;
+	}
+
+	public void setEquipementNature(EquipementNature equipementNature) {
+		this.equipementNature = equipementNature;
+	}
+
+	public List<FrequencyBand> getFrequencies() {
+		return frequencies;
+	}
+
+	public void setFrequencies(List<FrequencyBand> frequencies) {
+		this.frequencies = frequencies;
+	}
+
+	public List<EquipementTechnologie> getEquipementTechnologie() {
+		return equipementTechnologie;
+	}
+
+	public void setEquipementTechnologie(List<EquipementTechnologie> equipementTechnologie) {
+		this.equipementTechnologie = equipementTechnologie;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+	
+}

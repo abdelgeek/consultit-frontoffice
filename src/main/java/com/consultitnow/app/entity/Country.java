@@ -29,6 +29,11 @@ public class Country implements Serializable {
 	@OneToMany(mappedBy ="country")
 	private Collection<Agency> agencies;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="country")
+	private List<CountryFrequencyBand> countryFrequencyBands;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -45,9 +50,7 @@ public class Country implements Serializable {
 		this.name = name;
 	}
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="country")
-	public List<CountryFrequencyBand> countryFrequencyBands;
+	
 
 	public Collection<Agency> getAgencies() {
 		return agencies;
@@ -62,13 +65,14 @@ public class Country implements Serializable {
 	}
 
 	
+	/*
 	public List<CountryFrequencyBand> getCountryFrequencyBands() {
 		return countryFrequencyBands;
 	}
 
 	public void setCountryFrequencyBands(List<CountryFrequencyBand> countryFrequencyBands) {
 		this.countryFrequencyBands = countryFrequencyBands;
-	}
+	}*/
 
 	public Country(Long id, String name, Collection<Agency> agencies) {
 		this.id = id;
