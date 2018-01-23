@@ -66,7 +66,8 @@ public class CountryController {
 
 		FrequencyBand frequencyBand = new FrequencyBand();
 		frequencyBand = ifrequencyDao.findOne(idFrequency);
-		return countryDao.findByCountryFrequencyBandsFrequencyBandAndCountryFrequencyBandsAuthorized(frequencyBand,true);
+		return countryDao.findByCountryFrequencyBandsFrequencyBandAndCountryFrequencyBandsAuthorized(frequencyBand,
+				true);
 	}
 
 }

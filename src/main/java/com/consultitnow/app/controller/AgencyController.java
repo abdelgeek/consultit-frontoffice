@@ -47,6 +47,8 @@ public class AgencyController {
 		
 		if( countryId != null && approvalTypeId !=null){
 			
+			
+			System.out.println(approvalTypeId);
 			Country c = countryDao.findOne(countryId);
 			ApprovalType ap = approvalDao.findOne(approvalTypeId);
 			

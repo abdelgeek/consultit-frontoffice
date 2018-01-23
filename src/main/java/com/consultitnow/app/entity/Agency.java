@@ -23,8 +23,6 @@ public class Agency implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
-	private String name;
 
 	private String link;
 	
@@ -54,13 +52,7 @@ public class Agency implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 	public String getLink() {
 		return link;
@@ -83,10 +75,9 @@ public class Agency implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Agency(Long id, String name, String link, String agencyInitials, Country country) {
+	public Agency(Long id, String link, String agencyInitials, Country country) {
 		super();
 		this.id = id;
-		this.name = name;
 		this.link = link;
 		this.agencyInitials = agencyInitials;
 		this.country = country;

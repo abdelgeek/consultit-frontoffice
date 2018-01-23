@@ -7,4 +7,5 @@ import com.consultitnow.app.entity.ApprovalType;
 public interface IApprovalTypeDao extends JpaRepository<ApprovalType, Long>{
 	
 	public ApprovalType findByName(String approvalName);
+	
 }

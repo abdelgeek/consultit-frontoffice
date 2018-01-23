@@ -21,27 +21,9 @@ public class Equipement implements Serializable {
 	private Long id;
 	private String name;
 	private String brand;
+	
 	private Boolean isEncrypt;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private ApprovalType approvalType;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private EquipementType equipementType;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private EquipementNature equipementNature;
-	
-	
-	@ManyToMany
-	private List<FrequencyBand> frequencies;
-	
 
-	@ManyToMany
-	private List<EquipementTechnologie> equipementTechnologie;
-	
-	@ManyToMany
-	private List<Category> categories;
 
 	
 	
@@ -77,52 +59,4 @@ public class Equipement implements Serializable {
 		this.isEncrypt = isEncrypt;
 	}
 
-	public ApprovalType getApprovalType() {
-		return approvalType;
-	}
-
-	public void setApprovalType(ApprovalType approvalType) {
-		this.approvalType = approvalType;
-	}
-
-	public EquipementType getEquipementType() {
-		return equipementType;
-	}
-
-	public void setEquipementType(EquipementType equipementType) {
-		this.equipementType = equipementType;
-	}
-
-	public EquipementNature getEquipementNature() {
-		return equipementNature;
-	}
-
-	public void setEquipementNature(EquipementNature equipementNature) {
-		this.equipementNature = equipementNature;
-	}
-
-	public List<FrequencyBand> getFrequencies() {
-		return frequencies;
-	}
-
-	public void setFrequencies(List<FrequencyBand> frequencies) {
-		this.frequencies = frequencies;
-	}
-
-	public List<EquipementTechnologie> getEquipementTechnologie() {
-		return equipementTechnologie;
-	}
-
-	public void setEquipementTechnologie(List<EquipementTechnologie> equipementTechnologie) {
-		this.equipementTechnologie = equipementTechnologie;
-	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
-	
 }
