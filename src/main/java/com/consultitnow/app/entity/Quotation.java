@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Quotation implements Serializable {
@@ -19,9 +21,12 @@ public class Quotation implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private Integer status;
-	
+	private Boolean hasEncryptionFeature;
+	private String dataSheetUrl;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private ApprovalType approvalType;
@@ -125,6 +130,23 @@ public class Quotation implements Serializable {
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+
+	
+	public Boolean getHasEncryptionFeature() {
+		return hasEncryptionFeature;
+	}
+
+	public void setHasEncryptionFeature(Boolean hasEncryptionFeature) {
+		this.hasEncryptionFeature = hasEncryptionFeature;
+	}
+
+	public String getDataSheetUrl() {
+		return dataSheetUrl;
+	}
+
+	public void setDataSheetUrl(String dataSheetUrl) {
+		this.dataSheetUrl = dataSheetUrl;
 	}
 
 	public Quotation() {

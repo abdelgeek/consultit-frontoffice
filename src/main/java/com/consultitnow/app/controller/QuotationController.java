@@ -1,9 +1,12 @@
 package com.consultitnow.app.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.experimental.categories.Categories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,61 +50,95 @@ public class QuotationController {
 
 	@Autowired
 	private IEquipementTypeDao equipementTypeDao;
-	
+
 	@Autowired
 	private IfrequencyDao frequencyDao;
 
-
-	
 	@PostMapping("/saveQuotation")
 	public Quotation saveQuotation(@RequestBody QuotationModel quotationModel) {
 
-		// get approval type
-		ApprovalType approvalType = new ApprovalType();
-		approvalType = approvalTypeDao.findOne(quotationModel.getApprovalType());
+		Quotation quotation = new Quotation();
 
-		// get categories
+		// get Quotation Date
+		Date quotationDate = new Date();
+		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		try {
+		quotationDate = df.parse(quotationModel.getDate());
+			quotation.setDate(quotationDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//get quotation status
+		quotation.setStatus(quotationModel.getStatus());
+
+		// get approval type
+		if (quotationModel.getApprovalType() != null) {
+			ApprovalType approvalType = new ApprovalType();
+			approvalType = approvalTypeDao.findOne(quotationModel.getApprovalType());
+
+			quotation.setApprovalType(approvalType);
+		}
+
+		// get categories and set to quotation
 		List<Category> categories = new LinkedList<>();
 		for (Long categoryId : quotationModel.getCategory()) {
-			Category category = new Category();
-			category = categorieDao.findOne(categoryId);
-			categories.add(category);
+
+			if (categoryId != null) {
+				Category category = new Category();
+				category = categorieDao.findOne(categoryId);
+				categories.add(category);
+			}
 		}
+		quotation.setCategories(categories);
 
 		// get equipement nature
-		EquipementNature equipementNature = new EquipementNature();
-		equipementNature = equipementNatureDao.findOne(quotationModel.getEquipementNature());
+		if (quotationModel.getEquipementNature() != null) {
+			EquipementNature equipementNature = new EquipementNature();
+			equipementNature = equipementNatureDao.findOne(quotationModel.getEquipementNature());
 
-		// get equipement technologie
+			quotation.setEquipementNature(equipementNature);
+		}
+
+		// get equipement technologie et set to quotation
 		List<EquipementTechnologie> equipementTechnologies = new LinkedList<>();
 		for (Long equipementTechnologieId : quotationModel.getEquipementTechnologie()) {
-			EquipementTechnologie equipementTechnologie = new EquipementTechnologie();
-			equipementTechnologie = equipementTechnologieDao.findOne(equipementTechnologieId);
-			equipementTechnologies.add(equipementTechnologie);
+
+			if (equipementTechnologieId != null) {
+				EquipementTechnologie equipementTechnologie = new EquipementTechnologie();
+				equipementTechnologie = equipementTechnologieDao.findOne(equipementTechnologieId);
+				equipementTechnologies.add(equipementTechnologie);
+			}
+
+		}
+		quotation.setEquipementTechnologie(equipementTechnologies);
+
+		// get equipement type
+		if (quotationModel.getEquipementType() != null) {
+			EquipementType equipementType = new EquipementType();
+			equipementType = equipementTypeDao.findOne(quotationModel.getEquipementType());
+			quotation.setEquipementType(equipementType);
+
 		}
 
-		// get equipement nature
-		EquipementType equipementType = new EquipementType();
-		equipementType = equipementTypeDao.findOne(quotationModel.getEquipementType());
-
-		// get equipement frequency
-				List<FrequencyBand> frequencyBands = new LinkedList<>();
-				for (Long frequencyId : quotationModel.getFrequencyBand()) {
-					FrequencyBand frequencyBand = new FrequencyBand();
-					frequencyBand = frequencyDao.findOne(frequencyId);
-					frequencyBands.add(frequencyBand);
-				}
-				
-		Quotation quotation = new Quotation();
-		quotation.setApprovalType(approvalType);
-		quotation.setCategories(categories);
-		quotation.setDate(quotationModel.getDate());
-		quotation.setEquipementNature(equipementNature);
-		quotation.setEquipementTechnologie(equipementTechnologies);
-		quotation.setEquipementType(equipementType);
-		quotation.setStatus(quotationModel.getStatus());
+		// get equipement frequency and set to quotation
+		List<FrequencyBand> frequencyBands = new LinkedList<>();
+		for (Long frequencyId : quotationModel.getFrequencyBand()) {
+			if (frequencyId != null) {
+				FrequencyBand frequencyBand = new FrequencyBand();
+				frequencyBand = frequencyDao.findOne(frequencyId);
+				frequencyBands.add(frequencyBand);
+			}
+		}
 		quotation.setFrequencies(frequencyBands);
+
+		//get Encryption feature
+		quotation.setHasEncryptionFeature(quotationModel.getHasEncryptionFeature());
 		
-		 return quotationDao.save(quotation);
+		//set datasheet url
+		quotation.setDataSheetUrl(quotationModel.getDataSheetUrl());
+
+		return quotationDao.save(quotation);
 	}
 }

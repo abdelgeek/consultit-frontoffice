@@ -1,11 +1,12 @@
 package com.consultitnow.model;
 
-import java.util.Date;
 import java.util.List;
+
+
 
 public class QuotationModel {
 
-	private Date date;
+	private String date;
 
 	private Integer status;
 
@@ -20,16 +21,16 @@ public class QuotationModel {
 	private List<Long> equipementTechnologie;
 
 	private List<Long> category;
-	
+
 	private Boolean hasEncryptionFeature;
 
-    private String dataSheetUrl;
-	
-	public Date getDate() {
+	private String dataSheetUrl;
+
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -44,10 +45,6 @@ public class QuotationModel {
 	public Long getApprovalType() {
 		return approvalType;
 	}
-
-	
-	
-	
 
 	public String getDataSheetUrl() {
 		return dataSheetUrl;
@@ -93,8 +90,6 @@ public class QuotationModel {
 		this.equipementNature = equipementNatureId;
 	}
 
-	
-
 	public List<Long> getEquipementTechnologie() {
 		return equipementTechnologie;
 	}
@@ -111,16 +106,12 @@ public class QuotationModel {
 		this.category = categoriesId;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "QuotationModel [date=" + date + ", status=" + status + ", approvalTypeId=" + approvalType
-				+ ", equipementTypeId=" + equipementType + ", equipementNatureId=" + equipementNature
-				+ ", frequencyId=" + frequencyBand + ", equipementTechnologieId=" + equipementTechnologie
-				+ ", categoriesId=" + category + "]";
+		return "QuotationModel [date=" + date + ", status=" + status + ", approvalType=" + approvalType
+				+ ", equipementType=" + equipementType + ", equipementNature=" + equipementNature + ", frequencyBand="
+				+ frequencyBand + ", equipementTechnologie=" + equipementTechnologie + ", category=" + category
+				+ ", hasEncryptionFeature=" + hasEncryptionFeature + ", dataSheetUrl=" + dataSheetUrl + "]";
 	}
 
-	
-	
 }
