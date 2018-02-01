@@ -29,10 +29,6 @@ public class Country implements Serializable {
 	@OneToMany(mappedBy ="country")
 	private Collection<Agency> agencies;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="country")
-	private List<CountryFrequencyBand> countryFrequencyBands;
-	
 	
 	public Long getId() {
 		return id;

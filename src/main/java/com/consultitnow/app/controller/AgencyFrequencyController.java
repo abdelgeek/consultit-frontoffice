@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-public class CountryFrequencyController {
+public class AgencyFrequencyController {
 	
 	
 	

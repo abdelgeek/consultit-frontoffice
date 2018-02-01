@@ -14,35 +14,44 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 
-
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames={"country","frequency"}))
-public class CountryFrequencyBand implements Serializable{
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"agency","frequency"}))
+public class AgencyFrequencyBand implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "country", referencedColumnName="id")
-	private Country  country;
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name = "agency", referencedColumnName="id")
+	private Agency  agency;
 	
 
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name = "frequency", referencedColumnName="id")
 	private FrequencyBand  frequencyBand;
 	
-	private boolean authorized;
+	private boolean isFrequencyAuthorized;
 
 
-	public boolean getAuthorized() {
-		return authorized;
+	
+
+	public Agency getAgency() {
+		return agency;
 	}
 
-	public void setAuthorized(boolean authorized) {
-		this.authorized = authorized;
+	public void setAgency(Agency agency) {
+		this.agency = agency;
+	}
+
+	public boolean isFrequencyAuthorized() {
+		return isFrequencyAuthorized;
+	}
+
+	public void setFrequencyAuthorized(boolean isFrequencyAuthorized) {
+		this.isFrequencyAuthorized = isFrequencyAuthorized;
 	}
 
 	public Long getId() {
@@ -53,13 +62,6 @@ public class CountryFrequencyBand implements Serializable{
 		this.id = id;
 	}
 
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
-	}
 
 	public FrequencyBand getFrequencyBand() {
 		return frequencyBand;

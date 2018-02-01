@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.consultitnow.app.entity.Agency;
+import com.consultitnow.app.entity.AgencyFrequencyBand;
 import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.app.entity.EquipementTechnologie;
@@ -29,8 +30,8 @@ public interface ICountryDao extends JpaRepository<Country, Long> {
 	
 	
 	
-	
-	public List<Country> findByCountryFrequencyBandsFrequencyBandAndCountryFrequencyBandsAuthorized(FrequencyBand frequencyBand,Boolean isAuthorized );
+	public List<Country> findByAgenciesAgencyFrequencyBandsFrequencyBandAndAgenciesAgencyFrequencyBandsIsFrequencyAuthorized(FrequencyBand frequencyBand,Boolean isAuthorized );
+	//public List<Country> findByCountryFrequencyBandsFrequencyBandAndCountryFrequencyBandsAuthorized(FrequencyBand frequencyBand,Boolean isAuthorized );
 	
 
 

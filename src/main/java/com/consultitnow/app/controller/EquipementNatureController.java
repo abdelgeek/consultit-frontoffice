@@ -29,6 +29,8 @@ public class EquipementNatureController  {
 	public List<EquipementNature> findByApprovalType(Long approvalId){
 		
 		System.out.println("***** Get equipement nature by approval type name ***");
+		
+		System.out.println(approvalId);
 		ApprovalType approvalType = new ApprovalType();
 		List<EquipementNature> equipementNatures = new LinkedList<EquipementNature>();	
 		
