@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consultitnow.app.dao.IEquipementTypeDao;
-import com.consultitnow.app.entity.EquipementType;
+import com.consultitnow.app.entity.EquipmentType;
 
 @RestController
 @CrossOrigin
@@ -20,7 +20,7 @@ public class EquipementTypeController {
 	
 	
 	@RequestMapping(value="/findEquipementTypes", method=RequestMethod.GET)
-	public List<EquipementType> findAll(){
+	public List<EquipmentType> findAll(){
 		return equipementTypeDao.findAll();
 	}
 }

@@ -11,48 +11,58 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Quotation implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	private Integer status;
 	private Boolean hasEncryptionFeature;
 	private String dataSheetUrl;
-	
+	private Double totalAmount;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private ApprovalType approvalType;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	private EquipementType equipementType;
-	
+	private EquipmentType equipmentType;
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	private EquipementNature equipementNature;
-	
-	
-	@ManyToMany
-	private List<FrequencyBand> frequencies;
-	
+	private EquipmentNature equipmentNature;
 
 	@ManyToMany
-	private List<EquipementTechnologie> equipementTechnologie;
-	
+	private List<FrequencyBand> frequencies;
+
+	@ManyToMany
+	private List<EquipmentTechnologie> equipmentTechnologie;
+
 	@ManyToMany
 	private List<Category> categories;
-	
-	@OneToOne
-	private Equipement equipement;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "quotation")
+	private List<PurchaseOrder> purchaseOrders;
 
 	public Long getId() {
 		return id;
+	}
+
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 	public void setId(Long id) {
@@ -66,15 +76,6 @@ public class Quotation implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	public Equipement getEquipement() {
-		return equipement;
-	}
-
-	public void setEquipement(Equipement equipement) {
-		this.equipement = equipement;
-	}
-
 
 	public Integer getStatus() {
 		return status;
@@ -92,20 +93,20 @@ public class Quotation implements Serializable {
 		this.approvalType = approvalType;
 	}
 
-	public EquipementType getEquipementType() {
-		return equipementType;
+	public EquipmentType getEquipementType() {
+		return equipmentType;
 	}
 
-	public void setEquipementType(EquipementType equipementType) {
-		this.equipementType = equipementType;
+	public void setEquipementType(EquipmentType equipmentType) {
+		this.equipmentType = equipmentType;
 	}
 
-	public EquipementNature getEquipementNature() {
-		return equipementNature;
+	public EquipmentNature getEquipementNature() {
+		return equipmentNature;
 	}
 
-	public void setEquipementNature(EquipementNature equipementNature) {
-		this.equipementNature = equipementNature;
+	public void setEquipementNature(EquipmentNature equipmentNature) {
+		this.equipmentNature = equipmentNature;
 	}
 
 	public List<FrequencyBand> getFrequencies() {
@@ -116,12 +117,12 @@ public class Quotation implements Serializable {
 		this.frequencies = frequencies;
 	}
 
-	public List<EquipementTechnologie> getEquipementTechnologie() {
-		return equipementTechnologie;
+	public List<EquipmentTechnologie> getEquipementTechnologie() {
+		return equipmentTechnologie;
 	}
 
-	public void setEquipementTechnologie(List<EquipementTechnologie> equipementTechnologie) {
-		this.equipementTechnologie = equipementTechnologie;
+	public void setEquipementTechnologie(List<EquipmentTechnologie> equipmentTechnologie) {
+		this.equipmentTechnologie = equipmentTechnologie;
 	}
 
 	public List<Category> getCategories() {
@@ -132,7 +133,6 @@ public class Quotation implements Serializable {
 		this.categories = categories;
 	}
 
-	
 	public Boolean getHasEncryptionFeature() {
 		return hasEncryptionFeature;
 	}
@@ -149,10 +149,41 @@ public class Quotation implements Serializable {
 		this.dataSheetUrl = dataSheetUrl;
 	}
 
+	public EquipmentType getEquipmentType() {
+		return equipmentType;
+	}
+
+	public void setEquipmentType(EquipmentType equipmentType) {
+		this.equipmentType = equipmentType;
+	}
+
+	public EquipmentNature getEquipmentNature() {
+		return equipmentNature;
+	}
+
+	public void setEquipmentNature(EquipmentNature equipmentNature) {
+		this.equipmentNature = equipmentNature;
+	}
+
+	public List<EquipmentTechnologie> getEquipmentTechnologie() {
+		return equipmentTechnologie;
+	}
+
+	public void setEquipmentTechnologie(List<EquipmentTechnologie> equipmentTechnologie) {
+		this.equipmentTechnologie = equipmentTechnologie;
+	}
+
+	public List<PurchaseOrder> getPurchaseOrders() {
+		return purchaseOrders;
+	}
+
+	public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+		this.purchaseOrders = purchaseOrders;
+	}
+
 	public Quotation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 }

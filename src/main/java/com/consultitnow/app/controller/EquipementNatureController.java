@@ -12,46 +12,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.dao.IEquipementNatureDao;
 import com.consultitnow.app.entity.ApprovalType;
-import com.consultitnow.app.entity.EquipementNature;
-import com.consultitnow.app.entity.EquipementTechnologie;
+import com.consultitnow.app.entity.EquipmentNature;
 
 @CrossOrigin
 @RestController
-public class EquipementNatureController  {
-
+public class EquipementNatureController {
 
 	@Autowired
 	private IEquipementNatureDao equipementNatureDao;
 	@Autowired
 	private IApprovalTypeDao approvalTypeDao;
-	
-	@RequestMapping(value="/findEqmNatureByApprovalType", method=RequestMethod.GET)
-	public List<EquipementNature> findByApprovalType(Long approvalId){
-		
+
+	@RequestMapping(value = "/findEqmNatureByApprovalType", method = RequestMethod.GET)
+	public List<EquipmentNature> findByApprovalType(Long approvalId) {
+
 		System.out.println("***** Get equipement nature by approval type name ***");
-		
+
 		System.out.println(approvalId);
 		ApprovalType approvalType = new ApprovalType();
-		List<EquipementNature> equipementNatures = new LinkedList<EquipementNature>();	
-		
- 		if(approvalId != null){
- 			System.out.println("***** approval Type id non null ***");
- 			System.out.println(approvalId);
+		List<EquipmentNature> equipmentNatures = new LinkedList<EquipmentNature>();
+
+		if (approvalId != null) {
+
 			approvalType = approvalTypeDao.findOne(approvalId);
-			
-			equipementNatures = equipementNatureDao.findByApprovalType(approvalType);
-		}else{
+
+			equipmentNatures = equipementNatureDao.findByApprovalType(approvalType);
+
+			System.out.println("equipmentNatures.toString()");
+			System.out.println(equipmentNatures.toString());
+		} else {
 			System.out.println("***** approval Type id non null ***");
 		}
- 		
- 		return equipementNatures;
+
+		return equipmentNatures;
 	}
-	
-	
-	@RequestMapping(value="/findEquipementNature", method=RequestMethod.GET)
-	public EquipementNature findOne(Long id ){
+
+	@RequestMapping(value = "/findEquipementNature", method = RequestMethod.GET)
+	public EquipmentNature findOne(Long id) {
 		return equipementNatureDao.findOne(id);
 	}
-	
-	
+
 }

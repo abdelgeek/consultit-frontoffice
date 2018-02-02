@@ -50,16 +50,9 @@ public class FrequencyBand implements Serializable{
 		this.maxFrequency = maxFrequency;
 	}
 	
-	/*
+
 	
 	
-	public List<CountryFrequencyBand> getCountryFrequencyBands() {
-		return countryFrequencyBands;
-	}
-	public void setCountryFrequencyBands(List<CountryFrequencyBand> countryFrequencyBands) {
-		this.countryFrequencyBands = countryFrequencyBands;
-	}
-	*/
 	public String getUnit() {
 		return unit;
 	}

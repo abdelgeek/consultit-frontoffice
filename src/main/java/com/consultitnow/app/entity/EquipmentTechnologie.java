@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-public class EquipementTechnologie implements Serializable{
+public class EquipmentTechnologie implements Serializable{
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class EquipementTechnologie implements Serializable{
 	private String name;
 	
 	@ManyToOne
-	private EquipementNature equipementNature;
+	private EquipmentNature equipmentNature;
 
 	public Long getId() {
 		return id;
@@ -43,21 +43,23 @@ public class EquipementTechnologie implements Serializable{
 		this.name = name;
 	}
 
-	public EquipementTechnologie() {
+	public EquipmentTechnologie() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public EquipementNature getEquipementNature() {
-		return equipementNature;
+	
+
+	public EquipmentNature getEquipmentNature() {
+		return equipmentNature;
 	}
 
-	public void setEquipementNature(EquipementNature equipementNature) {
-		this.equipementNature = equipementNature;
+	public void setEquipmentNature(EquipmentNature equipmentNature) {
+		this.equipmentNature = equipmentNature;
 	}
 
-	public EquipementTechnologie(Long id, String name) {
+	public EquipmentTechnologie(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

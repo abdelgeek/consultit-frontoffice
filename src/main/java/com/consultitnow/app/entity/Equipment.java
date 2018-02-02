@@ -3,36 +3,48 @@ package com.consultitnow.app.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Equipement implements Serializable {
+public class Equipment implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String brand;
-	
-	private Boolean isEncrypt;
+	private String model;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
+	private List<Project> projects;
 
-	
-	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Equipment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
 	public String getName() {
@@ -51,12 +63,13 @@ public class Equipement implements Serializable {
 		this.brand = brand;
 	}
 
-	public Boolean getIsEncrypt() {
-		return isEncrypt;
+	public String getModel() {
+		return model;
 	}
 
-	public void setIsEncrypt(Boolean isEncrypt) {
-		this.isEncrypt = isEncrypt;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
+	
 }

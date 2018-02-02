@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class EquipementType implements Serializable{
+public class EquipmentType implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class EquipementType implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public EquipementType() {
+	public EquipmentType() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

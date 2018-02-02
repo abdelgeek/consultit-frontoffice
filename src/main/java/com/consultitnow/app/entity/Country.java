@@ -60,15 +60,6 @@ public class Country implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	/*
-	public List<CountryFrequencyBand> getCountryFrequencyBands() {
-		return countryFrequencyBands;
-	}
-
-	public void setCountryFrequencyBands(List<CountryFrequencyBand> countryFrequencyBands) {
-		this.countryFrequencyBands = countryFrequencyBands;
-	}*/
 
 	public Country(Long id, String name, Collection<Agency> agencies) {
 		this.id = id;

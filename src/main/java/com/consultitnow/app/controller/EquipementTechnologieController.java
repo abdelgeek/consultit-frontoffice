@@ -2,7 +2,6 @@ package com.consultitnow.app.controller;
 
 
 import java.util.LinkedList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.dao.IEquipementNatureDao;
 import com.consultitnow.app.dao.IEquipementTechnologieDao;
-import com.consultitnow.app.entity.ApprovalType;
-import com.consultitnow.app.entity.EquipementNature;
-import com.consultitnow.app.entity.EquipementTechnologie;
+import com.consultitnow.app.entity.EquipmentNature;
+import com.consultitnow.app.entity.EquipmentTechnologie;
 
 @CrossOrigin("*")
 @RestController
@@ -28,18 +25,18 @@ public class EquipementTechnologieController {
 	private IEquipementNatureDao equipementNatureDao;
 	
 	@RequestMapping(value="/findByEquipementNature", method=RequestMethod.GET)
-	public LinkedList<EquipementTechnologie> findByEquipementNature(Long eqpmtNatureId){
+	public LinkedList<EquipmentTechnologie> findByEquipementNature(Long eqpmtNatureId){
 		
 		System.out.println("***** Get equipement by equipepemnt nature ***");
-		EquipementNature equipementNature = new EquipementNature();
-		equipementNature = equipementNatureDao.findOne(eqpmtNatureId);
+		EquipmentNature equipmentNature = new EquipmentNature();
+		equipmentNature = equipementNatureDao.findOne(eqpmtNatureId);
 		
-		System.out.println(equipementNature.toString());
-		LinkedList<EquipementTechnologie> equipementTechnologies = new LinkedList<>();	
+		System.out.println(equipmentNature.toString());
+		LinkedList<EquipmentTechnologie> equipmentTechnologies = new LinkedList<>();	
  		if(eqpmtNatureId != null){
-			equipementTechnologies = equipementTechnologieDao.findByEquipementNature(equipementNature);
+			equipmentTechnologies = equipementTechnologieDao.findByEquipmentNature(equipmentNature);
 		}
-		return equipementTechnologies;
+		return equipmentTechnologies;
 	}
 	
 }

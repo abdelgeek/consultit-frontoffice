@@ -4,29 +4,28 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Project implements Serializable {
+public class Invoice implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
-	@ManyToOne
-	private Equipment equipment;
+	private Double TotalAmount;
 
-	@ManyToOne
-	private Country country;
-	
 	@ManyToOne
 	private PurchaseOrder purchaseOrder;
-
+	
 	public Long getId() {
 		return this.id;
 	}
@@ -43,22 +42,12 @@ public class Project implements Serializable {
 		this.date = date;
 	}
 
-	
-	
-	public Equipment getEquipment() {
-		return equipment;
+	public Double getTotalAmount() {
+		return TotalAmount;
 	}
 
-	public void setEquipment(Equipment equipment) {
-		this.equipment = equipment;
-	}
-
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
+	public void setTotalAmount(Double totalAmount) {
+		TotalAmount = totalAmount;
 	}
 
 	public PurchaseOrder getPurchaseOrder() {
@@ -69,9 +58,10 @@ public class Project implements Serializable {
 		this.purchaseOrder = purchaseOrder;
 	}
 
-	public Project() {
+	public Invoice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	
 }

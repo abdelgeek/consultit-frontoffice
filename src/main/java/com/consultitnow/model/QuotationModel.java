@@ -2,8 +2,6 @@ package com.consultitnow.model;
 
 import java.util.List;
 
-
-
 public class QuotationModel {
 
 	private String date;
@@ -21,6 +19,10 @@ public class QuotationModel {
 	private List<Long> equipementTechnologie;
 
 	private List<Long> category;
+	
+	private List<Long> country;
+
+	private Double amount;
 
 	private Boolean hasEncryptionFeature;
 
@@ -30,8 +32,26 @@ public class QuotationModel {
 		return date;
 	}
 
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	
+	
+	public List<Long> getCountry() {
+		return country;
+	}
+
+	public void setCountry(List<Long> country) {
+		this.country = country;
 	}
 
 	public Integer getStatus() {

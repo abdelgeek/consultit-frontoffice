@@ -6,17 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.dao.ICountryDao;
-import com.consultitnow.app.dao.IfrequencyDao;
 import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.Country;
-import com.consultitnow.app.entity.FrequencyBand;
 
 @CrossOrigin
 @RestController
@@ -25,9 +22,7 @@ public class CountryController {
 	@Autowired
 	private ICountryDao countryDao;
 
-	@Autowired
-	private IfrequencyDao ifrequencyDao;
-
+	
 	@Autowired
 	private IApprovalTypeDao approvalTypeDao;
 
@@ -56,17 +51,6 @@ public class CountryController {
 			}
 		}
 		return countries;
-	}
-
-	// find country by frequency
-	@GetMapping("/findCountryfrequency")
-	public List<Country> findByFrequencyBandAndAuthorized(Long idFrequency) {
-
-		System.out.println("try get country");
-		FrequencyBand frequencyBand = new FrequencyBand();
-		frequencyBand = ifrequencyDao.findOne(idFrequency);
-		
-		return countryDao.findByAgenciesAgencyFrequencyBandsFrequencyBandAndAgenciesAgencyFrequencyBandsIsFrequencyAuthorized(frequencyBand,true);
 	}
 
 }

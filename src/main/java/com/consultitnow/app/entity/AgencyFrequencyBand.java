@@ -33,6 +33,13 @@ public class AgencyFrequencyBand implements Serializable{
 	@JoinColumn(name = "frequency", referencedColumnName="id")
 	private FrequencyBand  frequencyBand;
 	
+	
+
+	public AgencyFrequencyBand() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean isFrequencyAuthorized;
 
 

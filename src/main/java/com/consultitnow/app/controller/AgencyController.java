@@ -1,7 +1,6 @@
 package com.consultitnow.app.controller;
 
 import java.util.List;
-import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,9 +14,6 @@ import com.consultitnow.app.dao.ICountryDao;
 import com.consultitnow.app.entity.Agency;
 import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.Country;
-import com.consultitnow.model.AgencyModel;
-import com.consultitnow.model.AgencyResult;
-import com.consultitnow.model.Result;
 
 @CrossOrigin
 @RestController
