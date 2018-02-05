@@ -56,7 +56,7 @@ public class QuotationController {
 	@Autowired
 	private IfrequencyDao frequencyDao;
 
-	@PostMapping("/saveQuotation")
+	@PostMapping("/api/saveQuotation")
 	public Quotation saveQuotation(@RequestBody QuotationModel quotationModel) {
 
 		Quotation quotation = new Quotation();
@@ -68,6 +68,7 @@ public class QuotationController {
 		try {
 			quotationDate = df.parse(quotationModel.getDate());
 			quotation.setDate(quotationDate);
+			quotation.setTotalAmount(quotationModel.getTotalAmount());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

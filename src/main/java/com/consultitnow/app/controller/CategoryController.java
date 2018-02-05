@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +26,7 @@ public class CategoryController {
 
 	// get categorie by country
 
-	@RequestMapping(value = "/findCategorieByCountry", method = RequestMethod.GET)
+	@GetMapping(value = "/api/findCategorieByCountry")
 	public List<Category> findByCountry(Long idCountry) {
 
 		Country country = new Country();
@@ -34,7 +34,7 @@ public class CategoryController {
 		return categorieDao.findByCountry(country);
 	};
 	
-	@RequestMapping(value = "/findOneCategory", method = RequestMethod.GET)
+	@GetMapping(value = "/api/findOneCategory")
 	public Category findOne(Long categoryId) {
 
 		return categorieDao.findOne(categoryId);

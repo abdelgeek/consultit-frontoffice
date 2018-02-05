@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class EquipementNatureController {
 	@Autowired
 	private IApprovalTypeDao approvalTypeDao;
 
-	@RequestMapping(value = "/findEqmNatureByApprovalType", method = RequestMethod.GET)
+	@GetMapping("/api/findEqmNatureByApprovalType")
 	public List<EquipmentNature> findByApprovalType(Long approvalId) {
 
 		System.out.println("***** Get equipement nature by approval type name ***");
@@ -47,7 +48,7 @@ public class EquipementNatureController {
 		return equipmentNatures;
 	}
 
-	@RequestMapping(value = "/findEquipementNature", method = RequestMethod.GET)
+	@GetMapping("/api/findEquipementNature")
 	public EquipmentNature findOne(Long id) {
 		return equipementNatureDao.findOne(id);
 	}

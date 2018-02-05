@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,19 +28,19 @@ public class CountryController {
 	private IApprovalTypeDao approvalTypeDao;
 
 	// find all country
-	@RequestMapping(value = "/findCountries", method = RequestMethod.GET)
+	@GetMapping("/api/findCountries")
 	public List<Country> findAll() {
 		return countryDao.findAll();
 	}
 
 	// find a country by id
-	@RequestMapping(value = "/findCountry", method = RequestMethod.GET)
+	@GetMapping("/api/findCountry")
 	public Country findOne(Long countryId) {
 		return countryDao.findOne(countryId);
 	}
 
 	// find by approval
-	@RequestMapping(value = "/findCountryByApprovalTypes", method = RequestMethod.GET)
+	@GetMapping("/api/findCountryByApprovalTypes")
 	public LinkedList<Country> findByApproval(Long approvalId) {
 
 		ApprovalType approvalType = new ApprovalType();

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,25 +26,27 @@ public class Agency implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-
 	private String link;
-	
-	
+
+	private Integer leadTime;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "agency")
+	private List<AgencyRequirements> agencyRequirements;
+
 	@ManyToOne
 	private ApprovalType approvalType;
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy="agency", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "agency", fetch = FetchType.LAZY)
 	private List<AgencyFrequencyBand> agencyFrequencyBands;
 
 	@Column(nullable = false)
 	private String agencyInitials;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Country country;
 
-	
-	
 	public String getAgencyInitials() {
 		return agencyInitials;
 	}
@@ -60,7 +63,13 @@ public class Agency implements Serializable {
 		this.id = id;
 	}
 
-	
+	public Integer getLeadTime() {
+		return leadTime;
+	}
+
+	public void setLeadTime(Integer leadTime) {
+		this.leadTime = leadTime;
+	}
 
 	public ApprovalType getApprovalType() {
 		return approvalType;
@@ -97,6 +106,14 @@ public class Agency implements Serializable {
 	public Agency() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public List<AgencyRequirements> getAgencyRequirements() {
+		return agencyRequirements;
+	}
+
+	public void setAgencyRequirements(List<AgencyRequirements> agencyRequirements) {
+		this.agencyRequirements = agencyRequirements;
 	}
 
 	public Agency(Long id, String link, String agencyInitials, Country country) {

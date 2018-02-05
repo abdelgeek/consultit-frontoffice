@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,14 +30,14 @@ public class AgencyController {
 	private ICountryDao countryDao;
 
 	// find all agency
-	@RequestMapping(value = "/findAgencies", method = RequestMethod.GET)
+	@GetMapping("/api/findAgencies")
 	public List<Agency> findAll() {
 		return agencyDao.findAll();
 	}
 	
 	
 	// find an agency by country and approvalType
-	@RequestMapping(value = "/findByCountryAndApprovalType", method = RequestMethod.GET)
+	@GetMapping("/api/findByCountryAndApprovalType")
 	public Agency findByCountryAndApprovalType(Long countryId, Long approvalTypeId){
 		
 		Agency agency = new Agency();

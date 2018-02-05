@@ -22,7 +22,7 @@ public class QuotationModel {
 	
 	private List<Long> country;
 
-	private Double amount;
+	private Double totalAmount;
 
 	private Boolean hasEncryptionFeature;
 
@@ -32,12 +32,12 @@ public class QuotationModel {
 		return date;
 	}
 
-	public Double getAmount() {
-		return amount;
+	public Double getTotalAmount() {
+		return totalAmount;
 	}
 
-	public void setAmount(Double amount) {
-		this.amount = amount;
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 	public void setDate(String date) {

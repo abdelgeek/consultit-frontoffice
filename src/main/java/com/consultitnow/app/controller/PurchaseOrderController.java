@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.consultitnow.app.dao.ICountryDao;
 import com.consultitnow.app.dao.IEquipementDao;
+import com.consultitnow.app.dao.IInvoiceDao;
 import com.consultitnow.app.dao.IProjectDao;
 import com.consultitnow.app.dao.IPurchaseOrderDao;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.app.entity.Equipment;
+import com.consultitnow.app.entity.Invoice;
 import com.consultitnow.app.entity.Project;
 import com.consultitnow.app.entity.PurchaseOrder;
 import com.consultitnow.app.entity.Quotation;
@@ -43,15 +45,19 @@ public class PurchaseOrderController {
 	private IEquipementDao equipementDao;
 
 	@Autowired
+	private IInvoiceDao invoiceDao;
+
+	@Autowired
 	private QuotationController quotationController;
 
-	@PostMapping("/purchaseOrder")
+	@PostMapping("/api/purchaseOrder")
 	public PurchaseOrder savePurchaseOrder(@RequestBody PurchaseOrderModel purchaseOrderModel) throws ParseException {
 
 		Date placeOrderDate;
 		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
 
 		// save quotation
+
 		QuotationModel quotationModel = new QuotationModel();
 		quotationModel = purchaseOrderModel.getQuotationModel();
 		placeOrderDate = df.parse(purchaseOrderModel.getPlaceOrderDate());
@@ -81,6 +87,16 @@ public class PurchaseOrderController {
 		equipment.setName(equipmentModel.getName());
 		equipment = equipementDao.save(equipment);
 
+		// save the invoice
+		Invoice invoice = new Invoice();
+		invoice.setDate(placeOrderDate);
+		invoice.setPurchaseOrder(savedPurchaseOrder);
+		invoice.setTotalAmount(quotation.getTotalAmount());
+		invoiceDao.save(invoice);
+		
+		
+		//save projects
+
 		for (Long i : quotationModel.getCountry()) {
 			System.out.println(i);
 
@@ -97,6 +113,7 @@ public class PurchaseOrderController {
 			projectDao.save(project);
 		}
 
-		return purchaseOrderDao.save(purchaseOrder);
+		System.out.println(savedPurchaseOrder.toString());
+		return savedPurchaseOrder;
 	}
 }

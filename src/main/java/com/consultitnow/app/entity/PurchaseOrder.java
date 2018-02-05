@@ -87,4 +87,12 @@ public class PurchaseOrder implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "PurchaseOrder [id=" + id + ", date=" + date + ", totalAmount=" + totalAmount + ", invoices=" + invoices
+				+ ", projects=" + projects + ", quotation=" + quotation + "]";
+	}
+
+	
+	
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,17 +26,17 @@ public class FrequencyController {
 	@Autowired
 	private ICountryDao countryDao;
 
-	@RequestMapping(value = "/findFrequencyBand", method = RequestMethod.GET)
+	@GetMapping("/api/findFrequencyBand")
 	public List<FrequencyBand> findFrequencyBand() {
 		return frequencyDao.findAll();
 	}
 
-	@RequestMapping(value = "/findone", method = RequestMethod.GET)
+	@GetMapping("/api/findone")
 	public FrequencyBand findOne(Long frequencyBandId) {
 		return frequencyDao.findOne(frequencyBandId);
 	}
 
-	@RequestMapping(value = "/findFrequenciesCountry", method = RequestMethod.GET)
+	@GetMapping("/api/findFrequenciesCountry")
 	public List<FrequencyBand> findByAgencyFrequencyBandsAgencyCountry(Long countryId) {
 		Country country = countryDao.findOne(countryId);
 		Boolean isAuthorized = true;
