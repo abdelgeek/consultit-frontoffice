@@ -30,7 +30,9 @@ public class Quotation implements Serializable {
 	private Boolean hasEncryptionFeature;
 	private String dataSheetUrl;
 	private Double totalAmount;
-
+	private String Reference;
+	
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private ApprovalType approvalType;
 
@@ -46,9 +48,7 @@ public class Quotation implements Serializable {
 	@ManyToMany
 	private List<EquipmentTechnologie> equipmentTechnologie;
 
-	@ManyToMany
-	private List<Category> categories;
-
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "quotation")
 	private List<PurchaseOrder> purchaseOrders;
@@ -125,13 +125,7 @@ public class Quotation implements Serializable {
 		this.equipmentTechnologie = equipmentTechnologie;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
+	
 
 	public Boolean getHasEncryptionFeature() {
 		return hasEncryptionFeature;
@@ -179,6 +173,16 @@ public class Quotation implements Serializable {
 
 	public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
 		this.purchaseOrders = purchaseOrders;
+	}
+
+	
+	
+	public String getReference() {
+		return Reference;
+	}
+
+	public void setReference(String reference) {
+		Reference = reference;
 	}
 
 	public Quotation() {

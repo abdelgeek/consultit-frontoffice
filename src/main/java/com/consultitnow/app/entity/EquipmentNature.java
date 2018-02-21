@@ -1,9 +1,6 @@
 package com.consultitnow.app.entity;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,13 +21,6 @@ public class EquipmentNature implements Serializable {
 
 	@Column(nullable = false)
 	private Boolean hasFrequency;
-
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy="equipmentNature") private List<EquipmentTechnologie>
-	 * equipmentTechnologie;
-	 */
 
 	public Long getId() {
 		return id;
@@ -63,22 +53,6 @@ public class EquipmentNature implements Serializable {
 	public void setApprovalType(ApprovalType approvalType) {
 		this.approvalType = approvalType;
 	}
-
-	/*
-	 * public List<EquipmentTechnologie> getEquipementTechnologie() { return
-	 * equipmentTechnologie; }
-	 * 
-	 * public void setEquipementTechnologie(List<EquipmentTechnologie>
-	 * equipmentTechnologie) { this.equipmentTechnologie = equipmentTechnologie;
-	 * }
-	 * 
-	 * /* public List<EquipmentTechnologie> getEquipmentTechnologie() { return
-	 * equipmentTechnologie; }
-	 * 
-	 * public void setEquipmentTechnologie(List<EquipmentTechnologie>
-	 * equipmentTechnologie) { this.equipmentTechnologie = equipmentTechnologie;
-	 * }
-	 */
 
 	public EquipmentNature() {
 		super();

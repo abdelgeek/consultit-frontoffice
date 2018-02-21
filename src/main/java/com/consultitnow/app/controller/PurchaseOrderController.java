@@ -5,8 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +22,7 @@ import com.consultitnow.app.entity.Invoice;
 import com.consultitnow.app.entity.Project;
 import com.consultitnow.app.entity.PurchaseOrder;
 import com.consultitnow.app.entity.Quotation;
+import com.consultitnow.app.utils.EmailService;
 import com.consultitnow.model.EquipmentModel;
 import com.consultitnow.model.PurchaseOrderModel;
 import com.consultitnow.model.QuotationModel;
@@ -50,6 +49,9 @@ public class PurchaseOrderController {
 	@Autowired
 	private QuotationController quotationController;
 
+	@Autowired
+	private SendMailController sendMailController;
+
 	@PostMapping("/api/purchaseOrder")
 	public PurchaseOrder savePurchaseOrder(@RequestBody PurchaseOrderModel purchaseOrderModel) throws ParseException {
 
@@ -64,7 +66,7 @@ public class PurchaseOrderController {
 
 		Quotation quotation = new Quotation();
 
-		quotation = quotationController.saveQuotation(quotationModel);
+		quotation = quotationController.saveQuotation(quotationModel).getQuotation();
 
 		// save order
 
@@ -93,9 +95,8 @@ public class PurchaseOrderController {
 		invoice.setPurchaseOrder(savedPurchaseOrder);
 		invoice.setTotalAmount(quotation.getTotalAmount());
 		invoiceDao.save(invoice);
-		
-		
-		//save projects
+
+		// save projects
 
 		for (Long i : quotationModel.getCountry()) {
 			System.out.println(i);
@@ -114,6 +115,10 @@ public class PurchaseOrderController {
 		}
 
 		System.out.println(savedPurchaseOrder.toString());
+
+		// send mail
+
+		sendMailController.sendMail();
 		return savedPurchaseOrder;
 	}
 }

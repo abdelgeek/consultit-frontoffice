@@ -23,7 +23,6 @@ public class ConsultitApplication implements CommandLineRunner { // extends
 
 	@Override
 	public void run(String... arg) throws Exception {
-		storageService.deleteAll();
 		storageService.init();
 	}
 }

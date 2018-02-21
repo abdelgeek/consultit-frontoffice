@@ -23,7 +23,7 @@ public class Equipment implements Serializable {
 	private String model;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "equipment")
 	private List<Project> projects;
 
 	public Long getId() {

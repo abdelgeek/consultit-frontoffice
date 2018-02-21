@@ -1,11 +1,12 @@
 package com.consultitnow.model;
 
-import com.consultitnow.app.entity.Category;
 
-public class CategoryResult {
+import com.consultitnow.app.entity.CategoryPrice;
+
+public class CategoryPriceResult {
 	private String message;
 	private Boolean isValid;
-	private Category category;
+	private CategoryPrice categoryPrice;
 	
 	public String getMessage() {
 		return message;
@@ -19,11 +20,11 @@ public class CategoryResult {
 	public void setIsValid(Boolean isValid) {
 		this.isValid = isValid;
 	}
-	public Category getCategory() {
-		return category;
+	public CategoryPrice getCategory() {
+		return categoryPrice;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategory(CategoryPrice categoryPrice) {
+		this.categoryPrice = categoryPrice;
 	}
 	
 }

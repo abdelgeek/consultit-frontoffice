@@ -2,6 +2,7 @@ package com.consultitnow.app.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,8 @@ public class EquipmentType implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(unique=true)
 	private String name;
 	public Long getId() {
 		return id;

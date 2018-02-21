@@ -23,13 +23,13 @@ public class AgencyFrequencyBand implements Serializable{
 	private Long id;
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "agency", referencedColumnName="id")
 	private Agency  agency;
 	
 
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "frequency", referencedColumnName="id")
 	private FrequencyBand  frequencyBand;
 	

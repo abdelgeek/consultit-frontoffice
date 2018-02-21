@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,12 +25,11 @@ public class Country implements Serializable {
 	private Long id;
 	@Column(unique = true, nullable = false)
 	private String name;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy ="country")
+
+	@JsonBackReference
+	@OneToMany(mappedBy = "country")
 	private Collection<Agency> agencies;
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -45,8 +45,6 @@ public class Country implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 	public Collection<Agency> getAgencies() {
 		return agencies;
@@ -59,13 +57,5 @@ public class Country implements Serializable {
 	public Country() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public Country(Long id, String name, Collection<Agency> agencies) {
-		this.id = id;
-		this.name = name;
-		this.agencies = agencies;
-	}
-	
 
 }

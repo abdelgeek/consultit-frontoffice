@@ -19,7 +19,7 @@ public class QuotationModel {
 	private List<Long> equipementTechnologie;
 
 	private List<Long> category;
-	
+
 	private List<Long> country;
 
 	private Double totalAmount;
@@ -44,8 +44,6 @@ public class QuotationModel {
 		this.date = date;
 	}
 
-	
-	
 	public List<Long> getCountry() {
 		return country;
 	}

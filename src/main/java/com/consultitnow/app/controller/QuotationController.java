@@ -15,20 +15,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consultitnow.app.dao.IApprovalTypeDao;
-import com.consultitnow.app.dao.ICategoryDao;
 import com.consultitnow.app.dao.IEquipementNatureDao;
 import com.consultitnow.app.dao.IEquipementTechnologieDao;
 import com.consultitnow.app.dao.IEquipementTypeDao;
 import com.consultitnow.app.dao.IQuotationDao;
 import com.consultitnow.app.dao.IfrequencyDao;
 import com.consultitnow.app.entity.ApprovalType;
-import com.consultitnow.app.entity.Category;
 import com.consultitnow.app.entity.EquipmentNature;
 import com.consultitnow.app.entity.EquipmentTechnologie;
 import com.consultitnow.app.entity.EquipmentType;
 import com.consultitnow.app.entity.FrequencyBand;
 import com.consultitnow.app.entity.Quotation;
 import com.consultitnow.model.QuotationModel;
+import com.consultitnow.model.QuotationResultModel;
+import com.consultitnow.model.Result;
 
 @RestController
 @CrossOrigin
@@ -41,8 +41,7 @@ public class QuotationController {
 	@Autowired
 	private IApprovalTypeDao approvalTypeDao;
 
-	@Autowired
-	private ICategoryDao categorieDao;
+	
 
 	@Autowired
 	private IEquipementNatureDao equipementNatureDao;
@@ -57,9 +56,14 @@ public class QuotationController {
 	private IfrequencyDao frequencyDao;
 
 	@PostMapping("/api/saveQuotation")
-	public Quotation saveQuotation(@RequestBody QuotationModel quotationModel) {
+	public QuotationResultModel saveQuotation(@RequestBody QuotationModel quotationModel) {
 
 		Quotation quotation = new Quotation();
+		Result result = new Result();
+
+		QuotationResultModel quotationResultModel = new QuotationResultModel();
+		result.setIsValid(false);
+		result.setMessage("");
 
 		// get Quotation Date
 		Date quotationDate = new Date();
@@ -68,17 +72,22 @@ public class QuotationController {
 		try {
 			quotationDate = df.parse(quotationModel.getDate());
 			quotation.setDate(quotationDate);
-			quotation.setTotalAmount(quotationModel.getTotalAmount());
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		// set Datasheet url
+		quotation.setDataSheetUrl(quotationModel.getDataSheetUrl());
+
+		// set quotation amount
+		quotation.setTotalAmount(quotationModel.getTotalAmount());
+
 		// get quotation status
 		quotation.setStatus(quotationModel.getStatus());
 
 		// get approval type
-
 		if (quotationModel.getApprovalType() != null) {
 			ApprovalType approvalType = new ApprovalType();
 
@@ -90,17 +99,8 @@ public class QuotationController {
 
 		approvalTypeDao.findAll();
 
-		// get categories and set to quotation
-		List<Category> categories = new LinkedList<>();
-		for (Long categoryId : quotationModel.getCategory()) {
-
-			if (categoryId != null) {
-				Category category = new Category();
-				category = categorieDao.findOne(categoryId);
-				categories.add(category);
-			}
-		}
-		quotation.setCategories(categories);
+	
+		
 
 		// get equipement nature
 		if (quotationModel.getEquipementNature() != null) {
@@ -145,9 +145,12 @@ public class QuotationController {
 		// get Encryption feature
 		quotation.setHasEncryptionFeature(quotationModel.getHasEncryptionFeature());
 
-		// set datasheet url
-		quotation.setDataSheetUrl(quotationModel.getDataSheetUrl());
+		quotationDao.save(quotation);
+		result.setIsValid(true);
+		result.setMessage("Quotation sved successfully");
 
-		return quotationDao.save(quotation);
+		quotationResultModel.setQuotation(quotation);
+		quotationResultModel.setResult(result);
+		return quotationResultModel;
 	}
 }
