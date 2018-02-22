@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.consultitnow.app.controller.EquipementTypeController;
 
@@ -29,8 +30,8 @@ public class CategoryPrice implements Serializable {
 	private Integer numberModules;
 	
 	
-	@ManyToMany
-	private List<EquipmentType> equipementTypes;
+	@OneToMany(mappedBy="categoryPrice")
+	private List<CategoryPriceEquipementTypes> priceEquipementTypes;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Agency agency;
@@ -75,12 +76,14 @@ public class CategoryPrice implements Serializable {
 		this.numberModules = numberModules;
 	}
 
-	public List<EquipmentType> getEquipementTypes() {
-		return equipementTypes;
+	
+
+	public List<CategoryPriceEquipementTypes> getPriceEquipementTypes() {
+		return priceEquipementTypes;
 	}
 
-	public void setEquipementTypes(List<EquipmentType> equipementTypes) {
-		this.equipementTypes = equipementTypes;
+	public void setPriceEquipementTypes(List<CategoryPriceEquipementTypes> priceEquipementTypes) {
+		this.priceEquipementTypes = priceEquipementTypes;
 	}
 
 	public Agency getAgency() {
@@ -96,18 +99,12 @@ public class CategoryPrice implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CategoryPrice(String name, Double price, Boolean regardsTheEncryptionFunction, Integer numberModules,
-			List<EquipmentType> equipementTypes, Agency agency) {
-		super();
-		this.name = name;
-		this.price = price;
-		this.regardsTheEncryptionFunction = regardsTheEncryptionFunction;
-		this.numberModules = numberModules;
-		this.equipementTypes = equipementTypes;
-		this.agency = agency;
+	@Override
+	public String toString() {
+		return "CategoryPrice [name=" + name + ", price=" + price + ", regardsTheEncryptionFunction="
+				+ regardsTheEncryptionFunction + ", numberModules=" + numberModules + ", priceEquipementTypes="
+				+ priceEquipementTypes + ", agency=" + agency + "]";
 	}
-	
-	
 	
 	
 }

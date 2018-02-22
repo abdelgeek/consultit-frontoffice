@@ -17,7 +17,7 @@ public class AgencyRequirementsController {
 	@Autowired
 	private AgencyRequirementsDao agencyRequirementsDao;
 
-	@GetMapping(value = "/api/findRequirements")
+	@GetMapping(value = "/api/findRequirementsByAgency")
 	public List<AgencyRequirements> findByAgencyCountryIdAndIsRequired(Long countryId) {
 		return agencyRequirementsDao.findByAgencyCountryIdAndIsRequired(countryId, true);
 	}
