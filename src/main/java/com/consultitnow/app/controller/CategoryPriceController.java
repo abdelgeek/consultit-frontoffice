@@ -63,7 +63,7 @@ public class CategoryPriceController {
 
 			// get the country's agency which approval the approval type
 			Agency agency = new Agency();
-			agency = agencyDao.findByCountryAndApprovalType(country, approvalType);
+			agency = agencyDao.findByCountryAndApprovalTypeOrderByAgencyInitials(country, approvalType);
 
 			// get the price criteria of the agency
 			PriceCriteria priceCriteria = agency.getPriceCriteria();

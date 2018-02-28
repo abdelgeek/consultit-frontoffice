@@ -14,30 +14,42 @@ public class EmailTemplate {
 
 	private Map<String, String> replacementParams;
 
-	private final Path dirLocation = Paths.get("/src/main/resources/static/");
+	private final Path emailLocation = Paths.get("src/main/resources/static/emailTemplate");
 
-	public EmailTemplate(String templateId) {
-		this.templateId = templateId;
+	public EmailTemplate(String typetemplateEmail) {
+
+		switch (typetemplateEmail) {
+		case "savedQuotation":
+			this.templateId = "savedQuoteMail.html";
+			break;
+
+		default:
+			break;
+		}
+
 		try {
 			this.template = loadTemplate(templateId);
 		} catch (Exception e) {
 
-			System.out.println("Fail to find template");
+			System.out.println("Could not read template with ID = " + templateId);
 			this.template = Constants.BLANK;
 		}
 	}
 
 	private String loadTemplate(String templateId) throws Exception {
-	
-		Path filePath = Paths.get("src/main/resources/static/" + templateId);
+
+		Path filePath = Paths.get(emailLocation.toString() + "/" + templateId);
 
 		String content = Constants.BLANK;
 
-	
-		try {
-			content = new String(Files.readAllBytes(filePath));
-		} catch (IOException e) {
-			throw new Exception("Could not read template with ID = " + templateId);
+		if (Files.exists(filePath)) {
+			System.out.println("dirLocation");
+
+			try {
+				content = new String(Files.readAllBytes(filePath));
+			} catch (IOException e) {
+				throw new Exception("Could not read template with ID = " + templateId);
+			}
 		}
 		return content;
 	}

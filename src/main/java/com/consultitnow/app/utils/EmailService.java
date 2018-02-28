@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-/**
- * @author pavan.solapure
- *
- */
+
 @Component
 public class EmailService {
 
@@ -21,7 +18,7 @@ public class EmailService {
 	public void send(EmailModel eParams) {
 
 		try {
-			sendHtmlMail(eParams);
+			this.sendHtmlMail(eParams);
 		} catch (MessagingException e) {
 			// logger.error("Could not send email to : {} Error = {}",
 			// eParams.getToAsList(), e.getMessage());
@@ -41,7 +38,7 @@ public class EmailService {
 		helper.setSubject(eParams.getSubject());
 		helper.setText(eParams.getMessage(), isHtml);
 
-		helper.addAttachment("Invoice.pdf", eParams.getFile());
+		//helper.addAttachment("Invoice.pdf", eParams.getFile());
 
 		if (eParams.getCc().size() > 0) {
 			helper.setCc(eParams.getCc().toArray(new String[eParams.getCc().size()]));

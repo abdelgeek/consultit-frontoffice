@@ -26,6 +26,9 @@ import com.consultitnow.app.entity.EquipmentTechnologie;
 import com.consultitnow.app.entity.EquipmentType;
 import com.consultitnow.app.entity.FrequencyBand;
 import com.consultitnow.app.entity.Quotation;
+import com.consultitnow.app.utils.GenerateNumber;
+import com.consultitnow.app.utils.MailBody;
+import com.consultitnow.app.utils.SendMailController;
 import com.consultitnow.model.QuotationModel;
 import com.consultitnow.model.QuotationResultModel;
 import com.consultitnow.model.Result;
@@ -41,7 +44,8 @@ public class QuotationController {
 	@Autowired
 	private IApprovalTypeDao approvalTypeDao;
 
-	
+	@Autowired
+	private SendMailController sendMailController;
 
 	@Autowired
 	private IEquipementNatureDao equipementNatureDao;
@@ -55,102 +59,125 @@ public class QuotationController {
 	@Autowired
 	private IfrequencyDao frequencyDao;
 
+	@Autowired
+	private GenerateNumber generateNumber;
+
 	@PostMapping("/api/saveQuotation")
 	public QuotationResultModel saveQuotation(@RequestBody QuotationModel quotationModel) {
 
 		Quotation quotation = new Quotation();
 		Result result = new Result();
+		String quotationNum;
 
+		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+
+		/*
+		 * quotation status -1 - quote request 0 - quote saved not placed 1 -
+		 * quote saved and placed
+		 */
 		QuotationResultModel quotationResultModel = new QuotationResultModel();
 		result.setIsValid(false);
 		result.setMessage("");
 
-		// get Quotation Date
-		Date quotationDate = new Date();
-		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		if (quotationModel != null) {
 
-		try {
-			quotationDate = df.parse(quotationModel.getDate());
-			quotation.setDate(quotationDate);
+			// get Quotation Date
+			Date quotationDate = new Date();
 
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			quotationNum = generateNumber.getRecordCounter("quot");
+			quotation.setNumber(quotationNum);
 
-		// set Datasheet url
-		quotation.setDataSheetUrl(quotationModel.getDataSheetUrl());
+			try {
+				quotationDate = df.parse(quotationModel.getDate());
+				quotation.setDate(quotationDate);
 
-		// set quotation amount
-		quotation.setTotalAmount(quotationModel.getTotalAmount());
+			} catch (ParseException e) { // TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-		// get quotation status
-		quotation.setStatus(quotationModel.getStatus());
+			// set Datasheet url
+			quotation.setDataSheetUrl(quotationModel.getDataSheetUrl());
 
-		// get approval type
-		if (quotationModel.getApprovalType() != null) {
-			ApprovalType approvalType = new ApprovalType();
+			// set quotation amount
+			quotation.setTotalAmount(quotationModel.getTotalAmount());
 
-			System.out.println("approval " + quotationModel.getApprovalType());
-			approvalType = approvalTypeDao.findOne(quotationModel.getApprovalType());
+			// set quotation status
+			quotation.setStatus(quotationModel.getStatus());
 
-			quotation.setApprovalType(approvalType);
-		}
+			// set approval type
+			if (quotationModel.getApprovalType() != null) {
+				ApprovalType approvalType = new ApprovalType();
 
-		approvalTypeDao.findAll();
+				approvalType = approvalTypeDao.findOne(quotationModel.getApprovalType());
 
-	
-		
+				quotation.setApprovalType(approvalType);
+			}
 
-		// get equipement nature
-		if (quotationModel.getEquipementNature() != null) {
-			EquipmentNature equipmentNature = new EquipmentNature();
-			equipmentNature = equipementNatureDao.findOne(quotationModel.getEquipementNature());
+			// set equipement nature
+			if (quotationModel.getEquipementNature() != null) {
+				EquipmentNature equipmentNature = new EquipmentNature();
+				equipmentNature = equipementNatureDao.findOne(quotationModel.getEquipementNature());
 
-			quotation.setEquipementNature(equipmentNature);
-		}
+				quotation.setEquipementNature(equipmentNature);
+			}
 
-		// get equipement technologie et set to quotation
-		List<EquipmentTechnologie> equipmentTechnologies = new LinkedList<>();
-		for (Long equipementTechnologieId : quotationModel.getEquipementTechnologie()) {
+			// set equipement technologie et set to quotation
+			List<EquipmentTechnologie> equipmentTechnologies = new LinkedList<>();
+			for (Long equipementTechnologieId : quotationModel.getEquipementTechnologie()) {
 
-			if (equipementTechnologieId != null) {
-				EquipmentTechnologie equipmentTechnologie = new EquipmentTechnologie();
-				equipmentTechnologie = equipementTechnologieDao.findOne(equipementTechnologieId);
-				equipmentTechnologies.add(equipmentTechnologie);
+				if (equipementTechnologieId != null) {
+					EquipmentTechnologie equipmentTechnologie = new EquipmentTechnologie();
+					equipmentTechnologie = equipementTechnologieDao.findOne(equipementTechnologieId);
+					equipmentTechnologies.add(equipmentTechnologie);
+				}
+
+			}
+			quotation.setEquipementTechnologie(equipmentTechnologies);
+
+			// set equipement type
+			if (quotationModel.getEquipementType() != null) {
+				EquipmentType equipmentType = new EquipmentType();
+				equipmentType = equipementTypeDao.findOne(quotationModel.getEquipementType());
+				quotation.setEquipementType(equipmentType);
+
+			}
+
+			// set equipement frequency and set to quotation
+			List<FrequencyBand> frequencyBands = new LinkedList<>();
+			for (Long frequencyId : quotationModel.getFrequencyBand()) {
+				if (frequencyId != null) {
+					FrequencyBand frequencyBand = new FrequencyBand();
+					frequencyBand = frequencyDao.findOne(frequencyId);
+					frequencyBands.add(frequencyBand);
+				}
+			}
+			quotation.setFrequencies(frequencyBands);
+
+			// set Encryption feature
+			quotation.setHasEncryptionFeature(quotationModel.getHasEncryptionFeature());
+
+			quotationDao.save(quotation);
+
+			result.setIsValid(true);
+			result.setMessage("Quotation sved successfully");
+
+			quotationResultModel.setQuotation(quotation);
+			quotationResultModel.setResult(result);
+
+			if (quotationModel.getStatus().equals(0)) {
+				MailBody mailBody = new MailBody();
+
+				mailBody.setQuotationDate(quotationDate);
+				mailBody.setQuotationNumber(quotationNum);
+				mailBody.setTypeTemplateEmail("savedQuotation");
+				mailBody.setUrl("url");
+
+				sendMailController.sendMail(mailBody);
 			}
 
 		}
-		quotation.setEquipementTechnologie(equipmentTechnologies);
 
-		// get equipement type
-		if (quotationModel.getEquipementType() != null) {
-			EquipmentType equipmentType = new EquipmentType();
-			equipmentType = equipementTypeDao.findOne(quotationModel.getEquipementType());
-			quotation.setEquipementType(equipmentType);
-
-		}
-
-		// get equipement frequency and set to quotation
-		List<FrequencyBand> frequencyBands = new LinkedList<>();
-		for (Long frequencyId : quotationModel.getFrequencyBand()) {
-			if (frequencyId != null) {
-				FrequencyBand frequencyBand = new FrequencyBand();
-				frequencyBand = frequencyDao.findOne(frequencyId);
-				frequencyBands.add(frequencyBand);
-			}
-		}
-		quotation.setFrequencies(frequencyBands);
-
-		// get Encryption feature
-		quotation.setHasEncryptionFeature(quotationModel.getHasEncryptionFeature());
-
-		quotationDao.save(quotation);
-		result.setIsValid(true);
-		result.setMessage("Quotation sved successfully");
-
-		quotationResultModel.setQuotation(quotation);
-		quotationResultModel.setResult(result);
 		return quotationResultModel;
 	}
+
 }

@@ -10,9 +10,11 @@ import com.consultitnow.app.entity.FrequencyBand;
 
 public interface ICountryDao extends JpaRepository<Country, Long> {
 
-	public LinkedList<Country> findByAgenciesApprovalType(ApprovalType approvalType);
+	public LinkedList<Country> findByAgenciesApprovalTypeOrderByName(ApprovalType approvalType);
 
-	public List<Country> findByAgenciesAgencyFrequencyBandsFrequencyBandAndAgenciesAgencyFrequencyBandsIsFrequencyAuthorized(
+	public List<Country> findByAgenciesAgencyFrequencyBandsFrequencyBandAndAgenciesAgencyFrequencyBandsIsFrequencyAuthorizedOrderByName(
 			FrequencyBand frequencyBand, Boolean isAuthorized);
+	
+	public List<Country> findAllByOrderByName();
 
 }

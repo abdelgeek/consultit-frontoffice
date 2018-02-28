@@ -23,6 +23,7 @@ import com.consultitnow.app.entity.Project;
 import com.consultitnow.app.entity.PurchaseOrder;
 import com.consultitnow.app.entity.Quotation;
 import com.consultitnow.app.utils.EmailService;
+import com.consultitnow.app.utils.SendMailController;
 import com.consultitnow.model.EquipmentModel;
 import com.consultitnow.model.PurchaseOrderModel;
 import com.consultitnow.model.QuotationModel;
@@ -118,7 +119,7 @@ public class PurchaseOrderController {
 
 		// send mail
 
-		sendMailController.sendMail();
+		//sendMailSavedQuotationController.sendMail("order.html");
 		return savedPurchaseOrder;
 	}
 }

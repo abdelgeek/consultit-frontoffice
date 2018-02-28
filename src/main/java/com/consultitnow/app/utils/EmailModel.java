@@ -95,6 +95,15 @@ public class EmailModel {
 		this.to = to;
 		this.file = file;
 	}
+	
+	
+	public EmailModel(String from, String to, String subject, String message) {
+		this();
+		this.from = from;
+		this.subject = subject;
+		this.message = message;
+		this.to = to;
+	}
 
 	public EmailModel(String from, String to, String ccList, String subject, String message, FileSystemResource file) {
 		this();

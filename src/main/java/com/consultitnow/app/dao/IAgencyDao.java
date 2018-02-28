@@ -15,5 +15,5 @@ public interface IAgencyDao extends JpaRepository<Agency, Long> {
 
 	 
 	
-	public Agency findByCountryAndApprovalType(Country country, ApprovalType approvalType);
+	public Agency findByCountryAndApprovalTypeOrderByAgencyInitials(Country country, ApprovalType approvalType);
 }

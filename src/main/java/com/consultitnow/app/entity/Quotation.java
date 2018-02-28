@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +33,8 @@ public class Quotation implements Serializable {
 	private Double totalAmount;
 	private String Reference;
 	
+	@Column(unique=true)
+	private String number;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private ApprovalType approvalType;
@@ -177,6 +180,14 @@ public class Quotation implements Serializable {
 
 	
 	
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
 	public String getReference() {
 		return Reference;
 	}

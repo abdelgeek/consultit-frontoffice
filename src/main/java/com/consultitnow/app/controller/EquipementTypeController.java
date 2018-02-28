@@ -22,6 +22,6 @@ public class EquipementTypeController {
 	
 	@GetMapping("/api/findEquipementTypes")
 	public List<EquipmentType> findAll(){
-		return equipementTypeDao.findAll();
+		return equipementTypeDao.findAllByOrderByName();
 	}
 }

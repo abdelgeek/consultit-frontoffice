@@ -46,10 +46,10 @@ public class AgencyController {
 			
 			
 			System.out.println(approvalTypeId);
-			Country c = countryDao.findOne(countryId);
-			ApprovalType ap = approvalDao.findOne(approvalTypeId);
+			Country country = countryDao.findOne(countryId);
+			ApprovalType approvalType = approvalDao.findOne(approvalTypeId);
 			
-			agency = agencyDao.findByCountryAndApprovalType(c, ap);
+			agency = agencyDao.findByCountryAndApprovalTypeOrderByAgencyInitials(country, approvalType);
 		}
 		return agency;
 	}

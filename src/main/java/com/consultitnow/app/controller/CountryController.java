@@ -30,7 +30,7 @@ public class CountryController {
 	// find all country
 	@GetMapping("/api/findCountries")
 	public List<Country> findAll() {
-		return countryDao.findAll();
+		return countryDao.findAllByOrderByName();
 	}
 
 	// find a country by id
@@ -48,7 +48,7 @@ public class CountryController {
 		if (approvalId != null) {
 			approvalType = approvalTypeDao.findOne(approvalId);
 			if (approvalType != null) {
-				countries = countryDao.findByAgenciesApprovalType(approvalType);
+				countries = countryDao.findByAgenciesApprovalTypeOrderByName(approvalType);
 			}
 		}
 		return countries;
