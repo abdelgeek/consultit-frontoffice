@@ -22,6 +22,9 @@ public class GenerateNumber {
 
 	
 	private RecordCounter recordCounter = new RecordCounter();
+	
+	
+	// return the number generate
 	public  String getRecordCounter(String typeofGeneration) {
 
 		
@@ -56,12 +59,13 @@ public class GenerateNumber {
 	
 	
 	
+	
+	//initialise recounter number
 	private void setRecordCounter(RecordCounter recordCounter ,String currentMonth){
 
 		if( Integer.parseInt(recordCounter.getCurrentMonth()) != Integer.parseInt(currentMonth)){
 			recordCounter.setCurrentMonth(currentMonth);
 			recordCounter.setQuotationCounter(0);
-
 		};
 		
 		recordCounterController.saveRecordCounter(recordCounter);

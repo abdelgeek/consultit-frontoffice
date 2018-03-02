@@ -41,13 +41,10 @@ public class SendMailController {
 		case "savedQuotation":
 			replacements.put("QuotationId", mailBody.getQuotationNumber());
 			
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(mailBody.getQuotationDate());
-			cal.add(Calendar.DAY_OF_MONTH, 30);
-			
+					
 			
 			DateFormat df = new SimpleDateFormat("mm-dd-yyyy");
-			replacements.put("date", String.valueOf(df.format(cal.getTime())));
+			replacements.put("date", String.valueOf(CalendarConfig.addNDaysToDate(mailBody.getQuotationDate(), 30)));
 			replacements.put("url", mailBody.getUrl());
 			subject = "ConsultIt Saved Quotation";
 			

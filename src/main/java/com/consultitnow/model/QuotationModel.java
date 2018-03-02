@@ -4,6 +4,8 @@ import java.util.List;
 
 public class QuotationModel {
 
+	private Integer id;
+	
 	private String date;
 
 	private Integer status;
@@ -122,6 +124,15 @@ public class QuotationModel {
 
 	public void setCategory(List<Long> categoriesId) {
 		this.category = categoriesId;
+	}
+
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override

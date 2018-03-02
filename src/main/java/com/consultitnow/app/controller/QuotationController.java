@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ import com.consultitnow.app.entity.EquipmentTechnologie;
 import com.consultitnow.app.entity.EquipmentType;
 import com.consultitnow.app.entity.FrequencyBand;
 import com.consultitnow.app.entity.Quotation;
+import com.consultitnow.app.entity.Status;
 import com.consultitnow.app.utils.GenerateNumber;
 import com.consultitnow.app.utils.MailBody;
 import com.consultitnow.app.utils.SendMailController;
@@ -180,4 +182,9 @@ public class QuotationController {
 		return quotationResultModel;
 	}
 
+	@GetMapping("/api/findQuotationsByStatus")
+	public List<Quotation> findQuotationsByStatus(String status) {
+		System.out.println(Status.getValue(status));
+		return quotationDao.findByStatusOrderByDate(Status.getValue(status));
+	}
 }
