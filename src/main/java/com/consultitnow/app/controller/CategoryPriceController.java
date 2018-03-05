@@ -42,6 +42,9 @@ public class CategoryPriceController {
 	public List<CategoryPrice> findCategoryPriceForQuotation(@RequestBody QuotationModel quotationModel)
 			throws FileNotFoundException {
 
+		
+		
+		
 		// create a list to return category price list
 		List<CategoryPrice> categoryPrices = new LinkedList<CategoryPrice>();
 
@@ -130,7 +133,7 @@ public class CategoryPriceController {
 
 			System.out.println("********************************************************");
 		}
-		List<CategoryPrice> categoryPricees = new LinkedList<CategoryPrice>();
+
 		return categoryPrices;
 	}
 

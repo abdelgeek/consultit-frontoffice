@@ -31,7 +31,7 @@ public class Quotation implements Serializable {
 	private Boolean hasEncryptionFeature;
 	private String dataSheetUrl;
 	private Double totalAmount;
-	private String Reference;
+	
 	
 	@Column(unique=true)
 	private String number;
@@ -45,16 +45,24 @@ public class Quotation implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private EquipmentNature equipmentNature;
 
-	@ManyToMany
-	private List<FrequencyBand> frequencies;
+	@JsonIgnore
+	@OneToMany(mappedBy="quotation")
+	private List<QuotationFrequencies> quotationFrequencies;
 
-	@ManyToMany
-	private List<EquipmentTechnologie> equipmentTechnologie;
+	@JsonIgnore
+	@OneToMany(mappedBy="quotation")
+	private List<QuotationTechnologies> quotationTechnologies;
 
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "quotation")
 	private List<PurchaseOrder> purchaseOrders;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "quotation")
+	private List<QuotationAgency> quotationAgencies;
+	
 
 	public Long getId() {
 		return id;
@@ -112,23 +120,6 @@ public class Quotation implements Serializable {
 		this.equipmentNature = equipmentNature;
 	}
 
-	public List<FrequencyBand> getFrequencies() {
-		return frequencies;
-	}
-
-	public void setFrequencies(List<FrequencyBand> frequencies) {
-		this.frequencies = frequencies;
-	}
-
-	public List<EquipmentTechnologie> getEquipementTechnologie() {
-		return equipmentTechnologie;
-	}
-
-	public void setEquipementTechnologie(List<EquipmentTechnologie> equipmentTechnologie) {
-		this.equipmentTechnologie = equipmentTechnologie;
-	}
-
-	
 
 	public Boolean getHasEncryptionFeature() {
 		return hasEncryptionFeature;
@@ -162,14 +153,7 @@ public class Quotation implements Serializable {
 		this.equipmentNature = equipmentNature;
 	}
 
-	public List<EquipmentTechnologie> getEquipmentTechnologie() {
-		return equipmentTechnologie;
-	}
-
-	public void setEquipmentTechnologie(List<EquipmentTechnologie> equipmentTechnologie) {
-		this.equipmentTechnologie = equipmentTechnologie;
-	}
-
+	
 	public List<PurchaseOrder> getPurchaseOrders() {
 		return purchaseOrders;
 	}
@@ -188,12 +172,33 @@ public class Quotation implements Serializable {
 		this.number = number;
 	}
 
-	public String getReference() {
-		return Reference;
+	
+	
+
+	public List<QuotationFrequencies> getQuotationFrequencies() {
+		return quotationFrequencies;
 	}
 
-	public void setReference(String reference) {
-		Reference = reference;
+	public void setQuotationFrequencies(List<QuotationFrequencies> quotationFrequencies) {
+		this.quotationFrequencies = quotationFrequencies;
+	}
+
+	public List<QuotationTechnologies> getQuotationTechnologies() {
+		return quotationTechnologies;
+	}
+
+	public void setQuotationTechnologies(List<QuotationTechnologies> quotationTechnologies) {
+		this.quotationTechnologies = quotationTechnologies;
+	}
+	
+	
+
+	public List<QuotationAgency> getQuotationAgencies() {
+		return quotationAgencies;
+	}
+
+	public void setQuotationAgencies(List<QuotationAgency> quotationAgencies) {
+		this.quotationAgencies = quotationAgencies;
 	}
 
 	public Quotation() {

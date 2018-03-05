@@ -1,6 +1,7 @@
 package com.consultitnow.app.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -27,6 +31,11 @@ public class EquipmentTechnologie implements Serializable{
 	@ManyToOne
 	private EquipmentNature equipmentNature;
 
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="equipmentTechnologie")
+	private List<QuotationTechnologies> quotationTechnologies;
+	
 	public Long getId() {
 		return id;
 	}
@@ -48,8 +57,6 @@ public class EquipmentTechnologie implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-
-	
 
 	public EquipmentNature getEquipmentNature() {
 		return equipmentNature;

@@ -46,6 +46,10 @@ public class Agency implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "agency")
 	private List<CategoryPrice> categoryPrices;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "agency")
+	private List<QuotationAgency> quotationAgencies ;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private PriceCriteria priceCriteria;
@@ -134,6 +138,16 @@ public class Agency implements Serializable {
 
 	public void setAgencyRequirements(List<AgencyRequirements> agencyRequirements) {
 		this.agencyRequirements = agencyRequirements;
+	}
+	
+	
+
+	public List<QuotationAgency> getQuotationAgencies() {
+		return quotationAgencies;
+	}
+
+	public void setQuotationAgencies(List<QuotationAgency> quotationAgencies) {
+		this.quotationAgencies = quotationAgencies;
 	}
 
 	public Agency(Long id, String link, String agencyInitials, Country country) {

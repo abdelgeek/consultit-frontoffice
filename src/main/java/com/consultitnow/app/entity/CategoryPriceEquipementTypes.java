@@ -1,5 +1,7 @@
 package com.consultitnow.app.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "categoryPriceId", "equipmentTypeId" }))
-public class CategoryPriceEquipementTypes {
+public class CategoryPriceEquipementTypes implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

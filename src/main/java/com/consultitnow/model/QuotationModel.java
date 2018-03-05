@@ -4,8 +4,8 @@ import java.util.List;
 
 public class QuotationModel {
 
-	private Integer id;
-	
+	private Long id;
+
 	private String date;
 
 	private Integer status;
@@ -20,8 +20,6 @@ public class QuotationModel {
 
 	private List<Long> equipementTechnologie;
 
-	private List<Long> category;
-
 	private List<Long> country;
 
 	private Double totalAmount;
@@ -29,6 +27,18 @@ public class QuotationModel {
 	private Boolean hasEncryptionFeature;
 
 	private String dataSheetUrl;
+	
+	private String number;
+	
+	
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
 	public String getDate() {
 		return date;
@@ -118,29 +128,23 @@ public class QuotationModel {
 		this.equipementTechnologie = equipementTechnologieId;
 	}
 
-	public List<Long> getCategory() {
-		return category;
-	}
-
-	public void setCategory(List<Long> categoriesId) {
-		this.category = categoriesId;
-	}
-
-	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
+	
 
 	@Override
 	public String toString() {
 		return "QuotationModel [date=" + date + ", status=" + status + ", approvalType=" + approvalType
 				+ ", equipementType=" + equipementType + ", equipementNature=" + equipementNature + ", frequencyBand="
-				+ frequencyBand + ", equipementTechnologie=" + equipementTechnologie + ", category=" + category
-				+ ", hasEncryptionFeature=" + hasEncryptionFeature + ", dataSheetUrl=" + dataSheetUrl + "]";
+				+ frequencyBand + ", equipementTechnologie=" + equipementTechnologie + "" + ", hasEncryptionFeature="
+				+ hasEncryptionFeature + ", dataSheetUrl=" + dataSheetUrl + "]";
 	}
 
 }

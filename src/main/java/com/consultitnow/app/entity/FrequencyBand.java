@@ -27,6 +27,9 @@ public class FrequencyBand implements Serializable{
 	@OneToMany(mappedBy="frequencyBand")
 	private List<AgencyFrequencyBand> agencyFrequencyBands;
 
+	@JsonIgnore
+	@OneToMany(mappedBy="frequencyBand")
+	private List<QuotationFrequencies> quotationFrequencies;
 	
 	private String unit;
 

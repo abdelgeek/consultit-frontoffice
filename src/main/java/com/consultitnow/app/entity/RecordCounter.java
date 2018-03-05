@@ -62,6 +62,13 @@ public class RecordCounter implements Serializable{
 	public void setQuotationCounter(Integer quotationCounter) {
 		this.quotationCounter = quotationCounter;
 	}
+
+	public RecordCounter(Integer quotationCounter, String currentMonth) {
+		super();
+		this.quotationCounter = quotationCounter;
+		this.currentMonth = currentMonth;
+	}
+	
 	
 	
 
