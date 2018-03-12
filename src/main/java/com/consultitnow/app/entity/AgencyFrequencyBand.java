@@ -33,7 +33,27 @@ public class AgencyFrequencyBand implements Serializable{
 	@JoinColumn(name = "frequency", referencedColumnName="id")
 	private FrequencyBand  frequencyBand;
 	
+	private Boolean  isAuthorized;
 	
+	private Boolean  hasRestriction;
+	
+	
+
+	public Boolean getIsAuthorized() {
+		return isAuthorized;
+	}
+
+	public void setIsAuthorized(Boolean isAuthorized) {
+		this.isAuthorized = isAuthorized;
+	}
+
+	public Boolean getHasRestriction() {
+		return hasRestriction;
+	}
+
+	public void setHasRestriction(Boolean hasRestriction) {
+		this.hasRestriction = hasRestriction;
+	}
 
 	public AgencyFrequencyBand() {
 		super();
@@ -74,6 +94,8 @@ public class AgencyFrequencyBand implements Serializable{
 		return frequencyBand;
 	}
 
+	
+	
 	public void setFrequencyBand(FrequencyBand frequencyBand) {
 		this.frequencyBand = frequencyBand;
 	}

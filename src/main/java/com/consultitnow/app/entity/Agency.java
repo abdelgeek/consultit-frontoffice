@@ -24,7 +24,9 @@ public class Agency implements Serializable {
 
 	private String link;
 
-	private Integer leadTime;
+	@JsonIgnore
+	@OneToMany(mappedBy="agency")
+	private List<AgencyMessageRestriction> agencyMessageRestriction;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "agency")
@@ -54,6 +56,21 @@ public class Agency implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private PriceCriteria priceCriteria;
 
+	@JsonIgnore
+	@OneToMany(mappedBy="agency")
+	private List<AgencyApprovalInformation> agencyApprovalInformations;
+	
+	
+	
+	
+	public List<AgencyMessageRestriction> getAgencyMessageRestriction() {
+		return agencyMessageRestriction;
+	}
+
+	public void setAgencyMessageRestriction(List<AgencyMessageRestriction> agencyMessageRestriction) {
+		this.agencyMessageRestriction = agencyMessageRestriction;
+	}
+
 	public String getAgencyInitials() {
 		return agencyInitials;
 	}
@@ -70,13 +87,7 @@ public class Agency implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getLeadTime() {
-		return leadTime;
-	}
-
-	public void setLeadTime(Integer leadTime) {
-		this.leadTime = leadTime;
-	}
+	
 
 	public ApprovalType getApprovalType() {
 		return approvalType;
@@ -140,7 +151,6 @@ public class Agency implements Serializable {
 		this.agencyRequirements = agencyRequirements;
 	}
 	
-	
 
 	public List<QuotationAgency> getQuotationAgencies() {
 		return quotationAgencies;
@@ -148,6 +158,15 @@ public class Agency implements Serializable {
 
 	public void setQuotationAgencies(List<QuotationAgency> quotationAgencies) {
 		this.quotationAgencies = quotationAgencies;
+	}
+	
+	
+	public List<AgencyApprovalInformation> getAgencyApprovalInformations() {
+		return agencyApprovalInformations;
+	}
+
+	public void setAgencyApprovalInformations(List<AgencyApprovalInformation> agencyApprovalInformations) {
+		this.agencyApprovalInformations = agencyApprovalInformations;
 	}
 
 	public Agency(Long id, String link, String agencyInitials, Country country) {

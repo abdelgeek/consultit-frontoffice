@@ -58,6 +58,7 @@ public class CategoryPriceController {
 
 		// for each country concern by the quotation get the category price of
 		// the equipement type
+		
 		for (Long countryId : quotationModel.getCountry()) {
 
 			// get the current country

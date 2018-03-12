@@ -24,9 +24,12 @@ public class Project implements Serializable {
 	@ManyToOne
 	private Equipment equipment;
 
-	@ManyToOne
-	private Country country;
 	
+	private Double price;
+	
+	@ManyToOne
+	private Agency agency;
+
 	@ManyToOne
 	private PurchaseOrder purchaseOrder;
 
@@ -46,8 +49,6 @@ public class Project implements Serializable {
 		this.date = date;
 	}
 
-	
-	
 	public Equipment getEquipment() {
 		return equipment;
 	}
@@ -56,16 +57,24 @@ public class Project implements Serializable {
 		this.equipment = equipment;
 	}
 
-	public Country getCountry() {
-		return country;
+	public Agency getAgency() {
+		return agency;
 	}
 
-	public void setCountry(Country country) {
-		this.country = country;
+	public void setAgency(Agency agency) {
+		this.agency = agency;
 	}
 
 	public PurchaseOrder getPurchaseOrder() {
 		return purchaseOrder;
+	}
+	
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {

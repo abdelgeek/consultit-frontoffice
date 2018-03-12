@@ -1,9 +1,12 @@
 package com.consultitnow.app.controller;
 
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,22 +14,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.consultitnow.app.dao.IAgencyDao;
+import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.dao.ICountryDao;
 import com.consultitnow.app.dao.IEquipementDao;
 import com.consultitnow.app.dao.IInvoiceDao;
 import com.consultitnow.app.dao.IProjectDao;
 import com.consultitnow.app.dao.IPurchaseOrderDao;
+import com.consultitnow.app.entity.Agency;
+import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.app.entity.Equipment;
 import com.consultitnow.app.entity.Invoice;
 import com.consultitnow.app.entity.Project;
 import com.consultitnow.app.entity.PurchaseOrder;
 import com.consultitnow.app.entity.Quotation;
+import com.consultitnow.app.service.PlaceOrderInvoice;
 import com.consultitnow.app.utils.EmailService;
 import com.consultitnow.app.utils.SendMailController;
 import com.consultitnow.model.EquipmentModel;
 import com.consultitnow.model.PurchaseOrderModel;
 import com.consultitnow.model.QuotationModel;
+
+import net.sf.jasperreports.engine.JRException;
 
 @CrossOrigin
 @RestController
@@ -52,9 +62,14 @@ public class PurchaseOrderController {
 
 	@Autowired
 	private SendMailController sendMailController;
+	
+	@Autowired
+	private IApprovalTypeDao approvalTypeDao;
+	@Autowired
+	private IAgencyDao agencyDao;
 
 	@PostMapping("/api/purchaseOrder")
-	public PurchaseOrder savePurchaseOrder(@RequestBody PurchaseOrderModel purchaseOrderModel) throws ParseException {
+	public PurchaseOrder savePurchaseOrder(@RequestBody PurchaseOrderModel purchaseOrderModel) throws ParseException, JRException, FileNotFoundException {
 
 		Date placeOrderDate;
 		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
@@ -99,27 +114,41 @@ public class PurchaseOrderController {
 
 		// save projects
 
-		for (Long i : quotationModel.getCountry()) {
-			System.out.println(i);
+		List<Project> projects = new LinkedList<>();
+		for (Long countryId : quotationModel.getCountry()) {
+			System.out.println(countryId);
 
-			// find Country
+			// find agency
+			
 			Country country = new Country();
-			country = countryDao.findOne(i);
+			country = countryDao.findOne(countryId);
+
+			Agency agency = new Agency();
+
+			ApprovalType approvalType = new ApprovalType();
+			approvalType = approvalTypeDao.findOne(quotationModel.getApprovalType());
+
+			agency = agencyDao.findByCountryAndApprovalTypeOrderByAgencyInitials(country, approvalType);
 
 			Project project = new Project();
-			project.setCountry(country);
+			project.setAgency(agency);
 			project.setEquipment(equipment);
 			project.setDate(placeOrderDate);
 			project.setPurchaseOrder(savedPurchaseOrder);
 
 			projectDao.save(project);
+			
+			projects.add(project);
 		}
 
+		savedPurchaseOrder.setProjects(projects);
 		System.out.println(savedPurchaseOrder.toString());
 
+		
+		PlaceOrderInvoice.Generate(savedPurchaseOrder);
 		// send mail
 
-		//sendMailSavedQuotationController.sendMail("order.html");
+		// sendMailSavedQuotationController.sendMail("order.html");
 		return savedPurchaseOrder;
 	}
 }

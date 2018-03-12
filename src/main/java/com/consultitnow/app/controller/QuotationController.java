@@ -88,6 +88,12 @@ public class QuotationController {
 
 	@Autowired
 	private IQuotationAgencyDao iQuotationAgencyDao;
+	
+	
+
+	
+	
+	
 
 	@PostMapping("/api/saveQuotation")
 	public QuotationResultModel saveQuotation(@RequestBody QuotationModel quotationModel) {
@@ -106,7 +112,41 @@ public class QuotationController {
 		result.setIsValid(false);
 		result.setMessage("");
 
+		
 		if (quotationModel != null) {
+		if(quotationModel.getId() !=null){
+			//find all quotation agency
+			List<QuotationAgency> quotationAgencies = new LinkedList<>();
+			quotationAgencies = iQuotationAgencyDao.findByQuotationId(quotationModel.getId());
+			System.out.println(quotationAgencies.size());
+			
+			for(QuotationAgency quotationAgency: quotationAgencies){
+				iQuotationAgencyDao.delete(quotationAgency);
+			}
+			
+			
+			//find all quotation technologie
+			List<QuotationTechnologies> lquotationTechnologies = new LinkedList<>();
+			lquotationTechnologies = quotationTechnologiesDao.findByQuotationId(quotationModel.getId());
+			System.out.println(lquotationTechnologies.size());
+			
+			for(QuotationTechnologies quotationTechnologies: lquotationTechnologies){
+				quotationTechnologiesDao.delete(quotationTechnologies);
+			}
+			
+			
+			//find all quotation frequency
+			List<QuotationFrequencies> lquotationFrequencies = new LinkedList<>();
+			lquotationFrequencies = quotationFrequenciesDao.findByQuotationId(quotationModel.getId());
+			System.out.println(lquotationFrequencies.size());
+			
+			for(QuotationFrequencies quotationFrequencies: lquotationFrequencies){
+				quotationFrequenciesDao.delete(quotationFrequencies);
+			}
+		}
+		
+		
+	
 
 			// get Quotation Date
 			Date quotationDate = new Date();
@@ -124,7 +164,8 @@ public class QuotationController {
 				quotationNum = generateNumber.getRecordCounter("quot");
 				quotation.setNumber(quotationNum);
 			} else {
-				quotation.setNumber(quotationModel.getNumber());
+				quotationNum = quotationModel.getNumber();
+				quotation.setNumber(quotationNum);
 			}
 
 			// set Datasheet url
