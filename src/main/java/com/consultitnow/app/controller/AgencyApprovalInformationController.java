@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.consultitnow.app.dao.AgencyRequirementsDao;
+import com.consultitnow.app.dao.IAgencyApprovalInformationDao;
 import com.consultitnow.app.dao.ICountryDao;
+import com.consultitnow.app.entity.AgencyApprovalInformation;
 import com.consultitnow.app.entity.AgencyRequirements;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.model.ApprovalInformationReportModel;
@@ -33,10 +34,10 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @CrossOrigin
 @RestController
-public class AgencyRequirementsController {
+public class AgencyApprovalInformationController {
 
 	@Autowired
-	private AgencyRequirementsDao agencyRequirementsDao;
+	private IAgencyApprovalInformationDao agencyApprovalInformationDao;
 
 	@Autowired
 	private ICountryDao countryDao;
@@ -58,6 +59,16 @@ public class AgencyRequirementsController {
 			Country c = new Country();
 			c = countryDao.findOne(item);
 			
+			List<AgencyApprovalInformation> agencyApprovalInformations = new LinkedList<>();
+			agencyApprovalInformations = agencyApprovalInformationDao.findByAgencyCountryId(item);
+			
+			
+			List<String> requirementsName = new LinkedList<>();
+			
+			for(AgencyApprovalInformation requirements : agencyApprovalInformations){
+				requirementsName.add(requirements.getApprovalInformation().getName());
+			}
+			
 			ApprovalInformationReportModel approvalInformationReportModel = new ApprovalInformationReportModel(c.getName());
 			approvalInformationReportModels.add(approvalInformationReportModel);
 		}
@@ -71,7 +82,7 @@ public class AgencyRequirementsController {
          /* Using compiled version(.jasper) of Jasper report to generate PDF */
          JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\Cissé\\JaspersoftWorkspace\\MyReports\\approvalInformation.jrxml");
  		
-         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), itemsJRBean);
 		
 		 JasperExportManager.exportReportToPdfFile(jasperPrint,"C:\\Users\\Cissé\\JaspersoftWorkspace\\MyReports\\simpleReport.pdf");
 
@@ -79,8 +90,5 @@ public class AgencyRequirementsController {
 	}
 
 	
-	@GetMapping(value = "/api/findAllRequirements")
-	public List<AgencyRequirements> findAll() {
-		return agencyRequirementsDao.findAll();
-	}
+	
 }

@@ -29,7 +29,7 @@ public class AgencyApprovalInformation implements Serializable {
 	private ApprovalInformation approvalInformation;
 	
 	
-	private Boolean isAccepted;
+	private String isRequired;
 	private String duration;
 
 	public Long getId() {
@@ -56,12 +56,14 @@ public class AgencyApprovalInformation implements Serializable {
 		this.approvalInformation = approvalInformation;
 	}
 
-	public Boolean getIsAccepted() {
-		return isAccepted;
+	
+
+	public String getIsRequired() {
+		return isRequired;
 	}
 
-	public void setIsAccepted(Boolean isAccepted) {
-		this.isAccepted = isAccepted;
+	public void setIsRequired(String isRequired) {
+		this.isRequired = isRequired;
 	}
 
 	public String getDuration() {

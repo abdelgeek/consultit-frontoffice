@@ -1,11 +1,11 @@
 package com.consultitnow.model;
 
-
+import java.util.List;
 
 public class ApprovalInformationReportModel {
 
 	private String countryName;
-
+private List<String> requirementsName;
 	
 	
 
@@ -23,9 +23,26 @@ public class ApprovalInformationReportModel {
 
 
 
+	public List<String> getRequirementsName() {
+		return requirementsName;
+	}
+
+
+	public void setRequirementsName(List<String> requirementsName) {
+		this.requirementsName = requirementsName;
+	}
+
+
+	public ApprovalInformationReportModel(String countryName, List<String> requirementsName) {
+		super();
+		this.countryName = countryName;
+		this.requirementsName = requirementsName;
+	}
+	
 	public ApprovalInformationReportModel(String countryName) {
 		super();
 		this.countryName = countryName;
+		
 	}
 
 
