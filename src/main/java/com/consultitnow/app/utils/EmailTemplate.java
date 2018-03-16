@@ -23,6 +23,9 @@ public class EmailTemplate {
 			this.templateId = "savedQuoteMail.html";
 			break;
 
+		case "invoice":
+			this.templateId = "placeOrderMail.html";
+			break;
 		default:
 			break;
 		}

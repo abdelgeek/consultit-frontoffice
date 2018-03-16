@@ -23,7 +23,6 @@ import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.CategoryPrice;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.app.entity.EquipmentType;
-import com.consultitnow.app.entity.PriceCriteria;
 import com.consultitnow.app.entity.Project;
 import com.consultitnow.app.entity.PurchaseOrder;
 import com.consultitnow.app.entity.Quotation;
@@ -76,43 +75,9 @@ public class PlaceOrderInvoice {
 			// of
 			// the equipement type
 
-			PriceCriteria priceCriteria = agency.getPriceCriteria();
 
 			CategoryPrice categoryPrice = new CategoryPrice();
 
-			switch (priceCriteria.getId().intValue()) {
-
-			// case 0: no criteria
-			case 0:
-				categoryPrice = agency.getCategoryPrices().get(0);
-				break;
-
-			// case 1: equipement type criteria
-			case 1:
-				System.out.println("get the equipement type");
-				categoryPrice = categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency,
-						equipmentType);
-
-				break;
-
-			// case 2: encryption type feature
-			case 2:
-				System.out.println("has encryption feature : " + quotation.getHasEncryptionFeature());
-
-				categoryPrice = categoryPriceDao.findByAgencyAndRegardsTheEncryptionFunction(agency,
-						quotation.getHasEncryptionFeature());
-
-				System.out.println(categoryPrice.toString());
-				break;
-
-			// case 3 : number of module
-			case 3:
-				System.out.println(quotation.getQuotationTechnologies().size());
-
-				categoryPrice = categoryPriceDao.findByAgencyAndNumberModules(agency,
-						quotation.getQuotationTechnologies().size());
-				break;
-			}
 
 			parameterItem.put("country", countryName);
 			parameterItem.put("price", categoryPrice.getPrice());

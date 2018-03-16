@@ -31,10 +31,14 @@ import com.consultitnow.app.entity.PurchaseOrder;
 import com.consultitnow.app.entity.Quotation;
 import com.consultitnow.app.service.PlaceOrderInvoice;
 import com.consultitnow.app.utils.EmailService;
+import com.consultitnow.app.utils.GenerateNumber;
+import com.consultitnow.app.utils.InvoiceMailBody;
+import com.consultitnow.app.utils.MailBody;
 import com.consultitnow.app.utils.SendMailController;
 import com.consultitnow.model.EquipmentModel;
 import com.consultitnow.model.PurchaseOrderModel;
 import com.consultitnow.model.QuotationModel;
+import com.consultitnow.model.Result;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -58,21 +62,27 @@ public class PurchaseOrderController {
 	private IInvoiceDao invoiceDao;
 
 	@Autowired
+	private GenerateNumber generateNumber;
+
+	@Autowired
 	private QuotationController quotationController;
 
 	@Autowired
 	private SendMailController sendMailController;
-	
+
 	@Autowired
 	private IApprovalTypeDao approvalTypeDao;
 	@Autowired
 	private IAgencyDao agencyDao;
 
 	@PostMapping("/api/purchaseOrder")
-	public PurchaseOrder savePurchaseOrder(@RequestBody PurchaseOrderModel purchaseOrderModel) throws ParseException, JRException, FileNotFoundException {
+	public Result savePurchaseOrder(@RequestBody PurchaseOrderModel purchaseOrderModel)
+			throws ParseException, JRException, FileNotFoundException {
+
+		Result result = new Result();
 
 		Date placeOrderDate;
-		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
 		// save quotation
 
@@ -88,6 +98,10 @@ public class PurchaseOrderController {
 
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		PurchaseOrder savedPurchaseOrder = new PurchaseOrder();
+
+		// get quotation number
+		String purchaseNum = generateNumber.getRecordCounter("inv");
+		purchaseOrder.setNumber(purchaseNum);
 
 		purchaseOrder.setQuotation(quotation);
 		purchaseOrder.setTotalAmount(quotation.getTotalAmount());
@@ -119,7 +133,7 @@ public class PurchaseOrderController {
 			System.out.println(countryId);
 
 			// find agency
-			
+
 			Country country = new Country();
 			country = countryDao.findOne(countryId);
 
@@ -137,18 +151,24 @@ public class PurchaseOrderController {
 			project.setPurchaseOrder(savedPurchaseOrder);
 
 			projectDao.save(project);
-			
+
 			projects.add(project);
 		}
 
 		savedPurchaseOrder.setProjects(projects);
 		System.out.println(savedPurchaseOrder.toString());
-
-		
-		PlaceOrderInvoice.Generate(savedPurchaseOrder);
+		result.setIsValid(true);
+		// PlaceOrderInvoice.Generate(savedPurchaseOrder);
 		// send mail
 
+
+			MailBody mailBody = new InvoiceMailBody(String.valueOf(invoice.getTotalAmount()), placeOrderDate,purchaseOrder.getNumber());
+			mailBody.setTypeTemplateEmail("invoice");
+			
+			sendMailController.sendMail(mailBody);
+		
+			
 		// sendMailSavedQuotationController.sendMail("order.html");
-		return savedPurchaseOrder;
+		return result;
 	}
 }

@@ -23,6 +23,8 @@ public class Agency implements Serializable {
 	private Long id;
 
 	private String link;
+	
+	private String methodPrice;
 
 	@JsonIgnore
 	@OneToMany(mappedBy="agency")
@@ -53,8 +55,6 @@ public class Agency implements Serializable {
 	@OneToMany(mappedBy = "agency")
 	private List<QuotationAgency> quotationAgencies ;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	private PriceCriteria priceCriteria;
 
 	@JsonIgnore
 	@OneToMany(mappedBy="agency")
@@ -88,6 +88,14 @@ public class Agency implements Serializable {
 	}
 
 	
+
+	public String getMethodPrice() {
+		return methodPrice;
+	}
+
+	public void setMethodPrice(String methodPrice) {
+		this.methodPrice = methodPrice;
+	}
 
 	public ApprovalType getApprovalType() {
 		return approvalType;
@@ -128,14 +136,6 @@ public class Agency implements Serializable {
 
 	public void setCategoryPrices(List<CategoryPrice> categoryPrices) {
 		this.categoryPrices = categoryPrices;
-	}
-
-	public PriceCriteria getPriceCriteria() {
-		return priceCriteria;
-	}
-
-	public void setPriceCriteria(PriceCriteria priceCriteria) {
-		this.priceCriteria = priceCriteria;
 	}
 
 	public Agency() {

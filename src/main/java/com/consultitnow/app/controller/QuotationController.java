@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,6 +42,7 @@ import com.consultitnow.app.entity.QuotationTechnologies;
 import com.consultitnow.app.entity.Status;
 import com.consultitnow.app.utils.GenerateNumber;
 import com.consultitnow.app.utils.MailBody;
+import com.consultitnow.app.utils.SavedQuotationMailBody;
 import com.consultitnow.app.utils.SendMailController;
 import com.consultitnow.model.QuotationModel;
 import com.consultitnow.model.QuotationResultModel;
@@ -48,6 +51,7 @@ import com.consultitnow.model.Result;
 @RestController
 @CrossOrigin
 @Configurable
+@Transactional
 public class QuotationController {
 
 	@Autowired
@@ -88,19 +92,13 @@ public class QuotationController {
 
 	@Autowired
 	private IQuotationAgencyDao iQuotationAgencyDao;
-	
-	
-
-	
-	
-	
 
 	@PostMapping("/api/saveQuotation")
 	public QuotationResultModel saveQuotation(@RequestBody QuotationModel quotationModel) {
 
 		Quotation quotation = new Quotation();
 		Result result = new Result();
-		String quotationNum="";
+		String quotationNum = "";
 
 		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
 
@@ -112,41 +110,35 @@ public class QuotationController {
 		result.setIsValid(false);
 		result.setMessage("");
 
-		
 		if (quotationModel != null) {
-		if(quotationModel.getId() !=null){
-			//find all quotation agency
-			List<QuotationAgency> quotationAgencies = new LinkedList<>();
-			quotationAgencies = iQuotationAgencyDao.findByQuotationId(quotationModel.getId());
-			System.out.println(quotationAgencies.size());
 			
-			for(QuotationAgency quotationAgency: quotationAgencies){
-				iQuotationAgencyDao.delete(quotationAgency);
-			}
+				// find all quotation agency
+				/*List<QuotationAgency> quotationAgencies = new LinkedList<>();
+				quotationAgencies = iQuotationAgencyDao.findByQuotationId(quotationModel.getId());
+				System.out.println(quotationAgencies.size());
+
+				for (QuotationAgency quotationAgency : quotationAgencies) {
+					iQuotationAgencyDao.delete(quotationAgency);
+				}*/
+
+				// find all quotation technologie
+				/*List<QuotationTechnologies> lquotationTechnologies = new LinkedList<>();
+				lquotationTechnologies = quotationTechnologiesDao.findByQuotationId(quotationModel.getId());
+				System.out.println(lquotationTechnologies.size());
+
+				for (QuotationTechnologies quotationTechnologies : lquotationTechnologies) {
+					quotationTechnologiesDao.delete(quotationTechnologies);
+				}
+*/
+				// find all quotation frequency
+	/*			List<QuotationFrequencies> lquotationFrequencies = new LinkedList<>();
+				lquotationFrequencies = quotationFrequenciesDao.findByQuotationId(quotationModel.getId());
+				System.out.println(lquotationFrequencies.size());
+
+				for (QuotationFrequencies quotationFrequencies : lquotationFrequencies) {
+					quotationFrequenciesDao.delete(quotationFrequencies);
+				}*/
 			
-			
-			//find all quotation technologie
-			List<QuotationTechnologies> lquotationTechnologies = new LinkedList<>();
-			lquotationTechnologies = quotationTechnologiesDao.findByQuotationId(quotationModel.getId());
-			System.out.println(lquotationTechnologies.size());
-			
-			for(QuotationTechnologies quotationTechnologies: lquotationTechnologies){
-				quotationTechnologiesDao.delete(quotationTechnologies);
-			}
-			
-			
-			//find all quotation frequency
-			List<QuotationFrequencies> lquotationFrequencies = new LinkedList<>();
-			lquotationFrequencies = quotationFrequenciesDao.findByQuotationId(quotationModel.getId());
-			System.out.println(lquotationFrequencies.size());
-			
-			for(QuotationFrequencies quotationFrequencies: lquotationFrequencies){
-				quotationFrequenciesDao.delete(quotationFrequencies);
-			}
-		}
-		
-		
-	
 
 			// get Quotation Date
 			Date quotationDate = new Date();
@@ -160,13 +152,8 @@ public class QuotationController {
 			}
 
 			// get quotation number
-			if (quotationModel.getNumber() == null) {
-				quotationNum = generateNumber.getRecordCounter("quot");
-				quotation.setNumber(quotationNum);
-			} else {
-				quotationNum = quotationModel.getNumber();
-				quotation.setNumber(quotationNum);
-			}
+			quotationNum = generateNumber.getRecordCounter("quot");
+			quotation.setNumber(quotationNum);
 
 			// set Datasheet url
 			quotation.setDataSheetUrl(quotationModel.getDataSheetUrl());
@@ -207,11 +194,9 @@ public class QuotationController {
 
 			// setQuotationId
 
-			if (quotationModel.getId() != null) {
-				quotation.setId(quotationModel.getId());
-			}
+			
 
-			quotationDao.saveAndFlush(quotation);
+			quotationDao.save(quotation);
 
 			// set equipement technologie et set to quotation
 
@@ -275,18 +260,20 @@ public class QuotationController {
 			quotationResultModel.setQuotation(quotation);
 			quotationResultModel.setResult(result);
 
+			//send mail
 			if (quotationModel.getStatus().equals(0)) {
-				MailBody mailBody = new MailBody();
+				SavedQuotationMailBody mailBody = new SavedQuotationMailBody();
 
-				mailBody.setQuotationDate(quotationDate);
-				mailBody.setQuotationNumber(quotationNum);
+				
+				mailBody.setDate(quotationDate);
+				mailBody.setNumber(quotationNum);
 				mailBody.setTypeTemplateEmail("savedQuotation");
-				mailBody.setUrl("url");
+				
 
 				sendMailController.sendMail(mailBody);
-			}
+			
 
-		}
+		}}
 
 		return quotationResultModel;
 	}

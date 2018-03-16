@@ -24,6 +24,8 @@ public class PurchaseOrder implements Serializable {
 	private Date date;
 
 	private Double totalAmount;
+	
+	private String number;
 
 	@OneToMany(mappedBy = "purchaseOrder")
 	private List<Invoice> invoices;
@@ -56,6 +58,16 @@ public class PurchaseOrder implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	
+	
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 	public Date getDate() {

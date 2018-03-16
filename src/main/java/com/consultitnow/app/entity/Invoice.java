@@ -3,6 +3,7 @@ package com.consultitnow.app.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,9 @@ public class Invoice implements Serializable {
 	private Date date;
 
 	private Double TotalAmount;
+	
+	@Column(unique=true)
+	private String number;
 
 	@ManyToOne
 	private PurchaseOrder purchaseOrder;
@@ -56,6 +60,16 @@ public class Invoice implements Serializable {
 
 	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
 		this.purchaseOrder = purchaseOrder;
+	}
+
+	
+	
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 	public Invoice() {

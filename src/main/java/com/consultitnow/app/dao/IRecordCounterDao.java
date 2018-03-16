@@ -6,4 +6,6 @@ import com.consultitnow.app.entity.RecordCounter;
 
 public interface IRecordCounterDao extends JpaRepository<RecordCounter, Long>{
 
+	
+	public RecordCounter findByType(String type);
 }

@@ -30,7 +30,7 @@ public class SendMailController {
 
 		String from = "toumoutou6c@gmail.com";
 		String to = "abdeltoum6c@gmail.com";
-		String subject="";
+		String subject = "";
 
 		String typetemplateEmail = mailBody.getTypeTemplateEmail();
 		EmailTemplate template = new EmailTemplate(typetemplateEmail);
@@ -39,26 +39,31 @@ public class SendMailController {
 
 		switch (typetemplateEmail) {
 		case "savedQuotation":
-			replacements.put("QuotationId", mailBody.getQuotationNumber());
-			
-					
-			
+			SavedQuotationMailBody smMailBody = new SavedQuotationMailBody();
+			smMailBody = (SavedQuotationMailBody) mailBody;
+			replacements.put("QuotationId", smMailBody.getNumber());
+
 			DateFormat df = new SimpleDateFormat("mm-dd-yyyy");
-			replacements.put("date", String.valueOf(CalendarConfig.addNDaysToDate(mailBody.getQuotationDate(), 30)));
-			replacements.put("url", mailBody.getUrl());
-			subject = "ConsultIt Saved Quotation";
-			
+			replacements.put("date", String.valueOf(CalendarConfig.addNDaysToDate(smMailBody.getDate(), 30)));
+			subject = "ConsultIt Saved Quotation " + smMailBody.getNumber();
+
+			break;
+
+		case "invoice":
+			InvoiceMailBody iMBody = new InvoiceMailBody();
+			iMBody = (InvoiceMailBody) mailBody;
+			replacements.put("amount", iMBody.getAmount());
+
+			DateFormat df2 = new SimpleDateFormat("MM-dd-yyyy");
+			replacements.put("date", String.valueOf(iMBody.getDate()));
+			subject = "ConsultIt Invoice " + iMBody.getNumber();
+
 			break;
 		default:
 			break;
 		}
 
 		String message = template.getTemplate(replacements);
-
-		// Path invoice =
-		// Paths.get("src/main/resources/static/upload-dir/20187131013229.pdf");
-		// File invoiceFile = new File(invoice.toString());
-		// FileSystemResource file = new FileSystemResource(invoiceFile);
 
 		EmailModel email = new EmailModel(from, to, subject, message);
 		email.setHtml(true);

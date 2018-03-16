@@ -3,6 +3,7 @@ package com.consultitnow.app.utils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -19,27 +20,43 @@ public class GenerateNumber {
 	private RecordCounterController recordCounterController;
 
 	private RecordCounter recordCounter = new RecordCounter();
+	
+	
+	
+	private DateFormat yearFormat = new SimpleDateFormat("yy");
+	private DateFormat monthFormat = new SimpleDateFormat("MM");
+	private DateFormat dayFormat = new SimpleDateFormat("dd");
 
+	private Random randomGenerator = new Random();
+	private int randomInt = randomGenerator.nextInt(100);
+
+	private String currentYear = yearFormat.format(new Date());
+	private String currentMonth = monthFormat.format(new Date());
+	private String currentDayOfMonth = dayFormat.format(new Date());
+
+
+	
+	
 	// return the number generate
 	public String getRecordCounter(String typeofGeneration) {
 
-		recordCounter = recordCounterController.findRecordCounter();
+		recordCounter = recordCounterController.findRecordCounter("quotation");
 		String number = "";
 
+		
 		switch (typeofGeneration) {
 
 		case "quot":
 
-			DateFormat yearFormat = new SimpleDateFormat("yy");
-			DateFormat monthFormat = new SimpleDateFormat("MM");
-			DateFormat dayFormat = new SimpleDateFormat("dd");
+			recordCounter = this.setRecordCounter(recordCounter, currentDayOfMonth);
+			number = "QUOTATION CIT-CI" + currentYear+ "." + currentMonth + "." + currentDayOfMonth + "." + randomInt + recordCounter.getQuotationCounter();
 
-			String currentYear = yearFormat.format(new Date());
-			String currentMonth = monthFormat.format(new Date());
-			String currentDay = dayFormat.format(new Date());
+			break;
 
-			recordCounter = this.setRecordCounter(recordCounter, currentMonth);
-			number = "QUOT" + currentYear + currentMonth + currentDay + "" + recordCounter.getQuotationCounter();
+		case "inv":
+
+			recordCounter = this.setRecordCounter(recordCounter, currentDayOfMonth);
+			number = "INVOICE CIT-CI" + currentYear+ "." + currentMonth + "." + currentDayOfMonth + "." + randomInt + recordCounter.getQuotationCounter();
 
 			break;
 
@@ -51,21 +68,20 @@ public class GenerateNumber {
 	}
 
 	// initialise recounter number
-	private RecordCounter setRecordCounter(RecordCounter recordCounter, String currentMonth) {
+	private RecordCounter setRecordCounter(RecordCounter recordCounter, String currentDay) {
 
-		if (recordCounter == null) {
+		if (recordCounter == null || recordCounter.getCurrentDayOfMonth() == null) {
 
-			RecordCounter rCounter = new RecordCounter(1, currentMonth);
+			RecordCounter rCounter = new RecordCounter(1, currentDayOfMonth, currentDay, currentDay, "quotation");
 			recordCounter = rCounter;
 
-		} else if (Integer.parseInt(recordCounter.getCurrentMonth()) != Integer.parseInt(currentMonth)) {
-			recordCounter.setCurrentMonth(currentMonth);
+		} else if (Integer.parseInt(recordCounter.getCurrentDayOfMonth()) != Integer.parseInt(currentDay)) {
+			recordCounter.setCurrentDayOfMonth(currentDay);
 			recordCounter.setQuotationCounter(1);
 		} else {
 			Integer cpt = recordCounter.getQuotationCounter() + 1;
 			recordCounter.setQuotationCounter(cpt);
 		}
-		
 
 		return recordCounterController.saveRecordCounter(recordCounter);
 	}

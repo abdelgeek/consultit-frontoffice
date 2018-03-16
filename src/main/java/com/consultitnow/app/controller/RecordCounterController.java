@@ -20,9 +20,9 @@ public class RecordCounterController {
 	@Autowired
 	private IRecordCounterDao counterDao;
 	
-	public RecordCounter findRecordCounter(){
-		System.out.println("test");
-		return counterDao.findOne(1L);
+	public RecordCounter findRecordCounter(String type){
+		
+		return counterDao.findByType(type);
 	}
 	
 	

@@ -20,7 +20,6 @@ import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.CategoryPrice;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.app.entity.EquipmentType;
-import com.consultitnow.app.entity.PriceCriteria;
 import com.consultitnow.model.QuotationModel;
 
 @CrossOrigin
@@ -42,9 +41,6 @@ public class CategoryPriceController {
 	public List<CategoryPrice> findCategoryPriceForQuotation(@RequestBody QuotationModel quotationModel)
 			throws FileNotFoundException {
 
-		
-		
-		
 		// create a list to return category price list
 		List<CategoryPrice> categoryPrices = new LinkedList<CategoryPrice>();
 
@@ -58,7 +54,7 @@ public class CategoryPriceController {
 
 		// for each country concern by the quotation get the category price of
 		// the equipement type
-		
+
 		for (Long countryId : quotationModel.getCountry()) {
 
 			// get the current country
@@ -70,61 +66,41 @@ public class CategoryPriceController {
 			agency = agencyDao.findByCountryAndApprovalTypeOrderByAgencyInitials(country, approvalType);
 
 			// get the price criteria of the agency
-			PriceCriteria priceCriteria = agency.getPriceCriteria();
-
-			System.out.println("country " + country.getName());
-			System.out.println("agency " + agency.getAgencyInitials());
-			System.out.println("price criteria " + priceCriteria.getName());
+			String methodPrice = agency.getMethodPrice();
 
 			// create an object categoryPrice for the agency
 			CategoryPrice categoryPrice = new CategoryPrice();
 			// switch the criteria return the category price
-			switch (priceCriteria.getId().intValue()) {
 
-			// case 0: no criteria
-			case 0:
-				if (agency.getCategoryPrices().size() > 1) {
-					System.out.println("pas normal");
-				} else {
-					System.out.println("price " + agency.getCategoryPrices().get(0).getPrice());
-					categoryPrice = agency.getCategoryPrices().get(0);
-				}
+			switch (methodPrice) {
+
+			case "bur":
+			case "bots":
+			case "gha":
+			case "gui":
+			case "nig":
+				categoryPrice = categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency,
+						equipmentType);
 				break;
 
-			// case 1: equipement type criteria
-			case 1:
-				System.out.println("get the equipement type");
-				categoryPrice = this.findCategoryPriceByEquipmentType(agency, equipmentType);
-
-				if (categoryPrice != null) {
-					System.out.println(categoryPrice.toString());
-				} else {
-					System.out.println("category not found");
-				}
-
+			case "nige":
+				
+				categoryPrice = categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency,
+						equipmentType);
 				break;
 
-			// case 2: encryption type feature
-			case 2:
-				System.out.println("has encryption feature : " + quotationModel.getHasEncryptionFeature());
+			case "afr":
+				categoryPrice = categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency,
+						equipmentType);
+				break;
 
-				categoryPrice = this.findByAgencyAndRegardsTheEncryptionFunction(agency,
+			case "tun":
+				categoryPrice = categoryPriceDao.findByAgencyAndRegardsTheEncryptionFunction(agency,
 						quotationModel.getHasEncryptionFeature());
-
-				System.out.println(categoryPrice.toString());
 				break;
 
-			// case 3 : number of module
-			case 3:
-				System.out.println(quotationModel.getEquipementTechnologie().size());
-
-				categoryPrice = this.findByAgencyAndNumberModules(agency,
-						quotationModel.getEquipementTechnologie().size());
-				if (categoryPrice != null) {
-					System.out.println(categoryPrice.toString());
-				} else {
-					System.out.println("category not found");
-				}
+			default:
+				categoryPrice = agency.getCategoryPrices().get(0);
 				break;
 			}
 
@@ -132,9 +108,8 @@ public class CategoryPriceController {
 				categoryPrices.add(categoryPrice);
 			}
 
-			System.out.println("********************************************************");
 		}
-
+		System.out.println(categoryPrices.size());
 		return categoryPrices;
 	}
 

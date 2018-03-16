@@ -22,7 +22,8 @@ public class Result {
 		this.isValid = isValid;
 	}
 	public Result() {
-		super();
+		this.isValid = false;
+	
 		// TODO Auto-generated constructor stub
 	}
 	
