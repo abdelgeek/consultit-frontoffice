@@ -34,7 +34,7 @@ public class ScheduledTasks {
 			Date quotationDate = quotation.getDate();
 
 			// get deadline for current quotation on dd-mm-yyyy format
-			Date deadline = CalendarConfig.addNDaysToDate(quotationDate, 30);
+			Date deadline = CalendarConfig.addNDaysToDate(quotationDate, 60);
 
 			// compare 2 date  et retourne 0 si les 2 dates sont egales 
 			if (CalendarConfig.compare2Date(new Date(), deadline) == 0) {

@@ -44,7 +44,7 @@ public class SendMailController {
 			replacements.put("QuotationId", smMailBody.getNumber());
 
 			DateFormat df = new SimpleDateFormat("mm-dd-yyyy");
-			replacements.put("date", String.valueOf(CalendarConfig.addNDaysToDate(smMailBody.getDate(), 30)));
+			replacements.put("date", String.valueOf(CalendarConfig.addNDaysToDate(smMailBody.getDate(), 60)));
 			subject = "ConsultIt Saved Quotation " + smMailBody.getNumber();
 
 			break;

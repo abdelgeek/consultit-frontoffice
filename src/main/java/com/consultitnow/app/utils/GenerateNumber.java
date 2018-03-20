@@ -27,8 +27,7 @@ public class GenerateNumber {
 	private DateFormat monthFormat = new SimpleDateFormat("MM");
 	private DateFormat dayFormat = new SimpleDateFormat("dd");
 
-	private Random randomGenerator = new Random();
-	private int randomInt = randomGenerator.nextInt(100);
+	
 
 	private String currentYear = yearFormat.format(new Date());
 	private String currentMonth = monthFormat.format(new Date());
@@ -40,6 +39,9 @@ public class GenerateNumber {
 	// return the number generate
 	public String getRecordCounter(String typeofGeneration) {
 
+		 Random randomGenerator = new Random();
+		 int randomInt = randomGenerator.nextInt(100);
+		
 		recordCounter = recordCounterController.findRecordCounter("quotation");
 		String number = "";
 
@@ -49,7 +51,7 @@ public class GenerateNumber {
 		case "quot":
 
 			recordCounter = this.setRecordCounter(recordCounter, currentDayOfMonth);
-			number = "QUOTATION CIT-CI" + currentYear+ "." + currentMonth + "." + currentDayOfMonth + "." + randomInt + recordCounter.getQuotationCounter();
+			number = "QUOTATION CIT-CI" + currentYear + currentMonth  + currentDayOfMonth  + randomInt + recordCounter.getQuotationCounter();
 
 			break;
 
