@@ -39,6 +39,26 @@ public class Role implements Serializable{
 	}
 
 	
+	public Boolean getActivated() {
+		return activated;
+	}
+
+
+	public void setActivated(Boolean activated) {
+		this.activated = activated;
+	}
+
+
+	public Collection<UsersRole> getUsersRole() {
+		return usersRole;
+	}
+
+
+	public void setUsersRole(Collection<UsersRole> usersRole) {
+		this.usersRole = usersRole;
+	}
+
+
 	public Long getRoleId() {
 		return roleId;
 	}

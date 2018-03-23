@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class PurchaseOrder implements Serializable {
 	@OneToMany(mappedBy = "purchaseOrder")
 	private List<Project> projects;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Quotation quotation;
 
 	public Long getId() {

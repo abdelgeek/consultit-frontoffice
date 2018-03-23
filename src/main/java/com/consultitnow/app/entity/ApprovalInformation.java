@@ -27,7 +27,6 @@ public class ApprovalInformation implements Serializable {
 	private String name;
 
 	
-	
 	@JsonIgnore
 	@OneToMany(mappedBy="approvalInformation")
 	private List<AgencyApprovalInformation> agencyApprovalInformations;

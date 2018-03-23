@@ -25,6 +25,9 @@ public class Country implements Serializable {
 	private Long id;
 	@Column(unique = true, nullable = false)
 	private String name;
+	
+	@Column(unique=true)
+	private String code;
 
 	@JsonBackReference
 	@OneToMany(mappedBy = "country")
@@ -52,6 +55,15 @@ public class Country implements Serializable {
 
 	public void setAgencies(Collection<Agency> agencies) {
 		this.agencies = agencies;
+	}
+	
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public Country() {

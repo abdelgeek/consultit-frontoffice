@@ -27,7 +27,7 @@ public class ScheduledTasks {
 	@Scheduled(fixedRate = 300000)
 	public void RemovedQuotation() throws ParseException {
 		List<Quotation> quotations = new LinkedList<>();
-		quotations = iQuotationDao.findByStatusOrderByDate(Status.Saved.getValue());
+		quotations = iQuotationDao.findByStatusOrderByDateDesc(Status.Saved.getValue());
 
 		for (Quotation quotation : quotations) {
 

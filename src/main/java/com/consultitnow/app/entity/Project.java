@@ -3,6 +3,7 @@ package com.consultitnow.app.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,16 +22,16 @@ public class Project implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Equipment equipment;
 
 	
 	private Double price;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Agency agency;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private PurchaseOrder purchaseOrder;
 
 	public Long getId() {

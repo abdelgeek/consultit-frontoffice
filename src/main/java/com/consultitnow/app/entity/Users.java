@@ -49,6 +49,14 @@ public class Users implements Serializable {
 	private String lastName;
 
 	
+	public Collection<UsersRole> getUsersRoles() {
+		return usersRoles;
+	}
+
+	public void setUsersRoles(Collection<UsersRole> usersRoles) {
+		this.usersRoles = usersRoles;
+	}
+
 	@Column(name = "mobile", nullable = false)
 	private String mobile;
 

@@ -100,7 +100,7 @@ public class QuotationController {
 		Result result = new Result();
 		String quotationNum = "";
 
-		DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
 		/*
 		 * quotation status -1 - quote request 0 - quote saved not placed 1 -
@@ -284,7 +284,7 @@ public class QuotationController {
 		List<Quotation> quotations = new LinkedList<>();
 		List<QuotationModel> quotationModels = new LinkedList<>();
 
-		quotations = quotationDao.findByStatusOrderByDate(Status.getValue(status));
+		quotations = quotationDao.findByStatusOrderByDateDesc(Status.getValue(status));
 
 		for (Quotation quotationItem : quotations) {
 			QuotationModel quotationModel = this.getQuotationModel(quotationItem);
@@ -302,6 +302,7 @@ public class QuotationController {
 		quotationModel.setDataSheetUrl(quotation.getDataSheetUrl());
 		quotationModel.setDate(String.valueOf(quotation.getDate()));
 		quotationModel.setEquipementNature(quotation.getEquipementNature().getId());
+		System.out.println(quotation.getEquipementType().getId());
 		quotationModel.setEquipementType(quotation.getEquipementType().getId());
 		quotationModel.setHasEncryptionFeature(quotation.getHasEncryptionFeature());
 		quotationModel.setId(quotation.getId());

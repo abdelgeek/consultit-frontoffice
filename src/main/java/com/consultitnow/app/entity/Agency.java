@@ -24,7 +24,7 @@ public class Agency implements Serializable {
 
 	private String link;
 	
-	private String methodPrice;
+	
 
 	@JsonIgnore
 	@OneToMany(mappedBy="agency")
@@ -44,7 +44,7 @@ public class Agency implements Serializable {
 	@Column(nullable = false)
 	private String agencyInitials;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Country country;
 
 	@JsonIgnore
@@ -88,15 +88,6 @@ public class Agency implements Serializable {
 	}
 
 	
-
-	public String getMethodPrice() {
-		return methodPrice;
-	}
-
-	public void setMethodPrice(String methodPrice) {
-		this.methodPrice = methodPrice;
-	}
-
 	public ApprovalType getApprovalType() {
 		return approvalType;
 	}

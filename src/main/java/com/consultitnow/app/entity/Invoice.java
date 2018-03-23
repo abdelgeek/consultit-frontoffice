@@ -3,6 +3,7 @@ package com.consultitnow.app.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Invoice implements Serializable {
 	@Column(unique=true)
 	private String number;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private PurchaseOrder purchaseOrder;
 	
 	public Long getId() {

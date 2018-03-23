@@ -8,5 +8,5 @@ import com.consultitnow.app.entity.Quotation;
 
 public interface IQuotationDao extends JpaRepository<Quotation, Long> {
 			
-	public List<Quotation> findByStatusOrderByDate(Integer status);
+	public List<Quotation> findByStatusOrderByDateDesc(Integer status);
 }

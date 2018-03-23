@@ -36,13 +36,13 @@ public class Quotation implements Serializable {
 	@Column(unique=true)
 	private String number;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private ApprovalType approvalType;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private EquipmentType equipmentType;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private EquipmentNature equipmentNature;
 
 	@JsonIgnore

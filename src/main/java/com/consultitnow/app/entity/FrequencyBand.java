@@ -34,6 +34,18 @@ public class FrequencyBand implements Serializable{
 	private String unit;
 
 
+	public List<AgencyFrequencyBand> getAgencyFrequencyBands() {
+		return agencyFrequencyBands;
+	}
+	public void setAgencyFrequencyBands(List<AgencyFrequencyBand> agencyFrequencyBands) {
+		this.agencyFrequencyBands = agencyFrequencyBands;
+	}
+	public List<QuotationFrequencies> getQuotationFrequencies() {
+		return quotationFrequencies;
+	}
+	public void setQuotationFrequencies(List<QuotationFrequencies> quotationFrequencies) {
+		this.quotationFrequencies = quotationFrequencies;
+	}
 	public Long getId() {
 		return id;
 	}

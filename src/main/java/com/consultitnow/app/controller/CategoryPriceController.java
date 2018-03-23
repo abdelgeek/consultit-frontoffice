@@ -19,6 +19,7 @@ import com.consultitnow.app.entity.Agency;
 import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.CategoryPrice;
 import com.consultitnow.app.entity.Country;
+import com.consultitnow.app.entity.EquipmentTechnologie;
 import com.consultitnow.app.entity.EquipmentType;
 import com.consultitnow.model.QuotationModel;
 
@@ -66,41 +67,38 @@ public class CategoryPriceController {
 			agency = agencyDao.findByCountryAndApprovalTypeOrderByAgencyInitials(country, approvalType);
 
 			// get the price criteria of the agency
-			String methodPrice = agency.getMethodPrice();
+			String countryCode = country.getCode();
 
 			// create an object categoryPrice for the agency
 			CategoryPrice categoryPrice = new CategoryPrice();
 			// switch the criteria return the category price
 
-			switch (methodPrice) {
+			switch (countryCode) {
 
-			case "bur":
-			case "bots":
-			case "gha":
-			case "gui":
-			case "nig":
+			case "bi":
+			case "bw":
+			case "gh":
+			case "gn":
+
 				categoryPrice = categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency,
 						equipmentType);
 				break;
-
-			case "nige":
-				
-				categoryPrice = categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency,
-						equipmentType);
-				break;
-
-			case "afr":
-				categoryPrice = categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency,
-						equipmentType);
-				break;
-
 			case "tun":
-				categoryPrice = categoryPriceDao.findByAgencyAndRegardsTheEncryptionFunction(agency,
+				categoryPrice = this.findCategoryPriceByEcryptionFeature(agency,
 						quotationModel.getHasEncryptionFeature());
+				break;
+			case "ne":
+				break;
+			case "ng":
+
+				break;
+
+			case "za":
+
 				break;
 
 			default:
-				categoryPrice = agency.getCategoryPrices().get(0);
+				categoryPrice = this.findByAgency(agency);
 				break;
 			}
 
@@ -114,18 +112,23 @@ public class CategoryPriceController {
 	}
 
 	// find category price based on equipment type and agency
-	public CategoryPrice findCategoryPriceByEquipmentType(Agency agency, EquipmentType equipmentType) {
+	private CategoryPrice findCategoryPriceByEquipmentType(Agency agency, EquipmentType equipmentType) {
 		return categoryPriceDao.findByAgencyAndPriceEquipementTypesEquipmentType(agency, equipmentType);
 	}
 
-	// find category price based on encryption and agency
-	public CategoryPrice findByAgencyAndRegardsTheEncryptionFunction(Agency agency,
-			Boolean regardsTheEncryptionFunction) {
-		return categoryPriceDao.findByAgencyAndRegardsTheEncryptionFunction(agency, regardsTheEncryptionFunction);
+	// find category price based on equipment tech and agency
+	private CategoryPrice findCategoryPriceByEquipmentTech(Agency agency, EquipmentTechnologie eqTechnologie) {
+		return categoryPriceDao.findByAgencyAndPriceEquipementTechEquipmentTechnologie(agency, eqTechnologie);
 	}
 
-	// find category price based on number of modules and agency
-	public CategoryPrice findByAgencyAndNumberModules(Agency agency, Integer numberOfModules) {
-		return categoryPriceDao.findByAgencyAndNumberModules(agency, numberOfModules);
+	// find category price based on Encryption Feature and agency
+	private CategoryPrice findCategoryPriceByEcryptionFeature(Agency agency, Boolean hasEncryptionFeature) {
+		return categoryPriceDao.findByAgencyAndConcernEncryptionFeature(agency, hasEncryptionFeature);
 	}
+
+	// find category price based on agency
+	private CategoryPrice findByAgency(Agency agency) {
+		return categoryPriceDao.findByAgency(agency);
+	}
+
 }

@@ -21,11 +21,11 @@ public class AgencyRequirements implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "agency", referencedColumnName = "id")
 	private Agency agency;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "requirements", referencedColumnName = "id")
 	private Requirements requirements;
 
