@@ -16,5 +16,8 @@ public interface ICountryDao extends JpaRepository<Country, Long> {
 			FrequencyBand frequencyBand, Boolean isAuthorized);
 	
 	public List<Country> findAllByOrderByName();
+	
+	
+	public List<Country> findByAgenciesAgencyFrequencyBandsFrequencyBandIdAndAgenciesAgencyFrequencyBandsHasRestriction(Long frequencyId,Boolean HasRestriction);
 
 }

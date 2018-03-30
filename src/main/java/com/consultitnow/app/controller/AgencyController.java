@@ -14,15 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.consultitnow.app.dao.IAgencyDao;
 import com.consultitnow.app.dao.IAgencyFrequencyDao;
+import com.consultitnow.app.dao.IAgencyMessageRestrictionDao;
 import com.consultitnow.app.dao.IApprovalTypeDao;
 import com.consultitnow.app.dao.ICountryDao;
 import com.consultitnow.app.dao.IfrequencyDao;
 import com.consultitnow.app.entity.Agency;
 import com.consultitnow.app.entity.AgencyFrequencyBand;
+import com.consultitnow.app.entity.AgencyMessageRestriction;
 import com.consultitnow.app.entity.ApprovalType;
 import com.consultitnow.app.entity.Country;
 import com.consultitnow.app.entity.FrequencyBand;
 import com.consultitnow.model.CountryFrequencyModel;
+import com.consultitnow.model.FrequencyCountryModel;
 
 @CrossOrigin
 @RestController
@@ -42,6 +45,9 @@ public class AgencyController {
 
 	@Autowired
 	private IAgencyFrequencyDao agencyFrequencyDao;
+	
+	@Autowired
+	private IAgencyMessageRestrictionDao agencyMessageRestrictionDao;
 
 	// find all agency
 	@GetMapping("/api/findAgencies")
@@ -92,13 +98,53 @@ public class AgencyController {
 
 				hasRestiction = agencyFrequencyBand.getHasRestriction();
 
-				
 				if (hasRestiction) {
-				break;
+					break;
 				}
 			}
 		}
 		return hasRestiction;
+	}
+
+	// check if frequency has restricted on the selected country
+	@PostMapping("/api/findFrequencyAgencyMessage")
+	public List<String> findFrequencyAgencyMessage(@RequestBody FrequencyCountryModel FrequencyCountryModel) {
+
+		
+		
+		List<String> lMessage = new LinkedList<>();
+		Long frequencyId = FrequencyCountryModel.getFrequencyId();
+		FrequencyBand frequencyBand = new FrequencyBand();
+		
+		System.out.println("frequencyId" + FrequencyCountryModel.getFrequencyId());
+		frequencyBand = ifrequencyDao.findOne(frequencyId);
+
+		LinkedList<Long> lCountryId = FrequencyCountryModel.getlCountryId();
+
+		if (lCountryId.size() > 0) {
+			for (Long countryId : lCountryId) {
+				Country country = new Country();
+				country = countryDao.findOne(countryId);
+
+				Agency agency = new Agency();
+				agency = agencyDao.findByCountry(country);
+				
+				AgencyFrequencyBand agencyFrequencyBand = new AgencyFrequencyBand();
+				agencyFrequencyBand = agencyFrequencyDao.findByFrequencyBandAndAgency(frequencyBand, agency);
+
+				Boolean hasRestiction = agencyFrequencyBand.getHasRestriction();
+				
+				if(hasRestiction){
+					AgencyMessageRestriction agencyMessageRestriction = new AgencyMessageRestriction();
+					agencyMessageRestriction =agencyMessageRestrictionDao.findByAgencyCountryIdAndAgencyAgencyFrequencyBandsFrequencyBandIdAndAgencyAgencyFrequencyBandsHasRestriction(countryId, frequencyId, true);
+				lMessage.add(agencyMessageRestriction.getMessage());
+				}
+
+			}
+		}
+
+		
+		return lMessage;
 	}
 
 }

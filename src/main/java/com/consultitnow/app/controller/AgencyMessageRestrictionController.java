@@ -16,14 +16,14 @@ public class AgencyMessageRestrictionController {
 
 	@Autowired
 	private IAgencyMessageRestrictionDao iAgencyMessageRestrictionDao;
-	
-	
+
 	@GetMapping("/api/findAgencyMessage")
-	public List<AgencyMessageRestriction> findByAgencyCountryId(Long id){
-		
+	public List<AgencyMessageRestriction> findByAgencyCountryId(Long id) {
+
 		System.out.println(id);
 		return iAgencyMessageRestrictionDao.findByAgencyCountryId(id);
 	}
+
 	
-	
+
 }

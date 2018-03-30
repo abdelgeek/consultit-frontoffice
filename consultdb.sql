@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.1.14
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 13 mars 2018 à 17:29
--- Version du serveur :  5.7.19
+-- Client :  127.0.0.1
+-- Généré le :  Ven 30 Mars 2018 à 14:20
+-- Version du serveur :  5.6.17
 -- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données :  `consultdb`
@@ -28,7 +26,6 @@ SET time_zone = "+00:00";
 -- Structure de la table `agency`
 --
 
-DROP TABLE IF EXISTS `agency`;
 CREATE TABLE IF NOT EXISTS `agency` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `agency_initials` varchar(255) NOT NULL,
@@ -42,10 +39,10 @@ CREATE TABLE IF NOT EXISTS `agency` (
   KEY `FKtgx11d821rio4vuogtlg7018c` (`approval_type_id`),
   KEY `FKdrjp243vgxwlq0bp58odvsbt0` (`country_id`),
   KEY `FKr0fgs1da03n108bia2x6x15s1` (`price_criteria_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4572 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4572 ;
 
 --
--- Déchargement des données de la table `agency`
+-- Contenu de la table `agency`
 --
 
 INSERT INTO `agency` (`id`, `agency_initials`, `link`, `country_id`, `approval_type_id`, `lead_time`, `price_criteria_id`, `certificate_validity`) VALUES
@@ -112,7 +109,6 @@ INSERT INTO `agency` (`id`, `agency_initials`, `link`, `country_id`, `approval_t
 -- Structure de la table `agency_approval_information`
 --
 
-DROP TABLE IF EXISTS `agency_approval_information`;
 CREATE TABLE IF NOT EXISTS `agency_approval_information` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `agency` bigint(20) DEFAULT NULL,
@@ -123,10 +119,10 @@ CREATE TABLE IF NOT EXISTS `agency_approval_information` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKcmhb8u64mb7tebdvndlj9i9sy` (`agency`,`approval_information`),
   KEY `FK5nytidfd93kc59vcmh5933rti` (`approval_information`)
-) ENGINE=MyISAM AUTO_INCREMENT=446 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=446 ;
 
 --
--- Déchargement des données de la table `agency_approval_information`
+-- Contenu de la table `agency_approval_information`
 --
 
 INSERT INTO `agency_approval_information` (`id`, `agency`, `approval_information`, `duration`, `is_accepted`, `is_required`) VALUES
@@ -554,7 +550,6 @@ INSERT INTO `agency_approval_information` (`id`, `agency`, `approval_information
 -- Structure de la table `agency_frequency_band`
 --
 
-DROP TABLE IF EXISTS `agency_frequency_band`;
 CREATE TABLE IF NOT EXISTS `agency_frequency_band` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `is_frequency_authorized` bit(1) NOT NULL,
@@ -565,10 +560,10 @@ CREATE TABLE IF NOT EXISTS `agency_frequency_band` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKk5jup029wernp93ekae40x9rn` (`agency`,`frequency`),
   KEY `FKopc6k1pcr7tvddwjfer0u63w8` (`frequency`)
-) ENGINE=MyISAM AUTO_INCREMENT=441 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=441 ;
 
 --
--- Déchargement des données de la table `agency_frequency_band`
+-- Contenu de la table `agency_frequency_band`
 --
 
 INSERT INTO `agency_frequency_band` (`id`, `is_frequency_authorized`, `agency`, `frequency`, `has_restriction`, `is_authorized`) VALUES
@@ -1019,22 +1014,21 @@ INSERT INTO `agency_frequency_band` (`id`, `is_frequency_authorized`, `agency`, 
 -- Structure de la table `agency_message_restriction`
 --
 
-DROP TABLE IF EXISTS `agency_message_restriction`;
 CREATE TABLE IF NOT EXISTS `agency_message_restriction` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `message` varchar(255) DEFAULT NULL,
   `agency_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKpxcryg3w65lapv86nt74qhol` (`agency_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Déchargement des données de la table `agency_message_restriction`
+-- Contenu de la table `agency_message_restriction`
 --
 
 INSERT INTO `agency_message_restriction` (`id`, `message`, `agency_id`) VALUES
-(1, 'To be sold in Côte d\'Ivoire your equipment must be configured to operate on the following frequency bands:\r\n\r\n5.250 - 5.350 GHZ\r\n\r\n5.470 - 5.725 GHZ\r\n\r\n5.725 - 5.825 GHZ', 11),
-(2, 'To be sold in Nigeria your equipment must be configured to operate on the following frequency bands: 2.400 - 2.4835 GHZ  5.250 - 5.350 GHZ  5.725 5.875 GHZ. Also, the DFS (Dynamic frequency Selection) will be disabled for the 5.4 GHz frequency band', 38);
+(1, 'To be approval in Côte d''Ivoire your equipment must be configured to operate on the following frequency bands:\n\n5.250 - 5.350 GHZ\n\n5.470 - 5.725 GHZ\n\n5.725 - 5.825 GHZ', 11),
+(2, 'To be approval in Nigeria your equipment must be configured to operate on the following frequency bands: 2.400 - 2.4835 GHZ  5.250 - 5.350 GHZ  5.725 5.875 GHZ. Also, the DFS (Dynamic frequency Selection) will be disabled for the 5.4 GHz frequency band', 38);
 
 -- --------------------------------------------------------
 
@@ -1042,7 +1036,6 @@ INSERT INTO `agency_message_restriction` (`id`, `message`, `agency_id`) VALUES
 -- Structure de la table `agency_requirements`
 --
 
-DROP TABLE IF EXISTS `agency_requirements`;
 CREATE TABLE IF NOT EXISTS `agency_requirements` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `is_required` bit(1) DEFAULT NULL,
@@ -1051,10 +1044,10 @@ CREATE TABLE IF NOT EXISTS `agency_requirements` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKawu8d1ob2nyhbfc9lkhwstaps` (`agency`,`requirements`),
   KEY `FKb89q3r4t6ykx1butfibk7u8yr` (`requirements`)
-) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=115 ;
 
 --
--- Déchargement des données de la table `agency_requirements`
+-- Contenu de la table `agency_requirements`
 --
 
 INSERT INTO `agency_requirements` (`id`, `is_required`, `agency`, `requirements`) VALUES
@@ -1177,16 +1170,15 @@ INSERT INTO `agency_requirements` (`id`, `is_required`, `agency`, `requirements`
 -- Structure de la table `approval_information`
 --
 
-DROP TABLE IF EXISTS `approval_information`;
 CREATE TABLE IF NOT EXISTS `approval_information` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `type_approval_information` varchar(31) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
--- Déchargement des données de la table `approval_information`
+-- Contenu de la table `approval_information`
 --
 
 INSERT INTO `approval_information` (`id`, `name`, `type_approval_information`) VALUES
@@ -1222,15 +1214,14 @@ INSERT INTO `approval_information` (`id`, `name`, `type_approval_information`) V
 -- Structure de la table `approval_type`
 --
 
-DROP TABLE IF EXISTS `approval_type`;
 CREATE TABLE IF NOT EXISTS `approval_type` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Déchargement des données de la table `approval_type`
+-- Contenu de la table `approval_type`
 --
 
 INSERT INTO `approval_type` (`id`, `name`) VALUES
@@ -1244,7 +1235,6 @@ INSERT INTO `approval_type` (`id`, `name`) VALUES
 -- Structure de la table `category_price`
 --
 
-DROP TABLE IF EXISTS `category_price`;
 CREATE TABLE IF NOT EXISTS `category_price` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -1252,93 +1242,96 @@ CREATE TABLE IF NOT EXISTS `category_price` (
   `price` double DEFAULT NULL,
   `regards_the_encryption_function` bit(1) DEFAULT NULL,
   `agency_id` bigint(20) DEFAULT NULL,
+  `price_criteria_id` bigint(20) DEFAULT NULL,
+  `concern_encryption_feature` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK1s5c4yufjb8rff0pov5a71n0a` (`agency_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=latin1;
+  KEY `FK1s5c4yufjb8rff0pov5a71n0a` (`agency_id`),
+  KEY `FKq39ejcg9e8clgnujyuq36piyd` (`price_criteria_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
 
 --
--- Déchargement des données de la table `category_price`
+-- Contenu de la table `category_price`
 --
 
-INSERT INTO `category_price` (`id`, `name`, `number_modules`, `price`, `regards_the_encryption_function`, `agency_id`) VALUES
-(1, 'category algeria', 0, 2000, b'0', 2),
-(2, 'category angola', 0, 3000, b'0', 3),
-(3, 'category botswana A', 0, 2500, b'0', 5),
-(4, 'category botswana B', 0, 5000, b'0', 5),
-(5, 'category botswana C', 0, 11000, b'0', 5),
-(6, 'category botswana D', 0, 25000, b'0', 5),
-(17, 'category ghana c', 0, 1400, b'0', 18),
-(16, 'category ghana b', 0, 2600, b'0', 18),
-(15, 'category ghana A', 0, 3600, b'0', 18),
-(14, 'category burundi B', 0, 3000, b'0', 7),
-(13, 'category burundi A', 0, 3500, b'0', 7),
-(18, 'category guinee A', 0, 2800, b'0', 19),
-(19, 'category guinee b', 0, 2300, b'0', 19),
-(20, 'category guinee c', 0, 1400, b'0', 19),
-(21, 'category guinee d', 0, 3500, b'0', 19),
-(22, 'category guinee e', 0, 2100, b'0', 19),
-(23, 'category guinea g', 0, 3266, b'0', 19),
-(24, 'category guinea f', 0, 2100, b'0', 19),
-(25, 'category niger a', 0, 2300, b'0', 37),
-(26, 'category niger b', 0, 8100, b'0', 37),
-(27, 'category niger c', 0, 5200, b'0', 37),
-(28, 'category niger d', 0, 4100, b'0', 37),
-(29, 'category niger e', 0, 2900, b'0', 37),
-(30, 'category nigeria 1 module', 1, 3600, b'0', 38),
-(31, 'category nigeria 2 module', 2, 8000, b'0', 38),
-(32, 'category nigeria 3 module', 3, 9800, b'0', 38),
-(33, 'category nigeria smartphone', 0, 9800, b'0', 38),
-(34, 'category nigeria tablet', 0, 2600, b'0', 38),
-(35, 'category tunisia rf + encryption', 0, 10000, b'1', 55),
-(36, 'category tunisia rf only', 0, 3000, b'0', 55),
-(37, 'category south africa icasa(RF)', 0, 2600, b'0', 29),
-(38, 'category south africa nrcs(safety)', 0, 2600, b'0', 28),
-(39, 'category Egypte', 0, 3250, b'0', 13),
-(40, 'category', 0, 5890, b'0', 12),
-(41, 'category', 0, 3250, b'0', 11),
-(42, 'category', 0, 3500, b'0', 10),
-(43, 'category', 0, 3600, b'0', 9),
-(44, 'category', 0, 3650, b'0', 8),
-(45, 'category', 0, 4300, b'0', 6),
-(46, 'category', 0, 5890, b'0', 4),
-(49, 'category', 0, 3600, b'0', 14),
-(50, 'category', 0, 87500, b'0', 15),
-(51, 'category', 0, 3600, b'0', 16),
-(52, 'category', 0, 58900, b'0', 17),
-(53, 'category', 0, 10250, b'0', 20),
-(54, 'category', 0, 3250, b'0', 21),
-(55, 'category', 0, 4300, b'0', 22),
-(56, 'category', 0, 4300, b'0', 23),
-(57, 'category', 0, 3000, b'0', 24),
-(58, 'category', 0, 5400, b'0', 25),
-(59, 'category', 0, 5890, b'0', 26),
-(60, 'category', 0, 3250, b'0', 27),
-(61, 'category', 0, 4300, b'0', 31),
-(62, 'category', 0, 3100, b'0', 32),
-(63, 'category', 0, 2600, b'0', 33),
-(64, 'category', 0, 5890, b'0', 36),
-(65, 'category', 0, 3250, b'0', 37),
-(66, 'category', 0, 8700, b'0', 38),
-(67, 'category', 0, 4300, b'0', 39),
-(68, 'category', 0, 7800, b'0', 40),
-(69, 'category', 0, 7800, b'0', 41),
-(70, 'category', 0, 5890, b'0', 42),
-(71, 'category', 0, 3250, b'0', 43),
-(72, 'category', 0, 7800, b'0', 44),
-(73, 'category', 0, 4300, b'0', 45),
-(74, 'category', 0, 3250, b'0', 46),
-(75, 'category', 0, 5890, b'0', 47),
-(76, 'category', 0, 3250, b'0', 48),
-(77, 'category', 0, 7800, b'0', 49),
-(78, 'category', 0, 3250, b'0', 50),
-(79, 'category', 0, 2500, NULL, 51),
-(80, 'category', 0, 5822, NULL, 52),
-(81, 'category', 0, 3200, b'0', 53),
-(82, 'category', 0, 3250, b'0', 54),
-(84, 'category', 0, 1150, b'0', 56),
-(85, 'category', 0, 3600, b'0', 57),
-(86, 'category mauritania', 0, 3250, b'0', 34),
-(87, 'category mozambique', 0, 2600, b'0', 35);
+INSERT INTO `category_price` (`id`, `name`, `number_modules`, `price`, `regards_the_encryption_function`, `agency_id`, `price_criteria_id`, `concern_encryption_feature`) VALUES
+(1, 'category algeria', 0, 2000, b'0', 2, NULL, NULL),
+(2, 'category angola', 0, 3000, b'0', 3, NULL, NULL),
+(3, 'category botswana A', 0, 2500, b'0', 5, NULL, NULL),
+(4, 'category botswana B', 0, 5000, b'0', 5, NULL, NULL),
+(5, 'category botswana C', 0, 11000, b'0', 5, NULL, NULL),
+(6, 'category botswana D', 0, 25000, b'0', 5, NULL, NULL),
+(17, 'category ghana c', 0, 1400, b'0', 18, NULL, NULL),
+(16, 'category ghana b', 0, 2600, b'0', 18, NULL, NULL),
+(15, 'category ghana A', 0, 3600, b'0', 18, NULL, NULL),
+(14, 'category burundi B', 0, 3000, b'0', 7, NULL, NULL),
+(13, 'category burundi A', 0, 3500, b'0', 7, NULL, NULL),
+(18, 'category guinee A', 0, 2800, b'0', 19, NULL, NULL),
+(19, 'category guinee b', 0, 2300, b'0', 19, NULL, NULL),
+(20, 'category guinee c', 0, 1400, b'0', 19, NULL, NULL),
+(21, 'category guinee d', 0, 3500, b'0', 19, NULL, NULL),
+(22, 'category guinee e', 0, 2100, b'0', 19, NULL, NULL),
+(23, 'category guinea g', 0, 3266, b'0', 19, NULL, NULL),
+(24, 'category guinea f', 0, 2100, b'0', 19, NULL, NULL),
+(25, 'category niger a', 0, 2300, b'0', 37, NULL, NULL),
+(26, 'category niger b', 0, 8100, b'0', 37, NULL, NULL),
+(27, 'category niger c', 0, 5200, b'0', 37, NULL, NULL),
+(28, 'category niger d', 0, 4100, b'0', 37, NULL, NULL),
+(29, 'category niger e', 0, 2900, b'0', 37, NULL, NULL),
+(30, 'category nigeria 1 module', 1, 3600, b'0', 38, NULL, NULL),
+(31, 'category nigeria 2 module', 2, 8000, b'0', 38, NULL, NULL),
+(32, 'category nigeria 3 module', 3, 9800, b'0', 38, NULL, NULL),
+(33, 'category nigeria smartphone', 0, 9800, b'0', 38, NULL, NULL),
+(34, 'category nigeria tablet', 0, 2600, b'0', 38, NULL, NULL),
+(35, 'category tunisia rf + encryption', 0, 10000, b'1', 55, NULL, NULL),
+(36, 'category tunisia rf only', 0, 3000, b'0', 55, NULL, NULL),
+(37, 'category south africa icasa(RF)', 0, 2600, b'0', 29, NULL, NULL),
+(38, 'category south africa nrcs(safety)', 0, 2600, b'0', 28, NULL, NULL),
+(39, 'category Egypte', 0, 3250, b'0', 13, NULL, NULL),
+(40, 'category', 0, 5890, b'0', 12, NULL, NULL),
+(41, 'category', 0, 3250, b'0', 11, NULL, NULL),
+(42, 'category', 0, 3500, b'0', 10, NULL, NULL),
+(43, 'category', 0, 3600, b'0', 9, NULL, NULL),
+(44, 'category', 0, 3650, b'0', 8, NULL, NULL),
+(45, 'category', 0, 4300, b'0', 6, NULL, NULL),
+(46, 'category', 0, 5890, b'0', 4, NULL, NULL),
+(49, 'category', 0, 3600, b'0', 14, NULL, NULL),
+(50, 'category', 0, 87500, b'0', 15, NULL, NULL),
+(51, 'category', 0, 3600, b'0', 16, NULL, NULL),
+(52, 'category', 0, 58900, b'0', 17, NULL, NULL),
+(53, 'category', 0, 10250, b'0', 20, NULL, NULL),
+(54, 'category', 0, 3250, b'0', 21, NULL, NULL),
+(55, 'category', 0, 4300, b'0', 22, NULL, NULL),
+(56, 'category', 0, 4300, b'0', 23, NULL, NULL),
+(57, 'category', 0, 3000, b'0', 24, NULL, NULL),
+(58, 'category', 0, 5400, b'0', 25, NULL, NULL),
+(59, 'category', 0, 5890, b'0', 26, NULL, NULL),
+(60, 'category', 0, 3250, b'0', 27, NULL, NULL),
+(61, 'category', 0, 4300, b'0', 31, NULL, NULL),
+(62, 'category', 0, 3100, b'0', 32, NULL, NULL),
+(63, 'category', 0, 2600, b'0', 33, NULL, NULL),
+(64, 'category', 0, 5890, b'0', 36, NULL, NULL),
+(65, 'category', 0, 3250, b'0', 37, NULL, NULL),
+(66, 'category', 0, 8700, b'0', 38, NULL, NULL),
+(67, 'category', 0, 4300, b'0', 39, NULL, NULL),
+(68, 'category', 0, 7800, b'0', 40, NULL, NULL),
+(69, 'category', 0, 7800, b'0', 41, NULL, NULL),
+(70, 'category', 0, 5890, b'0', 42, NULL, NULL),
+(71, 'category', 0, 3250, b'0', 43, NULL, NULL),
+(72, 'category', 0, 7800, b'0', 44, NULL, NULL),
+(73, 'category', 0, 4300, b'0', 45, NULL, NULL),
+(74, 'category', 0, 3250, b'0', 46, NULL, NULL),
+(75, 'category', 0, 5890, b'0', 47, NULL, NULL),
+(76, 'category', 0, 3250, b'0', 48, NULL, NULL),
+(77, 'category', 0, 7800, b'0', 49, NULL, NULL),
+(78, 'category', 0, 3250, b'0', 50, NULL, NULL),
+(79, 'category', 0, 2500, NULL, 51, NULL, NULL),
+(80, 'category', 0, 5822, NULL, 52, NULL, NULL),
+(81, 'category', 0, 3200, b'0', 53, NULL, NULL),
+(82, 'category', 0, 3250, b'0', 54, NULL, NULL),
+(84, 'category', 0, 1150, b'0', 56, NULL, NULL),
+(85, 'category', 0, 3600, b'0', 57, NULL, NULL),
+(86, 'category mauritania', 0, 3250, b'0', 34, NULL, NULL),
+(87, 'category mozambique', 0, 2600, b'0', 35, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1346,7 +1339,6 @@ INSERT INTO `category_price` (`id`, `name`, `number_modules`, `price`, `regards_
 -- Structure de la table `category_price_equipement_types`
 --
 
-DROP TABLE IF EXISTS `category_price_equipement_types`;
 CREATE TABLE IF NOT EXISTS `category_price_equipement_types` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `category_price_id` bigint(20) DEFAULT NULL,
@@ -1354,10 +1346,10 @@ CREATE TABLE IF NOT EXISTS `category_price_equipement_types` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKs2pu9iy2f6vlog8rekbiqgfdk` (`category_price_id`,`equipment_type_id`),
   KEY `FKnqvdvot2eq1sb8m9bt2k6ftn3` (`equipment_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
--- Déchargement des données de la table `category_price_equipement_types`
+-- Contenu de la table `category_price_equipement_types`
 --
 
 INSERT INTO `category_price_equipement_types` (`id`, `category_price_id`, `equipment_type_id`) VALUES
@@ -1422,76 +1414,92 @@ INSERT INTO `category_price_equipement_types` (`id`, `category_price_id`, `equip
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `category_price_technologie`
+--
+
+CREATE TABLE IF NOT EXISTS `category_price_technologie` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `category_price_id` bigint(20) DEFAULT NULL,
+  `equipment_technologie_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKc54aj59vip6wnnnnp5jgyk70w` (`category_price_id`,`equipment_technologie_id`),
+  KEY `FKc422j1hwjpto2ltik3t3oiogb` (`equipment_technologie_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `country`
 --
 
-DROP TABLE IF EXISTS `country`;
 CREATE TABLE IF NOT EXISTS `country` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_llidyp77h6xkeokpbmoy710d4` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=1874 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `UK_llidyp77h6xkeokpbmoy710d4` (`name`),
+  UNIQUE KEY `UK_oqixmig4k8qxc8oba3fl4gqkr` (`code`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1874 ;
 
 --
--- Déchargement des données de la table `country`
+-- Contenu de la table `country`
 --
 
-INSERT INTO `country` (`id`, `name`) VALUES
-(32, 'Mozambique'),
-(31, 'Mauritania'),
-(30, 'Maurice'),
-(29, 'Morroco'),
-(28, 'Mali'),
-(27, 'Malawi'),
-(26, 'Madagascar'),
-(25, 'Libya'),
-(24, 'Liberia'),
-(23, 'Lesotho'),
-(22, 'Kenya'),
-(21, 'Bissau Guinea'),
-(20, 'Equatoriale Guinea'),
-(19, 'Guinea'),
-(18, 'Ghana'),
-(17, 'Gambia'),
-(16, 'Gabon '),
-(15, 'Ethiopia'),
-(14, 'Erythree'),
-(13, 'Egypt'),
-(12, 'Djibouti'),
-(11, 'Cote d’Ivoire'),
-(10, 'Comores'),
-(9, 'Cape Verde'),
-(8, 'Cameroon'),
-(7, 'Burundi'),
-(6, 'Burkina Faso'),
-(5, 'Botswana'),
-(4, 'Benin'),
-(3, 'Angola'),
-(2, 'Algeria'),
-(1, 'South Africa'),
-(33, 'Namibia'),
-(34, 'Niger'),
-(35, 'Nigeria'),
-(36, 'Uganda'),
-(37, 'Centrafrican Republic '),
-(38, 'Republic of Congo'),
-(39, 'RDC'),
-(40, 'Rwanda'),
-(41, 'Sao Tome Principe'),
-(42, 'Senegal'),
-(43, 'Chad'),
-(44, 'Seychelles '),
-(45, 'Sierra Leone'),
-(46, 'Somalia'),
-(47, 'Sudan'),
-(48, 'South Sudan'),
-(49, 'Swaziland'),
-(50, 'Tanzania'),
-(51, 'Togo'),
-(52, 'Tunisia'),
-(53, 'Zambia'),
-(54, 'Zimbabwe');
+INSERT INTO `country` (`id`, `name`, `code`) VALUES
+(32, 'Mozambique', 'mz'),
+(31, 'Mauritania', 'mr'),
+(30, 'Maurice', 'mu'),
+(29, 'Morroco', 'ma'),
+(28, 'Mali', 'ml'),
+(27, 'Malawi', 'mw'),
+(26, 'Madagascar', 'mg'),
+(25, 'Libya', 'ly'),
+(24, 'Liberia', 'lr'),
+(23, 'Lesotho', 'ls'),
+(22, 'Kenya', 'ke'),
+(21, 'Bissau Guinea', 'gw'),
+(20, 'Equatoriale Guinea', 'gq'),
+(19, 'Guinea', 'gn'),
+(18, 'Ghana', 'gh'),
+(17, 'Gambia', 'gm'),
+(16, 'Gabon ', 'ga'),
+(15, 'Ethiopia', 'et'),
+(14, 'Erythree', 'er'),
+(13, 'Egypt', 'eg'),
+(12, 'Djibouti', 'dj'),
+(11, 'Cote d’Ivoire', 'ci'),
+(10, 'Comores', 'km'),
+(9, 'Cape Verde', 'cv'),
+(8, 'Cameroon', 'cm'),
+(7, 'Burundi', 'bi'),
+(6, 'Burkina Faso', 'bf'),
+(5, 'Botswana', 'bw'),
+(4, 'Benin', 'bj'),
+(3, 'Angola', 'ao'),
+(2, 'Algeria', 'dz'),
+(1, 'South Africa', 'za'),
+(33, 'Namibia', 'na'),
+(34, 'Niger', 'ne'),
+(35, 'Nigeria', 'ng'),
+(36, 'Uganda', 'ug'),
+(37, 'Centrafrican Republic ', 'cf'),
+(38, 'Republic of Congo', 'cg'),
+(39, 'RDC', 'cd'),
+(40, 'Rwanda', 'rw'),
+(41, 'Sao Tome Principe', 'st'),
+(42, 'Senegal', 'sn'),
+(43, 'Chad', 'td'),
+(44, 'Seychelles ', 'sc'),
+(45, 'Sierra Leone', 'sl'),
+(46, 'Somalia', 'so'),
+(47, 'Sudan', 'sd'),
+(48, 'South Sudan', 'ss'),
+(49, 'Swaziland', 'sz'),
+(50, 'Tanzania', 'tz'),
+(51, 'Togo', 'tg'),
+(52, 'Tunisia', 'tn'),
+(53, 'Zambia', 'zm'),
+(54, 'Zimbabwe', 'zw');
 
 -- --------------------------------------------------------
 
@@ -1499,7 +1507,6 @@ INSERT INTO `country` (`id`, `name`) VALUES
 -- Structure de la table `equipment`
 --
 
-DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE IF NOT EXISTS `equipment` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `brand` varchar(255) DEFAULT NULL,
@@ -1507,10 +1514,10 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   `name` varchar(255) DEFAULT NULL,
   `model` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=89 ;
 
 --
--- Déchargement des données de la table `equipment`
+-- Contenu de la table `equipment`
 --
 
 INSERT INTO `equipment` (`id`, `brand`, `is_encrypt`, `name`, `model`) VALUES
@@ -1591,7 +1598,13 @@ INSERT INTO `equipment` (`id`, `brand`, `is_encrypt`, `name`, `model`) VALUES
 (79, NULL, NULL, NULL, NULL),
 (80, NULL, NULL, NULL, NULL),
 (81, NULL, NULL, NULL, NULL),
-(82, 'g', NULL, 'gt', 'g');
+(82, 'g', NULL, 'gt', 'g'),
+(83, NULL, NULL, NULL, NULL),
+(84, 'lm', NULL, 'iu', 'oo'),
+(85, 'lm', NULL, 'iu', 'oo'),
+(86, 'uyy', NULL, 'test', 'fgg'),
+(87, 'kf', NULL, 'ur', 'jf'),
+(88, 'kf', NULL, 'ur', 'jf');
 
 -- --------------------------------------------------------
 
@@ -1599,7 +1612,6 @@ INSERT INTO `equipment` (`id`, `brand`, `is_encrypt`, `name`, `model`) VALUES
 -- Structure de la table `equipment_nature`
 --
 
-DROP TABLE IF EXISTS `equipment_nature`;
 CREATE TABLE IF NOT EXISTS `equipment_nature` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -1607,10 +1619,10 @@ CREATE TABLE IF NOT EXISTS `equipment_nature` (
   `has_frequency` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKgiefjp9ndfl3xmo8t628r0bmt` (`approval_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Déchargement des données de la table `equipment_nature`
+-- Contenu de la table `equipment_nature`
 --
 
 INSERT INTO `equipment_nature` (`id`, `name`, `approval_type_id`, `has_frequency`) VALUES
@@ -1623,17 +1635,16 @@ INSERT INTO `equipment_nature` (`id`, `name`, `approval_type_id`, `has_frequency
 -- Structure de la table `equipment_technologie`
 --
 
-DROP TABLE IF EXISTS `equipment_technologie`;
 CREATE TABLE IF NOT EXISTS `equipment_technologie` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `equipment_nature_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKnhxcr5o5r1sqkqri25posc86c` (`equipment_nature_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65 ;
 
 --
--- Déchargement des données de la table `equipment_technologie`
+-- Contenu de la table `equipment_technologie`
 --
 
 INSERT INTO `equipment_technologie` (`id`, `name`, `equipment_nature_id`) VALUES
@@ -1698,15 +1709,14 @@ INSERT INTO `equipment_technologie` (`id`, `name`, `equipment_nature_id`) VALUES
 -- Structure de la table `equipment_type`
 --
 
-DROP TABLE IF EXISTS `equipment_type`;
 CREATE TABLE IF NOT EXISTS `equipment_type` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
 
 --
--- Déchargement des données de la table `equipment_type`
+-- Contenu de la table `equipment_type`
 --
 
 INSERT INTO `equipment_type` (`id`, `name`) VALUES
@@ -1770,17 +1780,16 @@ INSERT INTO `equipment_type` (`id`, `name`) VALUES
 -- Structure de la table `frequency_band`
 --
 
-DROP TABLE IF EXISTS `frequency_band`;
 CREATE TABLE IF NOT EXISTS `frequency_band` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `max_frequency` int(11) DEFAULT NULL,
   `min_frequency` int(11) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Déchargement des données de la table `frequency_band`
+-- Contenu de la table `frequency_band`
 --
 
 INSERT INTO `frequency_band` (`id`, `max_frequency`, `min_frequency`, `unit`) VALUES
@@ -1799,83 +1808,90 @@ INSERT INTO `frequency_band` (`id`, `max_frequency`, `min_frequency`, `unit`) VA
 -- Structure de la table `invoice`
 --
 
-DROP TABLE IF EXISTS `invoice`;
 CREATE TABLE IF NOT EXISTS `invoice` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `total_amount` double DEFAULT NULL,
   `date` date DEFAULT NULL,
   `purchase_order_id` bigint(20) DEFAULT NULL,
+  `number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_pv0mc1gtqf3drhc14ykc1bnk3` (`number`),
   KEY `FKpbnhtmx9crcudpxcr5j2xjool` (`purchase_order_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
 
 --
--- Déchargement des données de la table `invoice`
+-- Contenu de la table `invoice`
 --
 
-INSERT INTO `invoice` (`id`, `total_amount`, `date`, `purchase_order_id`) VALUES
-(1, 4500, '2018-01-04', 45),
-(2, 4000, '2018-01-09', 47),
-(3, 16000, '2018-01-12', 48),
-(4, 8000, '2018-01-12', 49),
-(5, 4500, '2018-01-12', 50),
-(6, 4500, '2018-01-12', 51),
-(7, 4500, '2018-01-12', 52),
-(8, 4000, '2018-01-12', 53),
-(9, 6000, '2018-01-12', 54),
-(10, 6000, '2018-01-12', 55),
-(11, 8000, '2018-01-12', 56),
-(12, 5500, '2018-01-12', 57),
-(13, 2500, '2018-01-12', 58),
-(14, 8000, '2018-01-12', 59),
-(15, 500, '2018-01-12', 60),
-(16, 4500, '2018-01-12', 61),
-(17, 4500, '2018-01-12', 62),
-(18, 1500, '2018-01-12', 63),
-(19, 1500, '2018-01-12', 64),
-(20, 1500, '2018-01-12', 65),
-(21, 10000, '2018-01-12', 66),
-(22, 14000, '2018-01-19', 67),
-(23, 14000, '2018-01-19', 68),
-(24, 14000, '2018-01-19', 69),
-(25, NULL, '2018-01-26', 70),
-(26, NULL, '2018-01-26', 71),
-(27, NULL, '2018-01-26', 72),
-(28, NULL, '2018-01-26', 73),
-(29, NULL, '2018-01-26', 74),
-(30, NULL, '2018-01-27', 75),
-(31, NULL, '2018-01-28', 76),
-(32, 187052, '2018-01-06', 77),
-(33, 382342, '2018-01-07', 78),
-(34, 382342, '2018-01-07', 79),
-(35, 382342, '2018-01-07', 80),
-(36, 382342, '2018-01-07', 81),
-(37, 382342, '2018-01-07', 82),
-(38, 382342, '2018-01-07', 83),
-(39, 382342, '2018-01-07', 84),
-(40, 382342, '2018-01-07', 85),
-(41, 382342, '2018-01-07', 86),
-(42, 382342, '2018-01-07', 87),
-(43, 382342, '2018-01-07', 88),
-(44, 382342, '2018-01-07', 89),
-(45, 382342, '2018-01-07', 90),
-(46, 0, '2018-01-07', 91),
-(47, 382342, '2018-01-07', 92),
-(48, 0, '2018-01-07', 93),
-(49, 0, '2018-01-07', 94),
-(50, 0, '2018-01-07', 95),
-(51, 0, '2018-01-07', 96),
-(52, 0, '2018-01-07', 97),
-(53, 0, '2018-01-07', 98),
-(54, 0, '2018-01-07', 99),
-(55, 0, '2018-01-07', 100),
-(56, 0, '2018-01-07', 101),
-(57, 0, '2018-01-07', 102),
-(58, 0, '2018-01-07', 103),
-(59, 0, '2018-01-07', 104),
-(60, 0, '2018-01-07', 105),
-(61, 0, '2018-01-07', 106),
-(62, 14140, '2018-01-08', 107);
+INSERT INTO `invoice` (`id`, `total_amount`, `date`, `purchase_order_id`, `number`) VALUES
+(1, 4500, '2018-01-04', 45, NULL),
+(2, 4000, '2018-01-09', 47, NULL),
+(3, 16000, '2018-01-12', 48, NULL),
+(4, 8000, '2018-01-12', 49, NULL),
+(5, 4500, '2018-01-12', 50, NULL),
+(6, 4500, '2018-01-12', 51, NULL),
+(7, 4500, '2018-01-12', 52, NULL),
+(8, 4000, '2018-01-12', 53, NULL),
+(9, 6000, '2018-01-12', 54, NULL),
+(10, 6000, '2018-01-12', 55, NULL),
+(11, 8000, '2018-01-12', 56, NULL),
+(12, 5500, '2018-01-12', 57, NULL),
+(13, 2500, '2018-01-12', 58, NULL),
+(14, 8000, '2018-01-12', 59, NULL),
+(15, 500, '2018-01-12', 60, NULL),
+(16, 4500, '2018-01-12', 61, NULL),
+(17, 4500, '2018-01-12', 62, NULL),
+(18, 1500, '2018-01-12', 63, NULL),
+(19, 1500, '2018-01-12', 64, NULL),
+(20, 1500, '2018-01-12', 65, NULL),
+(21, 10000, '2018-01-12', 66, NULL),
+(22, 14000, '2018-01-19', 67, NULL),
+(23, 14000, '2018-01-19', 68, NULL),
+(24, 14000, '2018-01-19', 69, NULL),
+(25, NULL, '2018-01-26', 70, NULL),
+(26, NULL, '2018-01-26', 71, NULL),
+(27, NULL, '2018-01-26', 72, NULL),
+(28, NULL, '2018-01-26', 73, NULL),
+(29, NULL, '2018-01-26', 74, NULL),
+(30, NULL, '2018-01-27', 75, NULL),
+(31, NULL, '2018-01-28', 76, NULL),
+(32, 187052, '2018-01-06', 77, NULL),
+(33, 382342, '2018-01-07', 78, NULL),
+(34, 382342, '2018-01-07', 79, NULL),
+(35, 382342, '2018-01-07', 80, NULL),
+(36, 382342, '2018-01-07', 81, NULL),
+(37, 382342, '2018-01-07', 82, NULL),
+(38, 382342, '2018-01-07', 83, NULL),
+(39, 382342, '2018-01-07', 84, NULL),
+(40, 382342, '2018-01-07', 85, NULL),
+(41, 382342, '2018-01-07', 86, NULL),
+(42, 382342, '2018-01-07', 87, NULL),
+(43, 382342, '2018-01-07', 88, NULL),
+(44, 382342, '2018-01-07', 89, NULL),
+(45, 382342, '2018-01-07', 90, NULL),
+(46, 0, '2018-01-07', 91, NULL),
+(47, 382342, '2018-01-07', 92, NULL),
+(48, 0, '2018-01-07', 93, NULL),
+(49, 0, '2018-01-07', 94, NULL),
+(50, 0, '2018-01-07', 95, NULL),
+(51, 0, '2018-01-07', 96, NULL),
+(52, 0, '2018-01-07', 97, NULL),
+(53, 0, '2018-01-07', 98, NULL),
+(54, 0, '2018-01-07', 99, NULL),
+(55, 0, '2018-01-07', 100, NULL),
+(56, 0, '2018-01-07', 101, NULL),
+(57, 0, '2018-01-07', 102, NULL),
+(58, 0, '2018-01-07', 103, NULL),
+(59, 0, '2018-01-07', 104, NULL),
+(60, 0, '2018-01-07', 105, NULL),
+(61, 0, '2018-01-07', 106, NULL),
+(62, 14140, '2018-01-08', 107, NULL),
+(63, 0, '2018-03-22', 108, NULL),
+(64, 10250, '2018-03-26', 109, NULL),
+(65, 10250, '2018-03-26', 110, NULL),
+(66, 5000, '2018-03-26', 111, NULL),
+(67, 9750, '2018-03-26', 112, NULL),
+(68, 9750, '2018-03-26', 113, NULL);
 
 -- --------------------------------------------------------
 
@@ -1883,22 +1899,22 @@ INSERT INTO `invoice` (`id`, `total_amount`, `date`, `purchase_order_id`) VALUES
 -- Structure de la table `price_criteria`
 --
 
-DROP TABLE IF EXISTS `price_criteria`;
 CREATE TABLE IF NOT EXISTS `price_criteria` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Déchargement des données de la table `price_criteria`
+-- Contenu de la table `price_criteria`
 --
 
-INSERT INTO `price_criteria` (`id`, `name`) VALUES
-(1, 'Equipment Type'),
-(2, 'Encryption Feature'),
-(0, 'no criteria'),
-(3, 'number of module');
+INSERT INTO `price_criteria` (`id`, `name`, `code`) VALUES
+(1, 'Equipment Type', 'eqpm'),
+(2, 'Encryption Feature', 'encry'),
+(0, 'no criteria', 'noc'),
+(3, 'Equipment Tech', 'tech');
 
 -- --------------------------------------------------------
 
@@ -1906,7 +1922,6 @@ INSERT INTO `price_criteria` (`id`, `name`) VALUES
 -- Structure de la table `project`
 --
 
-DROP TABLE IF EXISTS `project`;
 CREATE TABLE IF NOT EXISTS `project` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
@@ -1920,10 +1935,10 @@ CREATE TABLE IF NOT EXISTS `project` (
   KEY `FKlfvrutjaiykh8rbkfnj5wxc9k` (`agency_id`),
   KEY `FKpx3kxe8i0g71irwvts73y9ihl` (`equipment_id`),
   KEY `FK2r2i9a1aci6u3sx862iqsyc51` (`purchase_order_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
 
 --
--- Déchargement des données de la table `project`
+-- Contenu de la table `project`
 --
 
 INSERT INTO `project` (`id`, `date`, `country_id`, `equipment_id`, `purchase_order_id`, `price`, `agency_id`) VALUES
@@ -2056,7 +2071,21 @@ INSERT INTO `project` (`id`, `date`, `country_id`, `equipment_id`, `purchase_ord
 (127, '2018-01-08', NULL, 82, 107, NULL, 2),
 (128, '2018-01-08', NULL, 82, 107, NULL, 3),
 (129, '2018-01-08', NULL, 82, 107, NULL, 4),
-(130, '2018-01-08', NULL, 82, 107, NULL, 21);
+(130, '2018-01-08', NULL, 82, 107, NULL, 21),
+(131, '2018-03-26', NULL, 84, 109, NULL, 2),
+(132, '2018-03-26', NULL, 84, 109, NULL, 5),
+(133, '2018-03-26', NULL, 84, 109, NULL, 11),
+(134, '2018-03-26', NULL, 85, 110, NULL, 2),
+(135, '2018-03-26', NULL, 85, 110, NULL, 5),
+(136, '2018-03-26', NULL, 85, 110, NULL, 11),
+(137, '2018-03-26', NULL, 86, 111, NULL, 3),
+(138, '2018-03-26', NULL, 86, 111, NULL, 2),
+(139, '2018-03-26', NULL, 87, 112, NULL, 10),
+(140, '2018-03-26', NULL, 87, 112, NULL, 11),
+(141, '2018-03-26', NULL, 87, 112, NULL, 3),
+(142, '2018-03-26', NULL, 88, 113, NULL, 10),
+(143, '2018-03-26', NULL, 88, 113, NULL, 11),
+(144, '2018-03-26', NULL, 88, 113, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -2064,100 +2093,106 @@ INSERT INTO `project` (`id`, `date`, `country_id`, `equipment_id`, `purchase_ord
 -- Structure de la table `purchase_order`
 --
 
-DROP TABLE IF EXISTS `purchase_order`;
 CREATE TABLE IF NOT EXISTS `purchase_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
   `total_amount` double DEFAULT NULL,
   `quotation_id` bigint(20) DEFAULT NULL,
+  `number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK264mq9l1u99cn67a1dypssv6d` (`quotation_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
 
 --
--- Déchargement des données de la table `purchase_order`
+-- Contenu de la table `purchase_order`
 --
 
-INSERT INTO `purchase_order` (`id`, `date`, `total_amount`, `quotation_id`) VALUES
-(30, '2018-01-02', NULL, 98),
-(29, '2018-01-02', NULL, 97),
-(31, '2018-01-04', NULL, 99),
-(32, '2018-01-04', NULL, 100),
-(33, '2018-01-04', NULL, 101),
-(34, '2018-01-04', NULL, 102),
-(35, '2018-01-04', NULL, 103),
-(36, '2018-01-04', NULL, 104),
-(37, '2018-01-04', NULL, 105),
-(38, '2018-01-04', NULL, 106),
-(39, '2018-01-04', NULL, 107),
-(40, '2018-01-04', NULL, 108),
-(41, '2018-01-04', 12500, 109),
-(42, '2018-01-04', 8000, 110),
-(43, '2018-01-04', 19500, 111),
-(44, '2018-01-04', 7500, 112),
-(45, '2018-01-04', 4500, 113),
-(46, '2018-01-09', NULL, NULL),
-(47, '2018-01-09', 4000, 153),
-(48, '2018-01-12', 16000, 154),
-(49, '2018-01-12', 8000, 155),
-(50, '2018-01-12', 4500, 156),
-(51, '2018-01-12', 4500, 157),
-(52, '2018-01-12', 4500, 158),
-(53, '2018-01-12', 4000, 159),
-(54, '2018-01-12', 6000, 160),
-(55, '2018-01-12', 6000, 161),
-(56, '2018-01-12', 8000, 162),
-(57, '2018-01-12', 5500, 163),
-(58, '2018-01-12', 2500, 164),
-(59, '2018-01-12', 8000, 165),
-(60, '2018-01-12', 500, 166),
-(61, '2018-01-12', 4500, 167),
-(62, '2018-01-12', 4500, 168),
-(63, '2018-01-12', 1500, 170),
-(64, '2018-01-12', 1500, 171),
-(65, '2018-01-12', 1500, 172),
-(66, '2018-01-12', 10000, 173),
-(67, '2018-01-19', 14000, 174),
-(68, '2018-01-19', 14000, 175),
-(69, '2018-01-19', 14000, 176),
-(70, '2018-01-26', NULL, 180),
-(71, '2018-01-26', NULL, 181),
-(72, '2018-01-26', NULL, 182),
-(73, '2018-01-26', NULL, 183),
-(74, '2018-01-26', NULL, 184),
-(75, '2018-01-27', NULL, 185),
-(76, '2018-01-28', NULL, 196),
-(77, '2018-01-06', 187052, 4),
-(78, '2018-01-07', 382342, 2),
-(79, '2018-01-07', 382342, 2),
-(80, '2018-01-07', 382342, 2),
-(81, '2018-01-07', 382342, 2),
-(82, '2018-01-07', 382342, 2),
-(83, '2018-01-07', 382342, 2),
-(84, '2018-01-07', 382342, 2),
-(85, '2018-01-07', 382342, 2),
-(86, '2018-01-07', 382342, 2),
-(87, '2018-01-07', 382342, 2),
-(88, '2018-01-07', 382342, 2),
-(89, '2018-01-07', 382342, 2),
-(90, '2018-01-07', 382342, 2),
-(91, '2018-01-07', 0, 6),
-(92, '2018-01-07', 382342, 2),
-(93, '2018-01-07', 0, 7),
-(94, '2018-01-07', 0, 8),
-(95, '2018-01-07', 0, 9),
-(96, '2018-01-07', 0, 10),
-(97, '2018-01-07', 0, 11),
-(98, '2018-01-07', 0, 12),
-(99, '2018-01-07', 0, 13),
-(100, '2018-01-07', 0, 14),
-(101, '2018-01-07', 0, 15),
-(102, '2018-01-07', 0, 16),
-(103, '2018-01-07', 0, 17),
-(104, '2018-01-07', 0, 18),
-(105, '2018-01-07', 0, 19),
-(106, '2018-01-07', 0, 20),
-(107, '2018-01-08', 14140, 21);
+INSERT INTO `purchase_order` (`id`, `date`, `total_amount`, `quotation_id`, `number`) VALUES
+(30, '2018-01-02', NULL, 98, NULL),
+(29, '2018-01-02', NULL, 97, NULL),
+(31, '2018-01-04', NULL, 99, NULL),
+(32, '2018-01-04', NULL, 100, NULL),
+(33, '2018-01-04', NULL, 101, NULL),
+(34, '2018-01-04', NULL, 102, NULL),
+(35, '2018-01-04', NULL, 103, NULL),
+(36, '2018-01-04', NULL, 104, NULL),
+(37, '2018-01-04', NULL, 105, NULL),
+(38, '2018-01-04', NULL, 106, NULL),
+(39, '2018-01-04', NULL, 107, NULL),
+(40, '2018-01-04', NULL, 108, NULL),
+(41, '2018-01-04', 12500, 109, NULL),
+(42, '2018-01-04', 8000, 110, NULL),
+(43, '2018-01-04', 19500, 111, NULL),
+(44, '2018-01-04', 7500, 112, NULL),
+(45, '2018-01-04', 4500, 113, NULL),
+(46, '2018-01-09', NULL, NULL, NULL),
+(47, '2018-01-09', 4000, 153, NULL),
+(48, '2018-01-12', 16000, 154, NULL),
+(49, '2018-01-12', 8000, 155, NULL),
+(50, '2018-01-12', 4500, 156, NULL),
+(51, '2018-01-12', 4500, 157, NULL),
+(52, '2018-01-12', 4500, 158, NULL),
+(53, '2018-01-12', 4000, 159, NULL),
+(54, '2018-01-12', 6000, 160, NULL),
+(55, '2018-01-12', 6000, 161, NULL),
+(56, '2018-01-12', 8000, 162, NULL),
+(57, '2018-01-12', 5500, 163, NULL),
+(58, '2018-01-12', 2500, 164, NULL),
+(59, '2018-01-12', 8000, 165, NULL),
+(60, '2018-01-12', 500, 166, NULL),
+(61, '2018-01-12', 4500, 167, NULL),
+(62, '2018-01-12', 4500, 168, NULL),
+(63, '2018-01-12', 1500, 170, NULL),
+(64, '2018-01-12', 1500, 171, NULL),
+(65, '2018-01-12', 1500, 172, NULL),
+(66, '2018-01-12', 10000, 173, NULL),
+(67, '2018-01-19', 14000, 174, NULL),
+(68, '2018-01-19', 14000, 175, NULL),
+(69, '2018-01-19', 14000, 176, NULL),
+(70, '2018-01-26', NULL, 180, NULL),
+(71, '2018-01-26', NULL, 181, NULL),
+(72, '2018-01-26', NULL, 182, NULL),
+(73, '2018-01-26', NULL, 183, NULL),
+(74, '2018-01-26', NULL, 184, NULL),
+(75, '2018-01-27', NULL, 185, NULL),
+(76, '2018-01-28', NULL, 196, NULL),
+(77, '2018-01-06', 187052, 4, NULL),
+(78, '2018-01-07', 382342, 2, NULL),
+(79, '2018-01-07', 382342, 2, NULL),
+(80, '2018-01-07', 382342, 2, NULL),
+(81, '2018-01-07', 382342, 2, NULL),
+(82, '2018-01-07', 382342, 2, NULL),
+(83, '2018-01-07', 382342, 2, NULL),
+(84, '2018-01-07', 382342, 2, NULL),
+(85, '2018-01-07', 382342, 2, NULL),
+(86, '2018-01-07', 382342, 2, NULL),
+(87, '2018-01-07', 382342, 2, NULL),
+(88, '2018-01-07', 382342, 2, NULL),
+(89, '2018-01-07', 382342, 2, NULL),
+(90, '2018-01-07', 382342, 2, NULL),
+(91, '2018-01-07', 0, 6, NULL),
+(92, '2018-01-07', 382342, 2, NULL),
+(93, '2018-01-07', 0, 7, NULL),
+(94, '2018-01-07', 0, 8, NULL),
+(95, '2018-01-07', 0, 9, NULL),
+(96, '2018-01-07', 0, 10, NULL),
+(97, '2018-01-07', 0, 11, NULL),
+(98, '2018-01-07', 0, 12, NULL),
+(99, '2018-01-07', 0, 13, NULL),
+(100, '2018-01-07', 0, 14, NULL),
+(101, '2018-01-07', 0, 15, NULL),
+(102, '2018-01-07', 0, 16, NULL),
+(103, '2018-01-07', 0, 17, NULL),
+(104, '2018-01-07', 0, 18, NULL),
+(105, '2018-01-07', 0, 19, NULL),
+(106, '2018-01-07', 0, 20, NULL),
+(107, '2018-01-08', 14140, 21, NULL),
+(108, '2018-03-22', 0, 28, 'INVOICE CIT-CI18.03.22.137'),
+(109, '2018-03-26', 10250, 41, 'INVOICE CIT-CI18.03.26.112'),
+(110, '2018-03-26', 10250, 42, 'INVOICE CIT-CI18.03.26.384'),
+(111, '2018-03-26', 5000, 43, 'INVOICE CIT-CI18.03.26.456'),
+(112, '2018-03-26', 9750, 44, 'INVOICE CIT-CI18.03.26.348'),
+(113, '2018-03-26', 9750, 45, 'INVOICE CIT-CI18.03.26.6410');
 
 -- --------------------------------------------------------
 
@@ -2165,7 +2200,6 @@ INSERT INTO `purchase_order` (`id`, `date`, `total_amount`, `quotation_id`) VALU
 -- Structure de la table `quotation`
 --
 
-DROP TABLE IF EXISTS `quotation`;
 CREATE TABLE IF NOT EXISTS `quotation` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `reference` varchar(255) DEFAULT NULL,
@@ -2183,35 +2217,26 @@ CREATE TABLE IF NOT EXISTS `quotation` (
   KEY `FK57xvoem5kp6fmif9ikxecmoph` (`approval_type_id`),
   KEY `FKm12t84492qkl4qmu1hri07xcc` (`equipment_nature_id`),
   KEY `FK39osx05dq5a2wv61nacu2eidg` (`equipment_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
 --
--- Déchargement des données de la table `quotation`
+-- Contenu de la table `quotation`
 --
 
 INSERT INTO `quotation` (`id`, `reference`, `data_sheet_url`, `date`, `has_encryption_feature`, `number`, `status`, `total_amount`, `approval_type_id`, `equipment_nature_id`, `equipment_type_id`) VALUES
-(1, NULL, NULL, '2018-01-04', b'1', 'QUOT1803043', 0, 2000, 3, 1, 33),
-(2, NULL, NULL, '2018-01-07', b'1', 'QUOT1803054', 1, 382342, 3, 1, 9),
-(3, NULL, NULL, '2018-01-05', b'0', 'QUOT1803055', 0, 152000, 3, 1, 9),
-(4, NULL, NULL, '2018-01-06', b'1', 'QUOT1803056', 1, 187052, 3, 1, 35),
-(5, NULL, NULL, '2018-01-05', b'1', 'QUOT1803057', 0, 23650, 3, 1, 35),
-(6, NULL, NULL, '2018-01-07', NULL, 'QUOT1803078', 1, 0, NULL, NULL, NULL),
-(7, NULL, NULL, '2018-01-07', NULL, 'QUOT1803079', 1, 0, NULL, NULL, NULL),
-(8, NULL, NULL, '2018-01-07', NULL, 'QUOT18030710', 1, 0, NULL, NULL, NULL),
-(9, NULL, NULL, '2018-01-07', NULL, 'QUOT18030711', 1, 0, NULL, NULL, NULL),
-(10, NULL, NULL, '2018-01-07', NULL, 'QUOT18030712', 1, 0, NULL, NULL, NULL),
-(11, NULL, NULL, '2018-01-07', NULL, 'QUOT18030713', 1, 0, NULL, NULL, NULL),
-(12, NULL, NULL, '2018-01-07', NULL, 'QUOT18030714', 1, 0, NULL, NULL, NULL),
-(13, NULL, NULL, '2018-01-07', NULL, 'QUOT18030715', 1, 0, NULL, NULL, NULL),
-(14, NULL, NULL, '2018-01-07', NULL, 'QUOT18030716', 1, 0, NULL, NULL, NULL),
-(15, NULL, NULL, '2018-01-07', NULL, 'QUOT18030717', 1, 0, NULL, NULL, NULL),
-(16, NULL, NULL, '2018-01-07', NULL, 'QUOT18030718', 1, 0, NULL, NULL, NULL),
-(17, NULL, NULL, '2018-01-07', NULL, 'QUOT18030719', 1, 0, NULL, NULL, NULL),
-(18, NULL, NULL, '2018-01-07', NULL, 'QUOT18030720', 1, 0, NULL, NULL, NULL),
-(19, NULL, NULL, '2018-01-07', NULL, 'QUOT18030721', 1, 0, NULL, NULL, NULL),
-(20, NULL, NULL, '2018-01-07', NULL, 'QUOT18030722', 1, 0, NULL, NULL, NULL),
-(21, NULL, NULL, '2018-01-08', b'1', 'QUOT18030823', 1, 14140, 3, 1, 9),
-(22, NULL, NULL, '2018-01-13', b'1', 'QUOT18031324', 0, 6850, 3, 1, 9);
+(32, NULL, NULL, '2018-03-23', b'1', 'QUOTATION CIT-CI180323324', 0, 7890, 3, 1, 9),
+(31, NULL, NULL, '2018-03-23', b'1', 'QUOTATION CIT-CI180323553', 0, 2000, 3, 1, 9),
+(34, NULL, NULL, '2018-03-23', b'1', 'QUOTATION CIT-CI180323876', 0, 2000, 3, 1, 9),
+(40, NULL, NULL, '2018-03-23', b'1', 'QUOTATION CIT-CI1803237012', 0, 2000, 3, 1, 9),
+(39, NULL, NULL, '2018-03-23', b'1', 'QUOTATION CIT-CI180323911', 0, 2000, 3, 1, 9),
+(41, NULL, NULL, '2018-03-26', b'0', 'QUOTATION CIT-CI180326261', 1, 10250, 3, 1, 11),
+(42, NULL, NULL, '2018-03-26', b'0', 'QUOTATION CIT-CI180326943', 1, 10250, 3, 1, 11),
+(43, NULL, NULL, '2018-03-26', b'0', 'QUOTATION CIT-CI180326795', 1, 5000, 3, 1, 7),
+(44, NULL, NULL, '2018-03-26', b'1', 'QUOTATION CIT-CI18032647', 1, 9750, 3, 1, 9),
+(45, NULL, NULL, '2018-03-26', b'1', 'QUOTATION CIT-CI180326839', 1, 9750, 3, 1, 9),
+(46, NULL, NULL, '2018-03-26', b'0', 'QUOTATION CIT-CI1803264811', 0, 18050, 3, 1, 9),
+(47, NULL, NULL, '2018-03-26', b'0', 'QUOTATION CIT-CI1803269512', 0, 33840, 3, 1, 9),
+(48, NULL, NULL, '2018-03-26', b'0', 'QUOTATION CIT-CI1803264413', 0, 18050, 3, 1, 18);
 
 -- --------------------------------------------------------
 
@@ -2219,7 +2244,6 @@ INSERT INTO `quotation` (`id`, `reference`, `data_sheet_url`, `date`, `has_encry
 -- Structure de la table `quotation_agency`
 --
 
-DROP TABLE IF EXISTS `quotation_agency`;
 CREATE TABLE IF NOT EXISTS `quotation_agency` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `agency_id` bigint(20) DEFAULT NULL,
@@ -2227,28 +2251,56 @@ CREATE TABLE IF NOT EXISTS `quotation_agency` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKel5kfaer67xryw0gig6y5l2go` (`agency_id`,`quotation_id`),
   KEY `FKhog2ixxwcdxo4ctan6l4t422y` (`quotation_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
 
 --
--- Déchargement des données de la table `quotation_agency`
+-- Contenu de la table `quotation_agency`
 --
 
 INSERT INTO `quotation_agency` (`id`, `agency_id`, `quotation_id`) VALUES
-(1, 2, 1),
-(46, 2, 3),
-(47, 16, 3),
-(48, 17, 3),
-(49, 15, 3),
-(53, 52, 4),
-(51, 50, 5),
-(93, 53, 2),
-(92, 51, 2),
-(94, 2, 21),
-(95, 3, 21),
-(96, 4, 21),
-(97, 21, 21),
-(98, 11, 22),
-(99, 38, 22);
+(105, 2, 33),
+(104, 4, 32),
+(103, 2, 32),
+(102, 2, 31),
+(106, 2, 34),
+(107, 2, 35),
+(108, 4, 36),
+(109, 2, 36),
+(110, 2, 37),
+(111, 2, 38),
+(112, 2, 39),
+(113, 2, 40),
+(114, 2, 41),
+(115, 5, 41),
+(116, 11, 41),
+(117, 2, 42),
+(118, 5, 42),
+(119, 11, 42),
+(120, 3, 43),
+(121, 2, 43),
+(122, 10, 44),
+(123, 11, 44),
+(124, 3, 44),
+(125, 10, 45),
+(126, 11, 45),
+(127, 3, 45),
+(128, 2, 46),
+(129, 5, 46),
+(130, 40, 46),
+(131, 13, 46),
+(132, 2, 47),
+(133, 5, 47),
+(134, 40, 47),
+(135, 13, 47),
+(136, 3, 47),
+(137, 4, 47),
+(138, 46, 47),
+(139, 7, 47),
+(140, 8, 47),
+(141, 2, 48),
+(142, 5, 48),
+(143, 40, 48),
+(144, 13, 48);
 
 -- --------------------------------------------------------
 
@@ -2256,7 +2308,6 @@ INSERT INTO `quotation_agency` (`id`, `agency_id`, `quotation_id`) VALUES
 -- Structure de la table `quotation_frequencies`
 --
 
-DROP TABLE IF EXISTS `quotation_frequencies`;
 CREATE TABLE IF NOT EXISTS `quotation_frequencies` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `frequency_band_id` bigint(20) DEFAULT NULL,
@@ -2264,26 +2315,127 @@ CREATE TABLE IF NOT EXISTS `quotation_frequencies` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKrve8soyqqiyjvifi52ft55hmy` (`quotation_id`,`frequency_band_id`),
   KEY `FKihhsof7xha5ybehpuwelq6hy` (`frequency_band_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=220 ;
 
 --
--- Déchargement des données de la table `quotation_frequencies`
+-- Contenu de la table `quotation_frequencies`
 --
 
 INSERT INTO `quotation_frequencies` (`id`, `frequency_band_id`, `quotation_id`) VALUES
-(1, 8, 1),
-(88, 5, 2),
-(87, 4, 2),
-(90, 8, 2),
-(89, 6, 2),
-(9, 8, 3),
-(10, 6, 3),
-(17, 4, 4),
-(12, 4, 5),
-(18, 8, 4),
-(91, 8, 21),
-(92, 4, 22),
-(93, 5, 22);
+(129, 8, 33),
+(128, 7, 33),
+(127, 6, 33),
+(126, 5, 33),
+(125, 4, 33),
+(124, 3, 33),
+(123, 2, 33),
+(122, 1, 33),
+(121, 8, 32),
+(120, 7, 32),
+(119, 6, 32),
+(118, 5, 32),
+(117, 4, 32),
+(116, 3, 32),
+(115, 2, 32),
+(114, 1, 32),
+(113, 7, 31),
+(112, 8, 31),
+(111, 6, 31),
+(110, 5, 31),
+(109, 4, 31),
+(108, 3, 31),
+(107, 2, 31),
+(106, 1, 31),
+(130, 1, 34),
+(131, 2, 34),
+(132, 3, 34),
+(133, 4, 34),
+(134, 5, 34),
+(135, 6, 34),
+(136, 7, 34),
+(137, 8, 34),
+(138, 1, 35),
+(139, 2, 35),
+(140, 3, 35),
+(141, 4, 35),
+(142, 5, 35),
+(143, 6, 35),
+(144, 7, 35),
+(145, 8, 35),
+(146, 1, 36),
+(147, 2, 36),
+(148, 3, 36),
+(149, 4, 36),
+(150, 5, 36),
+(151, 6, 36),
+(152, 7, 36),
+(153, 8, 36),
+(154, 1, 37),
+(155, 2, 37),
+(156, 3, 37),
+(157, 4, 37),
+(158, 5, 37),
+(159, 6, 37),
+(160, 7, 37),
+(161, 8, 37),
+(162, 1, 38),
+(163, 2, 38),
+(164, 3, 38),
+(165, 4, 38),
+(166, 5, 38),
+(167, 6, 38),
+(168, 7, 38),
+(169, 8, 38),
+(170, 1, 39),
+(171, 2, 39),
+(172, 3, 39),
+(173, 4, 39),
+(174, 5, 39),
+(175, 6, 39),
+(176, 7, 39),
+(177, 8, 39),
+(178, 1, 40),
+(179, 2, 40),
+(180, 3, 40),
+(181, 4, 40),
+(182, 5, 40),
+(183, 6, 40),
+(184, 7, 40),
+(185, 8, 40),
+(186, 1, 41),
+(187, 2, 41),
+(188, 3, 41),
+(189, 4, 41),
+(190, 5, 41),
+(191, 6, 41),
+(192, 1, 42),
+(193, 2, 42),
+(194, 3, 42),
+(195, 4, 42),
+(196, 5, 42),
+(197, 6, 42),
+(198, 2, 43),
+(199, 1, 43),
+(200, 3, 43),
+(201, 5, 44),
+(202, 4, 44),
+(203, 5, 45),
+(204, 4, 45),
+(205, 1, 46),
+(206, 2, 46),
+(207, 3, 46),
+(208, 4, 46),
+(209, 5, 46),
+(210, 1, 47),
+(211, 2, 47),
+(212, 3, 47),
+(213, 4, 47),
+(214, 5, 47),
+(215, 1, 48),
+(216, 2, 48),
+(217, 3, 48),
+(218, 4, 48),
+(219, 5, 48);
 
 -- --------------------------------------------------------
 
@@ -2291,7 +2443,6 @@ INSERT INTO `quotation_frequencies` (`id`, `frequency_band_id`, `quotation_id`) 
 -- Structure de la table `quotation_technologies`
 --
 
-DROP TABLE IF EXISTS `quotation_technologies`;
 CREATE TABLE IF NOT EXISTS `quotation_technologies` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `equipment_technologie_id` bigint(20) DEFAULT NULL,
@@ -2299,34 +2450,79 @@ CREATE TABLE IF NOT EXISTS `quotation_technologies` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKirsvryjsshnca1q7bnpk7t9de` (`quotation_id`,`equipment_technologie_id`),
   KEY `FKhjyxm2upxocf3777yw96lfgo8` (`equipment_technologie_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=115 ;
 
 --
--- Déchargement des données de la table `quotation_technologies`
+-- Contenu de la table `quotation_technologies`
 --
 
 INSERT INTO `quotation_technologies` (`id`, `equipment_technologie_id`, `quotation_id`) VALUES
-(1, 46, 1),
-(43, 31, 2),
-(8, 45, 3),
-(9, 46, 3),
-(10, 42, 3),
-(11, 49, 3),
-(12, 31, 3),
-(13, 50, 3),
-(14, 54, 3),
-(15, 55, 3),
-(16, 47, 3),
-(17, 48, 3),
-(18, 52, 3),
-(19, 56, 3),
-(20, 51, 3),
-(24, 57, 4),
-(22, 57, 5),
-(25, 53, 4),
-(44, 46, 21),
-(45, 45, 21),
-(46, 46, 22);
+(63, 49, 33),
+(62, 46, 33),
+(61, 45, 33),
+(60, 42, 33),
+(59, 31, 33),
+(58, 49, 32),
+(57, 46, 32),
+(56, 45, 32),
+(55, 42, 32),
+(54, 31, 32),
+(53, 45, 31),
+(52, 49, 31),
+(51, 42, 31),
+(50, 31, 31),
+(49, 46, 31),
+(64, 31, 34),
+(65, 42, 34),
+(66, 45, 34),
+(67, 46, 34),
+(68, 49, 34),
+(69, 31, 35),
+(70, 42, 35),
+(71, 45, 35),
+(72, 46, 35),
+(73, 49, 35),
+(74, 31, 36),
+(75, 42, 36),
+(76, 45, 36),
+(77, 46, 36),
+(78, 49, 36),
+(79, 31, 37),
+(80, 42, 37),
+(81, 45, 37),
+(82, 46, 37),
+(83, 49, 37),
+(84, 31, 38),
+(85, 42, 38),
+(86, 45, 38),
+(87, 46, 38),
+(88, 49, 38),
+(89, 31, 39),
+(90, 42, 39),
+(91, 45, 39),
+(92, 46, 39),
+(93, 49, 39),
+(94, 31, 40),
+(95, 42, 40),
+(96, 45, 40),
+(97, 46, 40),
+(98, 49, 40),
+(99, 46, 41),
+(100, 42, 41),
+(101, 46, 42),
+(102, 42, 42),
+(103, 46, 43),
+(104, 48, 44),
+(105, 48, 45),
+(106, 46, 46),
+(107, 45, 46),
+(108, 45, 47),
+(109, 46, 47),
+(110, 31, 47),
+(111, 51, 47),
+(112, 45, 48),
+(113, 46, 48),
+(114, 42, 48);
 
 -- --------------------------------------------------------
 
@@ -2334,21 +2530,23 @@ INSERT INTO `quotation_technologies` (`id`, `equipment_technologie_id`, `quotati
 -- Structure de la table `record_counter`
 --
 
-DROP TABLE IF EXISTS `record_counter`;
 CREATE TABLE IF NOT EXISTS `record_counter` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `current_month` varchar(255) DEFAULT NULL,
   `current_year` varchar(255) DEFAULT NULL,
   `quotation_counter` int(11) DEFAULT NULL,
+  `current_day_of_month` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Déchargement des données de la table `record_counter`
+-- Contenu de la table `record_counter`
 --
 
-INSERT INTO `record_counter` (`id`, `current_month`, `current_year`, `quotation_counter`) VALUES
-(1, '03', NULL, 24);
+INSERT INTO `record_counter` (`id`, `current_month`, `current_year`, `quotation_counter`, `current_day_of_month`, `type`) VALUES
+(1, '03', NULL, 24, NULL, NULL),
+(2, '22', '22', 13, '26', 'quotation');
 
 -- --------------------------------------------------------
 
@@ -2356,15 +2554,14 @@ INSERT INTO `record_counter` (`id`, `current_month`, `current_year`, `quotation_
 -- Structure de la table `requirements`
 --
 
-DROP TABLE IF EXISTS `requirements`;
 CREATE TABLE IF NOT EXISTS `requirements` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Déchargement des données de la table `requirements`
+-- Contenu de la table `requirements`
 --
 
 INSERT INTO `requirements` (`id`, `name`) VALUES
@@ -2377,14 +2574,13 @@ INSERT INTO `requirements` (`id`, `name`) VALUES
 -- Structure de la table `role`
 --
 
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `activated` tinyint(1) DEFAULT '1',
   `description` varchar(255) DEFAULT NULL,
   `role_wording` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2392,7 +2588,6 @@ CREATE TABLE IF NOT EXISTS `role` (
 -- Structure de la table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_type` varchar(31) NOT NULL,
   `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -2405,10 +2600,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Déchargement des données de la table `users`
+-- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`user_type`, `user_id`, `actived`, `email`, `first_name`, `is_confirm`, `last_name`, `mobile`, `password`, `username`) VALUES
@@ -2420,7 +2615,6 @@ INSERT INTO `users` (`user_type`, `user_id`, `actived`, `email`, `first_name`, `
 -- Structure de la table `users_role`
 --
 
-DROP TABLE IF EXISTS `users_role`;
 CREATE TABLE IF NOT EXISTS `users_role` (
   `authorized` bit(1) NOT NULL,
   `users_user_id` bigint(20) NOT NULL,
@@ -2428,7 +2622,6 @@ CREATE TABLE IF NOT EXISTS `users_role` (
   PRIMARY KEY (`role_role_id`,`users_user_id`),
   KEY `FKf9glr0ygo1efad4byt5nt7149` (`users_user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -10,4 +10,6 @@ public interface IAgencyMessageRestrictionDao extends JpaRepository<AgencyMessag
 
 	
 	public List<AgencyMessageRestriction> findByAgencyCountryId(Long id);
+	
+	public AgencyMessageRestriction findByAgencyCountryIdAndAgencyAgencyFrequencyBandsFrequencyBandIdAndAgencyAgencyFrequencyBandsHasRestriction(Long cid,Long fid,Boolean hasRestriction);
 }

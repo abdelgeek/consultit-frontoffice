@@ -284,7 +284,7 @@ public class QuotationController {
 		List<Quotation> quotations = new LinkedList<>();
 		List<QuotationModel> quotationModels = new LinkedList<>();
 
-		quotations = quotationDao.findByStatusOrderByDateDesc(Status.getValue(status));
+		quotations = quotationDao.findByStatusOrderByIdDesc(Status.getValue(status));
 
 		for (Quotation quotationItem : quotations) {
 			QuotationModel quotationModel = this.getQuotationModel(quotationItem);
